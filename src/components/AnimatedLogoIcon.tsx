@@ -1,13 +1,15 @@
 import React from 'react';
 import { motion, AnimatePresence } from "framer-motion";
-import { FlaskConical } from 'lucide-react';
+import { FLASK_CONICAL_PATHS } from "@/icons/flaskConicalPaths";
 
 type Props = { isHovered?: boolean; className?: string; rotate?: boolean };
 export default function AnimatedLogoIcon({ isHovered, className = "h-7 w-7", rotate = true }: Props) {
     return (
         <div className="relative">
             <div className={`bg-gradient-to-br from-[#F4B942] to-[#f7d486] p-2.5 rounded-2xl text-[#1A3B47] shadow-lg shadow-[#F4B942]/20 transition-all duration-300 relative z-10 ${isHovered && rotate ? 'rotate-[15deg] scale-110' : ''}`}>
-                <FlaskConical className={className} />
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" className={className}>
+                    {FLASK_CONICAL_PATHS.map((d, i) => <path key={i} d={d} />)}
+                </svg>
             </div>
             <AnimatePresence>
                 {isHovered && (

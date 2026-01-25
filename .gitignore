@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/chemia-z-wero/
 /.pnp
 .pnp.*
 .yarn/*
