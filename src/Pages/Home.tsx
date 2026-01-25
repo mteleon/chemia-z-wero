@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, PlayCircle, Users, Star, Atom, Microscope } from 'lucide-react';
+import { ArrowRight, PlayCircle, Users, Atom, Microscope } from 'lucide-react';
 import { motion } from "framer-motion";
 import { getCourses } from "@/data/courses";
 import { useQuery } from "@tanstack/react-query";
@@ -16,7 +16,7 @@ export default function Home() {
 
   // Filter for specific popular courses and sort
   const courses = React.useMemo(() => {
-    const targetTitles = ['Korepetycje Indywidualne Online', 'Moduły maturalne'];
+    const targetTitles = ['Lekcje indywidualne', 'Lekcje grupowe', 'Powtórka matura 2026'];
     const unique = [];
     const seen = new Set();
 
@@ -27,11 +27,11 @@ export default function Home() {
       }
     }
 
-    // Sort to put "Korepetycje Indywidualne Online" first
     return unique.sort((a, b) => {
-      if (a.title === 'Korepetycje Indywidualne Online') return -1;
-      if (b.title === 'Korepetycje Indywidualne Online') return 1;
-      return 0;
+      const oa = a.order ?? 999;
+      const ob = b.order ?? 999;
+      if (oa !== ob) return oa - ob;
+      return (a.title ?? "").localeCompare(b.title ?? "");
     });
   }, [rawCourses]);
 
@@ -42,18 +42,18 @@ export default function Home() {
       icon: <Atom className="w-6 h-6 text-[#D97745]" />
     },
     {
-      title: "Dostęp 24/7",
-      description: "Uczysz się kiedy chcesz i gdzie chcesz. Dostęp do platformy masz z każdego urządzenia.",
+      title: "Zajęcia online",
+      description: "Lekcje przez internet – w dogodnym dla Ciebie miejscu i czasie. Indywidualnie lub w grupie.",
       icon: <ClockIcon className="w-6 h-6 text-[#1A3B47]" />
     },
     {
-      title: "Materiały Premium",
-      description: "Autorskie notatki, zadania maturalne CKE i arkusze próbne w cenie kursu.",
+      title: "Praca na maturę",
+      description: "Na zajęciach: notatki, zadania maturalne i słowa kluczowe, które przekładają się na punkty.",
       icon: <BookIcon className="w-6 h-6 text-[#F4B942]" />
     },
     {
-      title: "Wsparcie Mentora",
-      description: "Stały kontakt na grupie zamkniętej. Twoje pytania nie pozostaną bez odpowiedzi.",
+      title: "Wsparcie na lekcjach",
+      description: "Twoje pytania wyjaśniam na bieżąco – na zajęciach masz moją pełną uwagę.",
       icon: <Users className="w-6 h-6 text-[#D97745]" />
     }
   ];
@@ -73,10 +73,6 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#F4B942]/30 shadow-sm text-sm font-medium text-[#D97745] mb-8">
-              <Star className="w-4 h-4 fill-[#F4B942] text-[#F4B942]" />
-              Oficjalny start przygotowań do Matury 2026
-            </span>
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-[#1A3B47] tracking-tight mb-6 md:mb-8 leading-tight">
               Pokochaj chemię i <br className="hidden md:block" />
               <span className="text-[#D97745]">
@@ -84,9 +80,9 @@ export default function Home() {
               </span>
             </h1>
             <p className="text-xl text-[#1A3B47]/80 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Kompleksowa platforma edukacyjna stworzona przez pasjonatkę. 
-              Setki godzin materiałów wideo, zadania maturalne i wsparcie, 
-              które doprowadzi Cię do wymarzonego indeksu.
+              Lekcje i kursy z chemii stworzone przez pasjonatkę. 
+              Indywidualnie, w grupie albo intensywna powtórka przed maturą – 
+              doprowadzę Cię do wymarzonego wyniku.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button size="lg" className="w-full sm:w-auto bg-[#D97745] hover:bg-[#c66535] text-white text-lg px-8 h-14 rounded-full" asChild>
@@ -111,7 +107,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-[#1A3B47] mb-4">Dlaczego Chemia z Wero?</h2>
             <p className="text-lg text-[#1A3B47]/80">
               Moja metoda opiera się na zrozumieniu procesów, a nie zakuwaniu schematów. 
-              Zobacz, co zyskasz dołączając do kursu.
+              Zobacz, co zyskasz na moich zajęciach.
             </p>
           </div>
 

@@ -18,10 +18,10 @@ export default function Courses() {
 
   const courses = React.useMemo(() => {
     return [...(rawCourses ?? [])].sort((a, b) => {
-      // "Korepetycje Indywidualne Online" first
-      if (a.title === "Korepetycje Indywidualne Online") return -1;
-      if (b.title === "Korepetycje Indywidualne Online") return 1;
-      return 0;
+      const oa = a.order ?? 999;
+      const ob = b.order ?? 999;
+      if (oa !== ob) return oa - ob;
+      return (a.title ?? "").localeCompare(b.title ?? "");
     });
   }, [rawCourses]);
 

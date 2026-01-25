@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Clock, BarChart, CheckCircle, ArrowRight } from 'lucide-react';
+import { Clock, Calendar, BarChart, CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { createPageUrl } from "@/utils";
-import type { Course } from "@/Utilities/Course";
+import { type Course, isPromoActive } from "@/Utilities/Course";
 
 type Props = { course: Course };
 
@@ -39,6 +39,11 @@ export default function CourseCard({ course }: Props) {
               Wkrótce dostępny
             </Badge>
           )}
+          {isPromoActive(course) && (
+            <Badge className="bg-[#D97745]/90 text-white hover:bg-[#D97745] backdrop-blur-sm font-semibold">
+              {course.promo_label ?? "Promocja"}
+            </Badge>
+          )}
         </div>
       </div>
 
@@ -49,16 +54,22 @@ export default function CourseCard({ course }: Props) {
           {course.short_description}
         </p>
 
-        {/* Meta Info */}
-        <div className="flex items-center gap-4 text-xs text-[#1A3B47]/60 mb-6">
+        {/* Meta Info: czas zajęć, termin, poziom */}
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-[#1A3B47]/60 mb-6">
           {course.duration && (
             <div className="flex items-center gap-1">
-              <Clock className="h-3.5 w-3.5" />
+              <Clock className="h-3.5 w-3.5 flex-shrink-0" />
               <span>{course.duration}</span>
             </div>
           )}
+          {course.schedule && (
+            <div className="flex items-center gap-1">
+              <Calendar className="h-3.5 w-3.5 flex-shrink-0" />
+              <span>{course.schedule}</span>
+            </div>
+          )}
           <div className="flex items-center gap-1">
-            <BarChart className="h-3.5 w-3.5" />
+            <BarChart className="h-3.5 w-3.5 flex-shrink-0" />
             <span className="capitalize">{course.level}</span>
           </div>
         </div>
@@ -78,7 +89,18 @@ export default function CourseCard({ course }: Props) {
         {/* Footer */}
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-[#D97745]/10">
           <div>
-            <span className="text-2xl font-bold text-[#1A3B47]">{course.price} zł</span>
+            {isPromoActive(course) ? (
+              <>
+                <span className="text-2xl font-bold text-[#1A3B47]">{course.promo_price} zł</span>
+                <span className="ml-2 text-sm text-[#1A3B47]/50 line-through">{course.price} zł</span>
+                <div className="text-xs text-[#1A3B47]/50">Cena regularna</div>
+              </>
+            ) : (
+              <span className="text-2xl font-bold text-[#1A3B47]">{course.price} zł</span>
+            )}
+            {course.price_label && (
+              <div className="text-xs text-[#1A3B47]/60 mt-0.5">{course.price_label}</div>
+            )}
           </div>
           {course.status === 'coming_soon' ? (
             <Button size="sm" disabled className="bg-[#1A3B47]/50 text-white cursor-not-allowed">

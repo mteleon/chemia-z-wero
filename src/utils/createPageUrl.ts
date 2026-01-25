@@ -2,7 +2,7 @@
 export function createPageUrl(path: string): string {
   const t = path.trim();
   if (t.startsWith("CourseDetails")) {
-    const m = /CourseDetails\?id=(\w+)/.exec(t);
+    const m = /CourseDetails\?id=([\w-]+)/.exec(t);
     return m ? `/course/${m[1]}` : "/Courses";
   }
   const map: Record<string, string> = {
