@@ -5,6 +5,7 @@ import { Menu, X, Instagram, Facebook, Youtube, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedLogoIcon from "@/components/AnimatedLogoIcon";
+import PromoBanner from "@/components/PromoBanner";
 
 type LayoutProps = { children: React.ReactNode };
 
@@ -116,6 +117,9 @@ export default function Layout({ children }: LayoutProps) {
         </AnimatePresence>
       </nav>
 
+      {/* Promo Banner */}
+      <PromoBanner />
+
       {/* Main Content */}
       <main className="flex-grow">
         {children}
@@ -135,7 +139,7 @@ export default function Layout({ children }: LayoutProps) {
               </Link>
               <p className="text-slate-300 text-sm max-w-xs leading-relaxed">
                 Zrozum chemię i otwórz drogę na wymarzone studia. 
-                Kompleksowe kursy, webinary i materiały dydaktyczne tworzone z pasją.
+                Lekcje i kursy z chemii tworzone z pasją.
               </p>
             </div>
             

@@ -5,7 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { createPageUrl } from "@/utils";
-import { ArrowLeft, CheckCircle, ShieldCheck, PlayCircle } from "lucide-react";
+import { isPromoActive } from "@/Utilities/Course";
+import { ArrowLeft, CheckCircle, ShieldCheck, BookOpen } from "lucide-react";
 
 export default function CourseDetails() {
   const { id } = useParams<{ id: string }>();
@@ -65,6 +66,7 @@ export default function CourseDetails() {
                    </Badge>
                  )}
                  {course.duration && <Badge variant="outline" className="text-white/80 border-white/20">{course.duration}</Badge>}
+                 {course.schedule && <Badge variant="outline" className="text-white/80 border-white/20">{course.schedule}</Badge>}
               </div>
               <h1 className="text-4xl md:text-5xl font-bold tracking-tight">{course.title}</h1>
               <p className="text-xl text-white/80 leading-relaxed max-w-2xl">
@@ -115,16 +117,27 @@ export default function CourseDetails() {
           {/* Sidebar Pricing Card */}
           <div className="md:col-span-1">
             <div className="bg-white rounded-2xl shadow-lg border border-[#D97745]/10 p-6 sticky top-24">
-              <div className="aspect-video bg-[#FFFBF0] rounded-xl mb-6 overflow-hidden relative group cursor-pointer">
-                 {course.image_url && <img src={course.image_url} alt="Preview" className="w-full h-full object-cover" />}
-                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-                    <PlayCircle className="w-12 h-12 text-white opacity-90 group-hover:scale-110 transition-transform" />
-                 </div>
+              <div className="aspect-video bg-[#FFFBF0] rounded-xl mb-6 overflow-hidden relative group">
+                 {course.image_url ? (
+                   <img src={course.image_url} alt="" className="w-full h-full object-cover" />
+                 ) : (
+                   <div className="w-full h-full flex items-center justify-center">
+                     <BookOpen className="w-12 h-12 text-[#1A3B47]/20" />
+                   </div>
+                 )}
               </div>
               
               <div className="mb-6">
-                <div className="text-3xl font-bold text-[#1A3B47] mb-1">{course.price} zł</div>
-                <div className="text-sm text-[#1A3B47]/60">Dostęp na rok</div>
+                {isPromoActive(course) ? (
+                  <>
+                    <div className="text-3xl font-bold text-[#1A3B47] mb-1">{course.promo_price} zł</div>
+                    <div className="text-sm text-[#1A3B47]/50 line-through">{course.price} zł — cena regularna</div>
+                    <div className="text-sm text-[#D97745] font-medium mt-1">{course.promo_label ?? "Cena promocyjna"}</div>
+                  </>
+                ) : (
+                  <div className="text-3xl font-bold text-[#1A3B47] mb-1">{course.price} zł</div>
+                )}
+                <div className="text-sm text-[#1A3B47]/60">{course.price_label || "Dostęp na rok"}</div>
               </div>
 
               <div className="space-y-3 mb-8">

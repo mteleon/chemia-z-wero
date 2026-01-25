@@ -124,17 +124,17 @@ export default function About() {
             {[
               {
                 title: "Jakość ponad ilość",
-                text: "Nie zalewam Cię setkami godzin nudnych wykładów. Koncentruję się na esencji i praktycznym zastosowaniu wiedzy.",
+                text: "Nie zalewam Cię zbędną teorią. Koncentruję się na esencji i tym, co realnie pojawia się na maturze.",
                 icon: <Sparkles className="w-8 h-8 text-[#F4B942]" />
               },
               {
                 title: "Aktualna wiedza",
-                text: "Materiały są co roku aktualizowane zgodnie z najnowszymi wytycznymi CKE. Nie uczysz się rzeczy, których już nie ma w podstawie.",
+                text: "Zajęcia prowadzę zgodnie z najnowszymi wytycznymi CKE. Nie uczysz się rzeczy, których już nie ma w podstawie.",
                 icon: <BookOpen className="w-8 h-8 text-[#D97745]" />
               },
               {
-                title: "Społeczność",
-                text: "Budujemy grupę wsparcia. Nauka do matury to maraton, nie sprint, i łatwiej biec w towarzystwie.",
+                title: "Zajęcia grupowe",
+                text: "Na lekcjach grupowych i powtórce – wspólna nauka. Maraton do matury łatwiej biec w towarzystwie.",
                 icon: <Users className="w-8 h-8 text-[#1A3B47]" />
               }
             ].map((val, i) => (
