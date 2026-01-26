@@ -28,7 +28,7 @@ export default function Layout({ children }: LayoutProps) {
     { name: 'Kontakt', path: '/Contact' },
   ];
 
-  const calendlyUrl = "https://calendly.com/chemiazwero/15min?month=2025-12";
+  const calendlyUrl = "https://calendly.com/app/scheduling/meeting_types/user/me";
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FFFBF0] font-sans text-[#1A3B47]">

@@ -145,7 +145,7 @@ export default function CourseDetails() {
                   Kup teraz
                 </Button>
                 <Button variant="outline" className="w-full border-[#1A3B47]/20 text-[#1A3B47] h-12" asChild>
-                  <a href="https://calendly.com/chemiazwero/15min?month=2025-12" target="_blank" rel="noopener noreferrer">
+                  <a href="https://calendly.com/app/scheduling/meeting_types/user/me" target="_blank" rel="noopener noreferrer">
                     Umów Mini Lekcję + Plan
                   </a>
                 </Button>
