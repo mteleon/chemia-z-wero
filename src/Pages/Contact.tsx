@@ -90,7 +90,7 @@ ${formData.message}
                 <h3 className="font-semibold text-[#1A3B47] mb-2">Umów lekcję</h3>
                 <p className="text-[#1A3B47]/70 mb-4">Wybierz dogodny termin w kalendarzu</p>
                 <Button asChild className="w-full bg-[#D97745] hover:bg-[#c66535] text-white gap-2 rounded-full">
-                  <a href="https://calendly.com/app/scheduling/meeting_types/user/me" target="_blank" rel="noopener noreferrer">
+                  <a href="https://calendly.com/chemiazweroo/30min" target="_blank" rel="noopener noreferrer">
                     <Calendar className="w-4 h-4" /> Umów lekcję
                   </a>
                 </Button>
