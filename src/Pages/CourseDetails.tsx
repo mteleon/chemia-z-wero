@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getCourseById } from "@/data/courses";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { createPageUrl } from "@/utils";
+import { CALENDLY_URL } from "@/utils/constants";
 import { isPromoActive } from "@/Utilities/Course";
+import EnrollmentForm from "@/components/EnrollmentForm";
 import { ArrowLeft, CheckCircle, ShieldCheck, BookOpen } from "lucide-react";
 
 export default function CourseDetails() {
   const { id } = useParams<{ id: string }>();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const { data: course, isLoading } = useQuery({
     queryKey: ["course", id],
@@ -141,18 +152,30 @@ export default function CourseDetails() {
               </div>
 
               <div className="space-y-3 mb-8">
-                <Button className="w-full bg-[#D97745] hover:bg-[#c66535] text-white h-12 text-lg">
-                  Kup teraz
-                </Button>
+                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                  <DialogTrigger asChild>
+                    <Button className="w-full bg-[#D97745] hover:bg-[#c66535] text-white h-12 text-lg">
+                      Zapisz się
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-md">
+                    <DialogHeader>
+                      <DialogTitle>Zapisz się na kurs</DialogTitle>
+                      <DialogDescription>
+                        Wypełnij formularz, a wkrótce otrzymasz dane do płatności.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <EnrollmentForm
+                      course={course}
+                      onClose={() => setIsDialogOpen(false)}
+                    />
+                  </DialogContent>
+                </Dialog>
                 <Button variant="outline" className="w-full border-[#1A3B47]/20 text-[#1A3B47] h-12" asChild>
-                  <a href="https://calendly.com/chemiazwero/15min?month=2025-12" target="_blank" rel="noopener noreferrer">
+                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
                     Umów Mini Lekcję + Plan
                   </a>
                 </Button>
-              </div>
-
-              <div className="text-xs text-[#1A3B47]/50 text-center">
-                30 dni na zwrot pieniędzy. Bezpieczna płatność.
               </div>
             </div>
           </div>

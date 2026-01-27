@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { sendContactEmail } from "@/api/contact";
+import { CALENDLY_URL, CONTACT_EMAIL } from "@/utils/constants";
 import { Mail, Send, Instagram, Facebook, Youtube, Calendar, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,7 +30,7 @@ export default function Contact() {
 
     try {
       await sendContactEmail({
-        to: "kontakt@chemiazwero.com",
+        to: CONTACT_EMAIL,
         subject: `[Kontakt www] ${formData.subject} - ${formData.name}`,
         body: `
 Nowa wiadomość z formularza kontaktowego:
@@ -78,7 +79,7 @@ ${formData.message}
                   <Mail className="w-6 h-6" />
                 </div>
                 <h3 className="font-semibold text-[#1A3B47] mb-2">Email</h3>
-                <p className="text-[#1A3B47]/70 mb-4">kontakt@chemiazwero.com</p>
+                <p className="text-[#1A3B47]/70 mb-4">{CONTACT_EMAIL}</p>
               </CardContent>
             </Card>
 
@@ -90,7 +91,7 @@ ${formData.message}
                 <h3 className="font-semibold text-[#1A3B47] mb-2">Umów lekcję</h3>
                 <p className="text-[#1A3B47]/70 mb-4">Wybierz dogodny termin w kalendarzu</p>
                 <Button asChild className="w-full bg-[#D97745] hover:bg-[#c66535] text-white gap-2 rounded-full">
-                  <a href="https://calendly.com/chemiazwero/15min?month=2025-12" target="_blank" rel="noopener noreferrer">
+                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
                     <Calendar className="w-4 h-4" /> Umów lekcję
                   </a>
                 </Button>

@@ -1,14 +1,21 @@
 /**
- * Wysyłka formularza kontaktowego.
- * Podmień na: Formspree, własny backend, SendGrid, Resend itp.
+ * Wysyłka formularza kontaktowego przez Vercel Serverless Function + Resend.
  */
-export async function sendContactEmail(_payload: {
+export async function sendContactEmail(payload: {
   to: string;
   subject: string;
   body: string;
 }): Promise<void> {
-  void _payload;
-  throw new Error(
-    "Skonfiguruj wysyłkę w src/api/contact.ts (np. Formspree, własny backend)."
-  );
+  const response = await fetch("/api/contact", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ error: "Unknown error" }));
+    throw new Error(error.error || `Failed to send email: ${response.statusText}`);
+  }
 }
