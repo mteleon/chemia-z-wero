@@ -54,32 +54,33 @@ export default async function handler(
 
     // Email potwierdzający do użytkownika
     const emailToStudent = `
-      <h2>Witaj ${studentName}!</h2>
-      <p>Dziękujemy za zapis na kurs <strong>"${courseTitle}"</strong>.</p>
+      <h2>Hej ${studentName}!</h2>
       
-      <h3>Twoje dane zapisu:</h3>
-      <ul>
-        <li><strong>Kurs:</strong> ${courseTitle}</li>
-        <li><strong>Cena:</strong> ${promoPrice ? `${promoPrice} zł (promocyjna)` : `${price} zł`}</li>
-      </ul>
+      <p>Super, że zapisałeś się na <strong>"${courseTitle}"</strong>! 🎉</p>
       
-      <p>Wkrótce otrzymasz wiadomość email z danymi do płatności oraz dalszymi informacjami dotyczącymi kursu.</p>
+      <p>Wkrótce skontaktuję się z Tobą, żeby omówić szczegóły. W międzyczasie, jeśli masz pytania, pisz na <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.</p>
       
-      <p>Jeśli masz pytania, napisz do nas na <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a></p>
+      <p>Do zobaczenia!</p>
       
-      <p>Pozdrawiamy,<br>Chemia z Wero</p>
+      <p>Weronika<br>Chemia z Wero</p>
     `;
+
+    // Użyj onboarding@resend.dev jeśli nie ustawiono lub jeśli to Gmail
+    const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+    const safeFromEmail = fromEmail.includes("@gmail.com") || fromEmail.includes("@outlook.com")
+      ? "onboarding@resend.dev"
+      : fromEmail;
 
     // Wysyłka dwóch emaili równolegle
     await Promise.all([
       resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+        from: safeFromEmail,
         to: CONTACT_EMAIL,
         subject: `[Zapis na kurs] ${courseTitle} - ${studentName}`,
         html: emailToYou,
       }),
       resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+        from: safeFromEmail,
         to: studentEmail,
         subject: `Dziękujemy za zapis na ${courseTitle}!`,
         html: emailToStudent,

@@ -18,8 +18,14 @@ export default async function handler(
   }
 
   try {
+    // Użyj onboarding@resend.dev jeśli nie ustawiono lub jeśli to Gmail
+    const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+    const safeFromEmail = fromEmail.includes("@gmail.com") || fromEmail.includes("@outlook.com")
+      ? "onboarding@resend.dev"
+      : fromEmail;
+
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev",
+      from: safeFromEmail,
       to: to,
       subject: subject,
       html: body.replace(/\n/g, "<br>"),

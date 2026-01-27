@@ -82,7 +82,7 @@ export default function EnrollmentForm({ course, onClose }: Props) {
           Dziękujemy za zapis!
         </h3>
         <p className="text-[#1A3B47]/70 mb-6">
-          Sprawdź maila – wkrótce otrzymasz dane do płatności.
+          Skontaktujemy się z Tobą wkrótce.
         </p>
         {onClose && (
           <Button
