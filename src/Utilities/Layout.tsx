@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
+import { CALENDLY_URL } from "@/utils/constants";
 import { Menu, X, Instagram, Facebook, Youtube, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
@@ -28,7 +29,6 @@ export default function Layout({ children }: LayoutProps) {
     { name: 'Kontakt', path: '/Contact' },
   ];
 
-  const calendlyUrl = "https://calendly.com/chemiazwero/15min?month=2025-12";
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FFFBF0] font-sans text-[#1A3B47]">
@@ -64,7 +64,7 @@ export default function Layout({ children }: LayoutProps) {
                 </Link>
               ))}
               <Button asChild className="bg-[#D97745] hover:bg-[#c66535] text-white rounded-full px-6 gap-2">
-                <a href={calendlyUrl} target="_blank" rel="noopener noreferrer">
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
                   <Calendar className="w-4 h-4" /> Umów lekcję
                 </a>
               </Button>
@@ -106,7 +106,7 @@ export default function Layout({ children }: LayoutProps) {
                 ))}
                 <div className="pt-4">
                   <Button asChild className="w-full bg-[#D97745] hover:bg-[#c66535] text-white gap-2">
-                    <a href={calendlyUrl} target="_blank" rel="noopener noreferrer">
+                    <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
                       <Calendar className="w-4 h-4" /> Umów lekcję
                     </a>
                   </Button>
