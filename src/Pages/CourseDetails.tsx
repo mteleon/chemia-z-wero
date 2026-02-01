@@ -16,7 +16,7 @@ import { createPageUrl } from "@/utils";
 import { CALENDLY_URL } from "@/utils/constants";
 import { isPromoActive } from "@/Utilities/Course";
 import EnrollmentForm from "@/components/EnrollmentForm";
-import { ArrowLeft, CheckCircle, ShieldCheck, BookOpen } from "lucide-react";
+import { ArrowLeft, CheckCircle, BookOpen } from "lucide-react";
 
 export default function CourseDetails() {
   const { id } = useParams<{ id: string }>();
@@ -84,13 +84,6 @@ export default function CourseDetails() {
                 {course.short_description}
               </p>
               
-              <div className="flex items-center gap-6 text-sm text-white/60 pt-4">
-
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-5 h-5 text-[#D97745]" />
-                  <span>Gwarancja satysfakcji</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -103,9 +96,27 @@ export default function CourseDetails() {
           <div className="md:col-span-2 space-y-8">
             <div className="bg-white rounded-2xl shadow-sm border border-[#D97745]/10 p-8">
               <h2 className="text-2xl font-bold text-[#1A3B47] mb-6">O tym kursie</h2>
-              <div className="prose prose-slate max-w-none text-[#1A3B47]/80">
-                {course.full_description ? (
-                  <p>{course.full_description}</p>
+              <div className="prose prose-slate max-w-none text-[#1A3B47]/80 space-y-8">
+                {course.description_sections && course.description_sections.length > 0 ? (
+                  course.description_sections.map((section, idx) => (
+                    <section key={idx}>
+                      <h3 className="text-lg font-semibold text-[#1A3B47] mb-3">
+                        {section.title}
+                      </h3>
+                      {section.content && (
+                        <p className="mb-3 leading-relaxed">{section.content}</p>
+                      )}
+                      {section.bullets && section.bullets.length > 0 && (
+                        <ul className="list-disc pl-6 space-y-2">
+                          {section.bullets.map((bullet, i) => (
+                            <li key={i} className="leading-relaxed">{bullet}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </section>
+                  ))
+                ) : course.full_description ? (
+                  <p className="leading-relaxed">{course.full_description}</p>
                 ) : (
                   <p>Szczegółowy opis kursu wkrótce...</p>
                 )}
@@ -173,7 +184,7 @@ export default function CourseDetails() {
                 </Dialog>
                 <Button variant="outline" className="w-full border-[#1A3B47]/20 text-[#1A3B47] h-12" asChild>
                   <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-                    Umów Mini Lekcję + Plan
+                    Umów lekcję próbną
                   </a>
                 </Button>
               </div>

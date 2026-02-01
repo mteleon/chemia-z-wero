@@ -1,12 +1,14 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import { createPageUrl } from "@/utils";
 import { CALENDLY_URL } from "@/utils/constants";
-import { Menu, X, Instagram, Facebook, Youtube, Calendar } from "lucide-react";
+import { Menu, X, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedLogoIcon from "@/components/AnimatedLogoIcon";
 import PromoBanner from "@/components/PromoBanner";
+import SEO from "@/components/SEO";
 
 type LayoutProps = { children: React.ReactNode };
 
@@ -32,6 +34,8 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FFFBF0] font-sans text-[#1A3B47]">
+      <SEO path={pathname} />
+      <Analytics />
       {/* Navigation */}
       <nav className="sticky top-0 z-50 bg-[#FFFBF0]/90 backdrop-blur-md border-b border-[#D97745]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -65,7 +69,7 @@ export default function Layout({ children }: LayoutProps) {
               ))}
               <Button asChild className="bg-[#D97745] hover:bg-[#c66535] text-white rounded-full px-6 gap-2">
                 <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-                  <Calendar className="w-4 h-4" /> Umów lekcję
+                  <Calendar className="w-4 h-4" /> Umów lekcję próbną
                 </a>
               </Button>
             </div>
@@ -107,7 +111,7 @@ export default function Layout({ children }: LayoutProps) {
                 <div className="pt-4">
                   <Button asChild className="w-full bg-[#D97745] hover:bg-[#c66535] text-white gap-2">
                     <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-                      <Calendar className="w-4 h-4" /> Umów lekcję
+                      <Calendar className="w-4 h-4" /> Umów lekcję próbną
                     </a>
                   </Button>
                 </div>
@@ -128,7 +132,7 @@ export default function Layout({ children }: LayoutProps) {
       {/* Footer */}
       <footer className="bg-[#1A3B47] text-slate-300 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="col-span-1 md:col-span-2">
               <Link 
                 to={createPageUrl('Home')}
@@ -151,15 +155,6 @@ export default function Layout({ children }: LayoutProps) {
                 <li><Link to="/About" className="hover:text-[#F4B942] transition-colors">O mnie</Link></li>
                 <li><Link to="/Contact" className="hover:text-[#F4B942] transition-colors">Kontakt</Link></li>
               </ul>
-            </div>
-
-            <div>
-              <h3 className="text-[#F4B942] font-semibold mb-4">Śledź mnie</h3>
-              <div className="flex space-x-4">
-                <a href="#" className="hover:text-[#F4B942] transition-colors"><Instagram className="h-5 w-5" /></a>
-                <a href="#" className="hover:text-[#F4B942] transition-colors"><Facebook className="h-5 w-5" /></a>
-                <a href="#" className="hover:text-[#F4B942] transition-colors"><Youtube className="h-5 w-5" /></a>
-              </div>
             </div>
           </div>
           <div className="border-t border-slate-700 mt-12 pt-8 text-center text-xs text-slate-400">
