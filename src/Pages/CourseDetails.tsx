@@ -13,6 +13,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { createPageUrl } from "@/utils";
+import { CALENDLY_URL } from "@/utils/constants";
 import { isPromoActive } from "@/Utilities/Course";
 import EnrollmentForm from "@/components/EnrollmentForm";
 import { ArrowLeft, CheckCircle, BookOpen } from "lucide-react";
@@ -181,6 +182,11 @@ export default function CourseDetails() {
                     />
                   </DialogContent>
                 </Dialog>
+                <Button variant="outline" className="w-full border-[#1A3B47]/20 text-[#1A3B47] h-12" asChild>
+                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+                    Umów lekcję próbną
+                  </a>
+                </Button>
               </div>
             </div>
           </div>

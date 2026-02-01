@@ -88,11 +88,11 @@ ${formData.message}
                 <div className="w-12 h-12 bg-[#F4B942]/10 rounded-full flex items-center justify-center text-[#F4B942] mb-4">
                   <Calendar className="w-6 h-6" />
                 </div>
-                <h3 className="font-semibold text-[#1A3B47] mb-2">Umów lekcję</h3>
+                <h3 className="font-semibold text-[#1A3B47] mb-2">Umów lekcję próbną</h3>
                 <p className="text-[#1A3B47]/70 mb-4">Wybierz dogodny termin w kalendarzu</p>
                 <Button asChild className="w-full bg-[#D97745] hover:bg-[#c66535] text-white gap-2 rounded-full">
                   <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-                    <Calendar className="w-4 h-4" /> Umów lekcję
+                    <Calendar className="w-4 h-4" /> Umów lekcję próbną
                   </a>
                 </Button>
               </CardContent>
