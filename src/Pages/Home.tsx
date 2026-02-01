@@ -61,7 +61,7 @@ export default function Home() {
   return (
     <div className="bg-[#FFFBF0]">
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-12 pb-16 lg:pt-32 lg:pb-40">
+      <section className="relative overflow-hidden pt-12 pb-12 lg:pt-32 lg:pb-20">
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-0 right-0 -mr-40 -mt-40 w-[600px] h-[600px] rounded-full bg-[#F4B942]/20 blur-3xl" />
           <div className="absolute bottom-0 left-0 -ml-40 -mb-40 w-[600px] h-[600px] rounded-full bg-[#D97745]/20 blur-3xl" />
@@ -103,7 +103,7 @@ export default function Home() {
 
 
       {/* Benefits Section */}
-      <section className="py-12 md:py-24 bg-[#FFFBF0]">
+      <section className="pt-8 pb-12 md:pt-16 md:py-24 bg-[#FFFBF0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl font-bold text-[#1A3B47] mb-4">Dlaczego Chemia z Wero?</h2>

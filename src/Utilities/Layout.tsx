@@ -69,7 +69,7 @@ export default function Layout({ children }: LayoutProps) {
               ))}
               <Button asChild className="bg-[#D97745] hover:bg-[#c66535] text-white rounded-full px-6 gap-2">
                 <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-                  <Calendar className="w-4 h-4" /> Umów lekcję
+                  <Calendar className="w-4 h-4" /> Umów lekcję próbną
                 </a>
               </Button>
             </div>
@@ -111,7 +111,7 @@ export default function Layout({ children }: LayoutProps) {
                 <div className="pt-4">
                   <Button asChild className="w-full bg-[#D97745] hover:bg-[#c66535] text-white gap-2">
                     <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-                      <Calendar className="w-4 h-4" /> Umów lekcję
+                      <Calendar className="w-4 h-4" /> Umów lekcję próbną
                     </a>
                   </Button>
                 </div>

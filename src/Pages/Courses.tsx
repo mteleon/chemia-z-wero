@@ -39,9 +39,9 @@ export default function Courses() {
           <p className="text-lg font-medium text-[#1A3B47] mb-4">
             Nie wiesz co wybrać? Umów się na darmową lekcję próbną.
           </p>
-          <Button asChild className="bg-[#D97745] hover:bg-[#c66535] text-white rounded-full gap-2">
+          <Button asChild className="bg-[#D97745] hover:bg-[#c66535] text-white rounded-full px-6 gap-2">
             <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-              <Calendar className="w-4 h-4" /> Umów darmową lekcję próbną
+              <Calendar className="w-4 h-4" /> Umów lekcję próbną
             </a>
           </Button>
         </div>
