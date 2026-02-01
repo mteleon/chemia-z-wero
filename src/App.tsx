@@ -22,10 +22,10 @@ export default function App() {
     <Suspense fallback={<PageLoader />}>
       <Routes>
         <Route path="/" element={<Layout><Home /></Layout>} />
-        <Route path="/Courses" element={<Layout><Courses /></Layout>} />
-        <Route path="/About" element={<Layout><About /></Layout>} />
-        <Route path="/Contact" element={<Layout><Contact /></Layout>} />
-        <Route path="/course/:id" element={<Layout><CourseDetails /></Layout>} />
+<Route path="/kursy" element={<Layout><Courses /></Layout>} />
+        <Route path="/kursy/:id" element={<Layout><CourseDetails /></Layout>} />
+        <Route path="/o-mnie" element={<Layout><About /></Layout>} />
+        <Route path="/kontakt" element={<Layout><Contact /></Layout>} />
         <Route path="*" element={<Layout><NotFound /></Layout>} />
       </Routes>
     </Suspense>

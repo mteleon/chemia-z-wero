@@ -1,9 +1,9 @@
 import { Helmet } from "react-helmet-async";
 import { SITE_URL } from "@/utils/constants";
 
-const DEFAULT_TITLE = "Chemia z Wero – Matura Rozszerzona";
+const DEFAULT_TITLE = "Chemia z Wero – Korepetycje z chemii, matura rozszerzona online";
 const DEFAULT_DESCRIPTION =
-  "Lekcje i kursy z chemii stworzone z pasją. Indywidualnie, w grupie lub intensywna powtórka przed maturą – doprowadzę Cię do wymarzonego wyniku.";
+  "Chemia z Wero – korepetycje z chemii online, matura rozszerzona. Lekcje indywidualne i grupowe, powtórka przed maturą. Korepetycje online z pasją.";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/favicon.svg`;
 
 type SEOProps = {

@@ -26,9 +26,9 @@ export default function Layout({ children }: LayoutProps) {
 
   const navLinks = [
     { name: 'Strona Główna', path: '/' },
-    { name: 'Kursy', path: '/Courses' },
-    { name: 'O mnie', path: '/About' },
-    { name: 'Kontakt', path: '/Contact' },
+    { name: 'Kursy', path: '/kursy' },
+    { name: 'O mnie', path: '/o-mnie' },
+    { name: 'Kontakt', path: '/kontakt' },
   ];
 
 
@@ -151,9 +151,9 @@ export default function Layout({ children }: LayoutProps) {
               <h3 className="text-[#F4B942] font-semibold mb-4">Na skróty</h3>
               <ul className="space-y-2 text-sm">
                 <li><Link to="/" className="hover:text-[#F4B942] transition-colors">Strona Główna</Link></li>
-                <li><Link to="/Courses" className="hover:text-[#F4B942] transition-colors">Wszystkie Kursy</Link></li>
-                <li><Link to="/About" className="hover:text-[#F4B942] transition-colors">O mnie</Link></li>
-                <li><Link to="/Contact" className="hover:text-[#F4B942] transition-colors">Kontakt</Link></li>
+                <li><Link to="/kursy" className="hover:text-[#F4B942] transition-colors">Wszystkie Kursy</Link></li>
+                <li><Link to="/o-mnie" className="hover:text-[#F4B942] transition-colors">O mnie</Link></li>
+                <li><Link to="/kontakt" className="hover:text-[#F4B942] transition-colors">Kontakt</Link></li>
               </ul>
             </div>
           </div>
