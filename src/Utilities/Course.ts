@@ -1,8 +1,17 @@
+/** Jedna sekcja opisu kursu (nagłówek + opcjonalny tekst i punkty). */
+export type CourseDescriptionSection = {
+  title: string;
+  content?: string;
+  bullets?: string[];
+};
+
 /** Typ Course (kurs). */
 export type Course = {
   id?: string;
   title: string;
   short_description?: string;
+  /** Opis w sekcjach (nagłówki + punkty). Jeśli brak – używany full_description. */
+  description_sections?: CourseDescriptionSection[];
   full_description?: string;
   price: number;
   price_label?: string;

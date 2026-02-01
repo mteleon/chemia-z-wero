@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { sendContactEmail } from "@/api/contact";
 import { CALENDLY_URL, CONTACT_EMAIL } from "@/utils/constants";
-import { Mail, Send, Instagram, Facebook, Youtube, Calendar, Loader2 } from "lucide-react";
+import { Mail, Send, Calendar, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -95,23 +95,6 @@ ${formData.message}
                     <Calendar className="w-4 h-4" /> Umów lekcję
                   </a>
                 </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-lg border-none">
-              <CardContent className="p-8 flex flex-col items-center text-center">
-                <h3 className="font-semibold text-[#1A3B47] mb-6">Social Media</h3>
-                <div className="flex gap-4">
-                  <a href="#" className="p-3 bg-[#FFFBF0] rounded-full hover:bg-[#D97745]/10 hover:text-[#D97745] transition-colors">
-                    <Instagram className="w-5 h-5" />
-                  </a>
-                  <a href="#" className="p-3 bg-[#FFFBF0] rounded-full hover:bg-[#F4B942]/10 hover:text-[#F4B942] transition-colors">
-                    <Facebook className="w-5 h-5" />
-                  </a>
-                  <a href="#" className="p-3 bg-[#FFFBF0] rounded-full hover:bg-red-100 hover:text-red-600 transition-colors">
-                    <Youtube className="w-5 h-5" />
-                  </a>
-                </div>
               </CardContent>
             </Card>
           </div>

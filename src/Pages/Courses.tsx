@@ -1,8 +1,10 @@
 import React from 'react';
 import { getCourses } from "@/data/courses";
 import { useQuery } from "@tanstack/react-query";
-import { BookOpen } from "lucide-react";
+import { BookOpen, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import CourseCard from "@/components/CourseCard";
+import { CALENDLY_URL } from "@/utils/constants";
 
 export default function Courses() {
   const { data: rawCourses, isLoading } = useQuery({
@@ -30,6 +32,18 @@ export default function Courses() {
           <p className="text-lg text-[#1A3B47]/80 max-w-2xl mx-auto">
             Wszystko czego potrzebujesz, aby opanować chemię. Od podstaw po zadania maturalne.
           </p>
+        </div>
+
+        {/* Darmowa lekcja próbna */}
+        <div className="mb-12 p-6 rounded-2xl bg-white border border-[#D97745]/20 text-center">
+          <p className="text-lg font-medium text-[#1A3B47] mb-4">
+            Nie wiesz co wybrać? Umów się na darmową lekcję próbną.
+          </p>
+          <Button asChild className="bg-[#D97745] hover:bg-[#c66535] text-white rounded-full gap-2">
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+              <Calendar className="w-4 h-4" /> Umów darmową lekcję próbną
+            </a>
+          </Button>
         </div>
 
         {/* Course Grid */}

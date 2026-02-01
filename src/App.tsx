@@ -8,6 +8,7 @@ const About = lazy(() => import("@/Pages/About"));
 const Contact = lazy(() => import("@/Pages/Contact"));
 const Courses = lazy(() => import("@/Pages/Courses"));
 const CourseDetails = lazy(() => import("@/Pages/CourseDetails"));
+const NotFound = lazy(() => import("@/Pages/NotFound"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/About" element={<Layout><About /></Layout>} />
         <Route path="/Contact" element={<Layout><Contact /></Layout>} />
         <Route path="/course/:id" element={<Layout><CourseDetails /></Layout>} />
+        <Route path="*" element={<Layout><NotFound /></Layout>} />
       </Routes>
     </Suspense>
   );

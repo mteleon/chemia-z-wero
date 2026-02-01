@@ -8,8 +8,8 @@ import { createPageUrl } from '@/utils';
 export default function About() {
   return (
     <div className="bg-[#FFFBF0] min-h-screen">
-      {/* Hero Section */}
-      <div className="bg-white border-b border-[#D97745]/10">
+      {/* Hero Section - O mnie */}
+      <div id="o-mnie" className="bg-white border-b border-[#D97745]/10 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="flex-1 space-y-6">

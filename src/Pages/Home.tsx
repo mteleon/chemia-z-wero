@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, PlayCircle, Users, Atom, Microscope } from 'lucide-react';
+import { ArrowRight, Users, Atom, Microscope } from 'lucide-react';
 import { motion } from "framer-motion";
 import { getCourses } from "@/data/courses";
 import { useQuery } from "@tanstack/react-query";
@@ -90,8 +90,10 @@ export default function Home() {
                   Rozpocznij Naukę <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="w-full sm:w-auto text-[#1A3B47] border-[#1A3B47]/20 hover:bg-[#F4B942]/10 text-lg px-8 h-14 rounded-full gap-2">
-                <PlayCircle className="h-5 w-5" /> Zobacz jak uczę
+              <Button size="lg" variant="outline" className="w-full sm:w-auto text-[#1A3B47] border-[#1A3B47]/20 hover:bg-[#F4B942]/10 text-lg px-8 h-14 rounded-full gap-2" asChild>
+                <Link to={`${createPageUrl('About')}#o-mnie`}>
+                  Zobacz jak uczę
+                </Link>
               </Button>
             </div>
           </motion.div>
@@ -176,8 +178,8 @@ export default function Home() {
           <p className="text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto">
             Jeśli chcesz zrozumieć chemię i pewnie napisać maturę, zacznij razem ze mną.
           </p>
-          <Button size="lg" className="bg-[#D97745] hover:bg-[#c66535] text-white font-bold text-lg px-10 h-14 rounded-full">
-            Zapisz się teraz
+          <Button size="lg" className="bg-[#D97745] hover:bg-[#c66535] text-white font-bold text-lg px-10 h-14 rounded-full" asChild>
+            <Link to={createPageUrl('Courses')}>Zapisz się teraz</Link>
           </Button>
         </div>
       </section>
