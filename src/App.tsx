@@ -22,7 +22,7 @@ export default function App() {
     <Suspense fallback={<PageLoader />}>
       <Routes>
         <Route path="/" element={<Layout><Home /></Layout>} />
-        <Route path="/kursy" element={<Layout><Courses /></Layout>} />
+<Route path="/kursy" element={<Layout><Courses /></Layout>} />
         <Route path="/kursy/:id" element={<Layout><CourseDetails /></Layout>} />
         <Route path="/o-mnie" element={<Layout><About /></Layout>} />
         <Route path="/kontakt" element={<Layout><Contact /></Layout>} />
