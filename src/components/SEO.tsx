@@ -6,11 +6,21 @@ const DEFAULT_DESCRIPTION =
   "Chemia z Wero – korepetycje z chemii online, matura rozszerzona. Lekcje indywidualne i grupowe, powtórka przed maturą. Korepetycje online z pasją.";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/favicon.svg`;
 
+const DEFAULT_ORGANIZATION_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: "Chemia z Wero",
+  description: DEFAULT_DESCRIPTION,
+  url: SITE_URL,
+};
+
 type SEOProps = {
   title?: string;
   description?: string;
   path?: string;
   ogImage?: string;
+  /** Custom JSON-LD (e.g. Course schema). When set, replaces default Organization schema. */
+  jsonLd?: Record<string, unknown>;
 };
 
 export default function SEO({
@@ -18,16 +28,10 @@ export default function SEO({
   description = DEFAULT_DESCRIPTION,
   path = "",
   ogImage = DEFAULT_OG_IMAGE,
+  jsonLd,
 }: SEOProps) {
   const canonical = path ? `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}` : SITE_URL;
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    name: "Chemia z Wero",
-    description: DEFAULT_DESCRIPTION,
-    url: SITE_URL,
-  };
+  const schema = jsonLd ?? DEFAULT_ORGANIZATION_JSON_LD;
 
   return (
     <Helmet>
@@ -51,7 +55,7 @@ export default function SEO({
       <meta name="twitter:image" content={ogImage} />
 
       {/* JSON-LD structured data */}
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      <script type="application/ld+json">{JSON.stringify(schema)}</script>
     </Helmet>
   );
 }
