@@ -26,8 +26,8 @@ export default function App() {
         <Route path="/" element={<Layout><Home /></Layout>} />
 <Route path="/kursy" element={<Layout><Courses /></Layout>} />
         <Route path="/kursy/:id" element={<Layout><CourseDetails /></Layout>} />
-        <Route path="/blog" element={<Layout><Posts /></Layout>} />
         <Route path="/blog/:slug" element={<Layout><PostDetail /></Layout>} />
+        <Route path="/blog" element={<Layout><Posts /></Layout>} />
         <Route path="/o-mnie" element={<Layout><About /></Layout>} />
         <Route path="/kontakt" element={<Layout><Contact /></Layout>} />
         <Route path="*" element={<Layout><NotFound /></Layout>} />

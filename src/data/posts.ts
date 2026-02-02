@@ -1,61 +1,58 @@
+import matter from "gray-matter";
 import type { Post } from "@/Utilities/Post";
 
-const POSTS: Post[] = [
-  {
-    id: "1",
-    slug: "jak-sie-uczyc-do-matury-z-chemii",
-    title: "Jak się uczyć do matury z chemii?",
-    excerpt:
-      "Kilka praktycznych wskazówek, jak planować powtórki i na co zwracać uwagę przy przygotowaniach do matury rozszerzonej z chemii.",
-    content: `
-      <p>Przygotowanie do matury z chemii rozszerzonej wymaga systematyczności i dobrego planu. Oto kilka sprawdzonych zasad.</p>
-      <h2>Ustal harmonogram</h2>
-      <p>Podziel materiał na bloki (np. stechiometria, chemia organiczna, nieorganiczna) i wyznacz konkretne terminy powtórek. Lepiej uczyć się krócej, ale regularnie, niż „zrywać” się na ostatnią chwilę.</p>
-      <h2>Ćwicz na arkuszach</h2>
-      <p>Rozwiązuj zadania z poprzednich lat i arkuszy CKE. Zwracaj uwagę na słowa kluczowe w schematach punktowania – często to one decydują o przyznaniu punktu.</p>
-      <h2>Notuj wątpliwości</h2>
-      <p>Zapisuj pytania i trudne zagadnienia, żeby wrócić do nich na zajęciach lub przy kolejnej powtórce. Chemia z Wero – korepetycje online, gdy potrzebujesz uporządkować wiedzę.</p>
-    `,
-    publishedAt: "2025-01-15",
-    order: 1,
-  },
-  {
-    id: "2",
-    slug: "slowa-kluczowe-w-zadaniach-maturalnych",
-    title: "Słowa kluczowe w zadaniach maturalnych",
-    excerpt:
-      "Dlaczego w arkuszach CKE tak ważne są tzw. słowa kluczowe i jak ich używać, żeby zdobyć maksimum punktów.",
-    content: `
-      <p>W schematach punktowania matury z chemii często pojawiają się konkretne sformułowania, które muszą wystąpić w odpowiedzi, żeby egzaminator mógł przyznać punkt.</p>
-      <h2>Co to są słowa kluczowe?</h2>
-      <p>To zwroty lub pojęcia wymienione w kluczu odpowiedzi CKE. Np. zamiast opisywać zjawisko „na około”, warto użyć dokładnie tego terminu, którego oczekuje klucz.</p>
-      <h2>Jak z nich korzystać?</h2>
-      <p>Przeglądaj oficjalne klucze do arkuszy z poprzednich lat. Zauważysz powtarzające się sformułowania w podobnych typach zadań. Na zajęciach często omawiamy je na żywych przykładach.</p>
-    `,
-    publishedAt: "2025-01-20",
-    order: 2,
-  },
-  {
-    id: "3",
-    slug: "stechiometria-od-podstaw",
-    title: "Stechiometria od podstaw",
-    excerpt:
-      "Krótkie przypomnienie: masa molowa, równania reakcji i obliczenia stechiometryczne – na co zwrócić uwagę przed maturą.",
-    content: `
-      <p>Stechiometria to jeden z fundamentów chemii i często pojawia się w zadaniach maturalnych. Oto najważniejsze elementy.</p>
-      <h2>Masa molowa i mol</h2>
-      <p>Pamiętaj, że 1 mol to 6,02·10²³ cząstek, a masa molowa (g/mol) to masa jednego mola substancji. W zadaniach często trzeba przejść z masy na mole i odwrotnie.</p>
-      <h2>Równanie reakcji</h2>
-      <p>Zawsze sprawdzaj, czy równanie jest uzgodnione. Współczynniki stechiometryczne mówią, w jakim stosunku molowym reagują substraty i powstają produkty – na tym opierają się obliczenia.</p>
-      <p>Na lekcjach indywidualnych i grupowych regularnie rozwiązujemy zadania stechiometryczne krok po kroku – zapraszam na powtórkę.</p>
-    `,
-    publishedAt: "2025-01-25",
-    order: 3,
-  },
-];
+/** Wpisy ładowane dynamicznie – dodaj plik .md w src/content/posts/, slug = nazwa pliku bez .md. */
+const postModules = import.meta.glob<string>("../content/posts/*.md", {
+  query: "?raw",
+  import: "default",
+});
+
+function pathToSlug(path: string): string {
+  const name = path.split("/").pop() ?? "";
+  return name.replace(/\.md$/, "");
+}
+
+type Frontmatter = {
+  title: string;
+  excerpt: string;
+  publishedAt: string;
+  order?: number;
+};
+
+function estimateReadTimeMinutes(content: string): number {
+  const words = content.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 200));
+}
+
+function parsePost(raw: string, slug: string): Post | null {
+  if (!raw.trim()) return null;
+  const parsed = matter(raw);
+  const data = parsed.data as Frontmatter;
+  if (!data?.title || !data?.excerpt || !data?.publishedAt) return null;
+  const content = parsed.content.trim();
+  return {
+    id: slug,
+    slug,
+    title: data.title,
+    excerpt: data.excerpt,
+    content,
+    publishedAt: data.publishedAt,
+    order: data.order ?? 999,
+    readTimeMinutes: estimateReadTimeMinutes(content),
+  };
+}
 
 export async function getPosts(): Promise<Post[]> {
-  return [...POSTS].sort((a, b) => {
+  const entries = await Promise.all(
+    Object.entries(postModules).map(async ([path, load]) => {
+      const slug = pathToSlug(path);
+      if (slug === "README") return null;
+      const raw = await load();
+      return parsePost(raw, slug);
+    })
+  );
+  const posts = entries.filter((p): p is Post => p !== null);
+  return posts.sort((a, b) => {
     const oa = a.order ?? 999;
     const ob = b.order ?? 999;
     if (oa !== ob) return oa - ob;

@@ -8,4 +8,6 @@ export type Post = {
   publishedAt: string;
   order?: number;
   image_url?: string;
+  /** Szacowany czas czytania w minutach. */
+  readTimeMinutes?: number;
 };

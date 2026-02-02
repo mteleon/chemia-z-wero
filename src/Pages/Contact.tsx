@@ -63,19 +63,20 @@ ${formData.message}
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFBF0]">
+    <div className="min-h-screen bg-[#FFFBF0] py-12">
       <SEO path="/kontakt" title={CONTACT_TITLE} description={CONTACT_DESCRIPTION} />
-      {/* Header */}
-      <div className="bg-[#D97745] py-20 text-center text-white">
-        <h1 className="text-4xl font-bold mb-4">Kontakt</h1>
-        <p className="text-white/90 max-w-2xl mx-auto px-4">
-          Masz pytania dotyczące kursów? Chcesz nawiązać współpracę? 
-          Napisz do mnie, a postaram się odpowiedzieć jak najszybciej.
-        </p>
-      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+        <header className="mb-12 text-center">
+          <h1 className="text-4xl font-bold text-[#1A3B47] tracking-tight mb-4">
+            Kontakt
+          </h1>
+          <p className="text-lg text-[#1A3B47]/80 max-w-2xl mx-auto leading-relaxed">
+            Masz pytania dotyczące kursów? Chcesz nawiązać współpracę? Napisz do mnie, a postaram się odpowiedzieć jak najszybciej.
+          </p>
+        </header>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-10 pb-24">
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-3 gap-8">
           
           {/* Contact Info Cards */}
           <div className="lg:col-span-1 space-y-6">

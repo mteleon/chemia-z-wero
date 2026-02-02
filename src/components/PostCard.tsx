@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { ArrowRight, Calendar } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ChevronRight } from "lucide-react";
 import type { Post } from "@/Utilities/Post";
 
 type Props = { post: Post };
@@ -11,36 +9,33 @@ function formatDate(iso: string): string {
   const d = new Date(iso);
   return d.toLocaleDateString("pl-PL", {
     day: "numeric",
-    month: "long",
+    month: "short",
     year: "numeric",
   });
 }
 
 export default function PostCard({ post }: Props) {
+  const meta = [formatDate(post.publishedAt)];
+  if (post.readTimeMinutes) meta.push(`${post.readTimeMinutes} min`);
+
   return (
-    <motion.article
-      whileHover={{ y: -5 }}
-      className="bg-white rounded-2xl shadow-sm border border-[#D97745]/10 overflow-hidden flex flex-col h-full hover:shadow-md transition-all duration-300"
+    <Link
+      to={`/blog/${post.slug}`}
+      className="group flex flex-col h-full bg-white rounded-2xl border border-[#1A3B47]/10 p-6 hover:border-[#D97745]/25 hover:shadow-md transition-all duration-200"
     >
-      <div className="p-6 flex-grow flex flex-col">
-        <div className="flex items-center gap-2 text-xs text-[#1A3B47]/60 mb-3">
-          <Calendar className="h-3.5 w-3.5 flex-shrink-0" />
-          <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
-        </div>
-        <h3 className="text-xl font-bold text-[#1A3B47] mb-2 line-clamp-2">
-          {post.title}
-        </h3>
-        <p className="text-[#1A3B47]/70 text-sm mb-6 line-clamp-3 flex-grow">
-          {post.excerpt}
-        </p>
-        <div className="mt-auto pt-4 border-t border-[#D97745]/10">
-          <Button size="sm" className="bg-[#1A3B47] hover:bg-[#2c505e] text-white gap-2" asChild>
-            <Link to={`/blog/${post.slug}`}>
-              Czytaj więcej <ArrowRight className="h-3 w-3" />
-            </Link>
-          </Button>
-        </div>
-      </div>
-    </motion.article>
+      <p className="text-xs font-medium uppercase tracking-wider text-[#1A3B47]/50 mb-3">
+        {meta.join(" · ")}
+      </p>
+      <h2 className="text-xl font-bold text-[#1A3B47] mb-2 group-hover:text-[#D97745] transition-colors line-clamp-2">
+        {post.title}
+      </h2>
+      <p className="text-[#1A3B47]/70 text-sm leading-relaxed mb-5 flex-grow line-clamp-3">
+        {post.excerpt}
+      </p>
+      <span className="inline-flex items-center gap-1 text-sm font-medium text-[#D97745] group-hover:gap-2 transition-all mt-auto">
+        Czytaj artykuł
+        <ChevronRight className="h-4 w-4" />
+      </span>
+    </Link>
   );
 }

@@ -1,9 +1,9 @@
 import React, { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 import { getPostBySlug } from "@/data/posts";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { createPageUrl } from "@/utils";
 import { SITE_URL } from "@/utils/constants";
 import type { Post } from "@/Utilities/Post";
 import SEO from "@/components/SEO";
@@ -42,24 +42,30 @@ function buildArticleJsonLd(post: Post): Record<string, unknown> {
 
 export default function PostDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const { data: post, isLoading } = useQuery({
+  const { data: post, isLoading, isError } = useQuery({
     queryKey: ["post", slug],
     queryFn: () => getPostBySlug(slug!),
     enabled: !!slug,
   });
+  const articleJsonLd = useMemo(
+    () => (post ? buildArticleJsonLd(post) : null),
+    [post]
+  );
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#FFFBF0]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#D97745]" />
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="animate-spin rounded-full h-10 w-10 border-2 border-[#D97745] border-t-transparent" />
       </div>
     );
   }
 
-  if (!post) {
+  if (isError || !post) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#FFFBF0]">
-        <h1 className="text-2xl font-bold text-[#1A3B47] mb-4">Nie znaleziono wpisu</h1>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-white">
+        <h1 className="text-2xl font-bold text-[#1A3B47] mb-4">
+          Nie znaleziono wpisu
+        </h1>
         <Button className="bg-[#D97745] hover:bg-[#c66535]" asChild>
           <Link to="/blog">Wróć do bloga</Link>
         </Button>
@@ -68,40 +74,55 @@ export default function PostDetail() {
   }
 
   const seoTitle = `${post.title} – Chemia z Wero`;
-  const articleJsonLd = useMemo(() => buildArticleJsonLd(post), [post]);
+  const metaParts = [formatDate(post.publishedAt)];
+  if (post.readTimeMinutes) metaParts.push(`${post.readTimeMinutes} min czytania`);
 
   return (
-    <div className="bg-[#FFFBF0] min-h-screen pb-24">
+    <div className="bg-white min-h-screen pb-24">
       <SEO
         path={`/blog/${post.slug}`}
         title={seoTitle}
         description={post.excerpt}
-        jsonLd={articleJsonLd}
+        jsonLd={articleJsonLd ?? undefined}
       />
-      <div className="bg-[#1A3B47] text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 relative z-10">
-          <Link
-            to="/blog"
-            className="inline-flex items-center text-white/60 hover:text-white mb-6 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" /> Wróć do bloga
-          </Link>
-          <time dateTime={post.publishedAt} className="text-sm text-white/70 block mb-2">
-            {formatDate(post.publishedAt)}
-          </time>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{post.title}</h1>
-        </div>
-      </div>
+      <article className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-16">
+        <Link
+          to="/blog"
+          className="inline-flex items-center text-sm text-[#1A3B47]/60 hover:text-[#D97745] mb-6 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" /> Wróć do bloga
+        </Link>
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-20">
-        <article className="bg-white rounded-2xl shadow-sm border border-[#D97745]/10 p-8">
-          <div
-            className="prose prose-slate max-w-none text-[#1A3B47]/90 prose-headings:text-[#1A3B47] prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-4 prose-p:leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: post.content.trim() }}
-          />
-        </article>
-      </div>
+        <header className="mb-8">
+          <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#1A3B47] tracking-tight leading-tight mb-3">
+            {post.title}
+          </h1>
+          {post.excerpt && (
+            <p className="text-xl text-[#1A3B47]/70 leading-relaxed mb-4">
+              {post.excerpt}
+            </p>
+          )}
+          <div className="border-b border-[#1A3B47]/15 pb-4 mb-4" aria-hidden />
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-[#1A3B47]/60 pb-4 mb-4 border-b border-[#1A3B47]/15">
+            <span className="font-semibold uppercase tracking-wider text-[#1A3B47]/80">
+              Chemia z Wero
+            </span>
+            <span>{metaParts.join(" · ")}</span>
+          </div>
+        </header>
+
+        <div className="blog-article">
+          <ReactMarkdown>{post.content?.trim() ?? ""}</ReactMarkdown>
+        </div>
+
+        <footer className="mt-10 pt-6 border-t border-[#1A3B47]/10">
+          <Button variant="outline" className="border-[#1A3B47]/20" asChild>
+            <Link to="/blog">
+              <ArrowLeft className="w-4 h-4 mr-2" /> Wszystkie wpisy
+            </Link>
+          </Button>
+        </footer>
+      </article>
     </div>
   );
 }
