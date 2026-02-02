@@ -32,13 +32,13 @@ export default function Courses() {
     <div className="min-h-screen bg-[#FFFBF0] py-12">
       <SEO path="/kursy" title={COURSES_TITLE} description={COURSES_DESCRIPTION} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold text-[#1A3B47] mb-4">Oferta kursów</h1>
-          <p className="text-lg text-[#1A3B47]/80 max-w-2xl mx-auto">
+        {/* Nagłówek strony – wspólny wzorzec dla Kursy / Blog / Kontakt */}
+        <header className="mb-12 text-center">
+          <h1 className="text-4xl font-bold text-[#1A3B47] tracking-tight mb-4">Oferta kursów</h1>
+          <p className="text-lg text-[#1A3B47]/80 max-w-2xl mx-auto leading-relaxed">
             Wszystko czego potrzebujesz, aby opanować chemię. Od podstaw po zadania maturalne.
           </p>
-        </div>
+        </header>
 
         {/* Darmowa lekcja próbna */}
         <div className="mb-12 p-6 rounded-2xl bg-white border border-[#D97745]/20 text-center">

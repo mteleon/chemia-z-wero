@@ -24,3 +24,89 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+/* Blog article – styl editorialny (Lenny's / Medium) */
+.blog-article {
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #1a3b47;
+}
+.blog-article p {
+  margin-bottom: 1.5rem;
+}
+.blog-article p:first-of-type {
+  font-size: 1.25rem;
+  color: #1a3b47;
+  opacity: 0.9;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+.blog-article h2 {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #1a3b47;
+  margin-top: 2.5rem;
+  margin-bottom: 0.875rem;
+  line-height: 1.35;
+}
+.blog-article h2:first-of-type {
+  margin-top: 0;
+}
+.blog-article h3 {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a3b47;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+.blog-article ul,
+.blog-article ol {
+  margin: 1.25rem 0;
+  padding-left: 1.75rem;
+}
+.blog-article li {
+  margin-bottom: 0.5rem;
+}
+.blog-article strong {
+  color: #1a3b47;
+  font-weight: 600;
+}
+.blog-article a {
+  color: #d97745;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.blog-article a:hover {
+  color: #c66535;
+}
+.blog-article blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1.25rem;
+  border-left: 4px solid #e5e0d8;
+  color: #1a3b47;
+  opacity: 0.85;
+  font-style: italic;
+}
+.blog-article code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.9em;
+  background: #f5f3ef;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+.blog-article pre {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  background: #1a3b47;
+  color: #e8e4dc;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+.blog-article pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
