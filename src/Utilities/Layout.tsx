@@ -27,6 +27,7 @@ export default function Layout({ children }: LayoutProps) {
   const navLinks = [
     { name: 'Strona Główna', path: '/' },
     { name: 'Kursy', path: '/kursy' },
+    { name: 'Blog', path: '/blog' },
     { name: 'O mnie', path: '/o-mnie' },
     { name: 'Kontakt', path: '/kontakt' },
   ];
@@ -152,6 +153,7 @@ export default function Layout({ children }: LayoutProps) {
               <ul className="space-y-2 text-sm">
                 <li><Link to="/" className="hover:text-[#F4B942] transition-colors">Strona Główna</Link></li>
                 <li><Link to="/kursy" className="hover:text-[#F4B942] transition-colors">Wszystkie Kursy</Link></li>
+                <li><Link to="/blog" className="hover:text-[#F4B942] transition-colors">Blog</Link></li>
                 <li><Link to="/o-mnie" className="hover:text-[#F4B942] transition-colors">O mnie</Link></li>
                 <li><Link to="/kontakt" className="hover:text-[#F4B942] transition-colors">Kontakt</Link></li>
               </ul>

@@ -25,6 +25,30 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://chemiazwero.com/blog</loc>
+    <lastmod>2025-02-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://chemiazwero.com/blog/jak-sie-uczyc-do-matury-z-chemii</loc>
+    <lastmod>2025-02-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chemiazwero.com/blog/slowa-kluczowe-w-zadaniach-maturalnych</loc>
+    <lastmod>2025-02-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://chemiazwero.com/blog/stechiometria-od-podstaw</loc>
+    <lastmod>2025-02-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://chemiazwero.com/kursy/lekcje-indywidualne</loc>
     <lastmod>2025-02-01</lastmod>
     <changefreq>monthly</changefreq>
