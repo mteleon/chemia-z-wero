@@ -85,7 +85,7 @@ export default function PostDetail() {
         description={post.excerpt}
         jsonLd={articleJsonLd ?? undefined}
       />
-      <article className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-16">
+      <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-16">
         <Link
           to="/blog"
           className="inline-flex items-center text-sm text-[#1A3B47]/60 hover:text-[#D97745] mb-6 transition-colors"
