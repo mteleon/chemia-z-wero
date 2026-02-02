@@ -4,10 +4,16 @@ import { Award, GraduationCap, Heart, Sparkles, Brain, FileText, CheckCircle2, L
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import SEO from "@/components/SEO";
+
+const ABOUT_TITLE = "O mnie – Chemia z Wero";
+const ABOUT_DESCRIPTION =
+  "Weronika – korepetycje z chemii, matura rozszerzona. Uczę logicznie: zrozumienie zamiast kucia, typowe zadania maturalne i słowa kluczowe.";
 
 export default function About() {
   return (
     <div className="bg-[#FFFBF0] min-h-screen">
+      <SEO path="/o-mnie" title={ABOUT_TITLE} description={ABOUT_DESCRIPTION} />
       {/* Hero Section - O mnie */}
       <div id="o-mnie" className="bg-white border-b border-[#D97745]/10 scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">

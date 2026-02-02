@@ -4,7 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import { BookOpen, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CourseCard from "@/components/CourseCard";
+import SEO from "@/components/SEO";
 import { CALENDLY_URL } from "@/utils/constants";
+
+const COURSES_TITLE = "Kursy z chemii – Chemia z Wero";
+const COURSES_DESCRIPTION =
+  "Lekcje indywidualne, grupowe i powtórka maturalna z chemii. Korepetycje online – matura rozszerzona. Zapisz się na zajęcia.";
 
 export default function Courses() {
   const { data: rawCourses, isLoading } = useQuery({
@@ -25,6 +30,7 @@ export default function Courses() {
 
   return (
     <div className="min-h-screen bg-[#FFFBF0] py-12">
+      <SEO path="/kursy" title={COURSES_TITLE} description={COURSES_DESCRIPTION} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12 text-center">

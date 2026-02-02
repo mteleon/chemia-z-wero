@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getCourseById } from "@/data/courses";
 import { useQuery } from "@tanstack/react-query";
@@ -13,10 +13,34 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { createPageUrl } from "@/utils";
-import { CALENDLY_URL } from "@/utils/constants";
+import { CALENDLY_URL, SITE_URL } from "@/utils/constants";
 import { isPromoActive } from "@/Utilities/Course";
+import type { Course } from "@/Utilities/Course";
 import EnrollmentForm from "@/components/EnrollmentForm";
+import SEO from "@/components/SEO";
 import { ArrowLeft, CheckCircle, BookOpen } from "lucide-react";
+
+function buildCourseJsonLd(course: Course): Record<string, unknown> {
+  const url = `${SITE_URL}/kursy/${course.id ?? ""}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: course.title,
+    description: course.short_description ?? course.title,
+    url,
+    provider: {
+      "@type": "Organization",
+      name: "Chemia z Wero",
+      url: SITE_URL,
+    },
+    offers: {
+      "@type": "Offer",
+      price: course.price,
+      priceCurrency: "PLN",
+      availability: course.status === "available" ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
+    },
+  };
+}
 
 export default function CourseDetails() {
   const { id } = useParams<{ id: string }>();
@@ -47,8 +71,14 @@ export default function CourseDetails() {
     );
   }
 
+  const coursePath = `/kursy/${course.id ?? id}`;
+  const seoTitle = `${course.title} – Chemia z Wero`;
+  const seoDescription = course.short_description ?? `Kurs z chemii: ${course.title}. Korepetycje online, matura rozszerzona.`;
+  const courseJsonLd = useMemo(() => buildCourseJsonLd(course), [course]);
+
   return (
     <div className="bg-[#FFFBF0] min-h-screen pb-24">
+      <SEO path={coursePath} title={seoTitle} description={seoDescription} jsonLd={courseJsonLd} />
       {/* Header / Hero */}
       <div className="bg-[#1A3B47] text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>

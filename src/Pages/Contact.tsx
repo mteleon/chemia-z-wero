@@ -8,6 +8,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import SEO from "@/components/SEO";
+
+const CONTACT_TITLE = "Kontakt – Chemia z Wero";
+const CONTACT_DESCRIPTION =
+  "Skontaktuj się – korepetycje z chemii online, matura rozszerzona. Napisz lub umów lekcję próbną.";
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -59,6 +64,7 @@ ${formData.message}
 
   return (
     <div className="min-h-screen bg-[#FFFBF0]">
+      <SEO path="/kontakt" title={CONTACT_TITLE} description={CONTACT_DESCRIPTION} />
       {/* Header */}
       <div className="bg-[#D97745] py-20 text-center text-white">
         <h1 className="text-4xl font-bold mb-4">Kontakt</h1>
