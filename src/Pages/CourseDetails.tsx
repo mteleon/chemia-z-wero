@@ -52,6 +52,11 @@ export default function CourseDetails() {
     enabled: !!id,
   });
 
+  const courseJsonLd = useMemo(
+    () => (course ? buildCourseJsonLd(course) : {}),
+    [course]
+  );
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#FFFBF0]">
@@ -74,7 +79,6 @@ export default function CourseDetails() {
   const coursePath = `/kursy/${course.id ?? id}`;
   const seoTitle = `${course.title} – Chemia z Wero`;
   const seoDescription = course.short_description ?? `Kurs z chemii: ${course.title}. Korepetycje online, matura rozszerzona.`;
-  const courseJsonLd = useMemo(() => buildCourseJsonLd(course), [course]);
 
   return (
     <div className="bg-[#FFFBF0] min-h-screen pb-24">
