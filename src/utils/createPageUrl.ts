@@ -9,6 +9,10 @@ export function createPageUrl(path: string): string {
     const m = /PostDetail\?slug=([\w-]+)/.exec(t);
     return m ? `/blog/${m[1]}` : "/blog";
   }
+  if (t.startsWith("Landing")) {
+    const m = /Landing\?slug=([\w-]+)/.exec(t);
+    return m ? `/${m[1]}` : "/";
+  }
   const map: Record<string, string> = {
     Home: "/",
     Courses: "/kursy",

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, Atom, Microscope } from 'lucide-react';
 import { motion } from "framer-motion";
 import { getCourses } from "@/data/courses";
+import { getLandings } from "@/data/landings";
 import { useQuery } from "@tanstack/react-query";
 import CourseCard from "@/components/CourseCard";
 
@@ -12,6 +13,11 @@ export default function Home() {
   const { data: rawCourses, isLoading } = useQuery({
     queryKey: ["featuredCourses"],
     queryFn: getCourses,
+  });
+
+  const { data: landings } = useQuery({
+    queryKey: ["landings"],
+    queryFn: getLandings,
   });
 
   // Filter for specific popular courses and sort
@@ -101,6 +107,28 @@ export default function Home() {
       </section>
 
 
+
+      {/* Landing pages – dla zasięgu i SEO */}
+      {landings && landings.length > 0 && (
+        <section className="py-10 md:py-14 bg-white border-y border-[#F4B942]/20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-xl font-bold text-[#1A3B47] mb-6 text-center">
+              Znajdź coś dla siebie
+            </h2>
+            <div className="flex flex-wrap justify-center gap-3">
+              {landings.map((landing) => (
+                <Link
+                  key={landing.slug}
+                  to={`/${landing.slug}`}
+                  className="px-4 py-2 rounded-full text-sm font-medium bg-[#FFFBF0] text-[#1A3B47] border border-[#D97745]/20 hover:bg-[#D97745]/10 hover:border-[#D97745]/40 hover:text-[#D97745] transition-colors"
+                >
+                  {landing.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Benefits Section */}
       <section className="pt-8 pb-12 md:pt-16 md:py-24 bg-[#FFFBF0]">
