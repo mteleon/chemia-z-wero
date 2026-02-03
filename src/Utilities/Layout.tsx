@@ -1,8 +1,10 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { Analytics } from "@vercel/analytics/react";
 import { createPageUrl } from "@/utils";
 import { CALENDLY_URL } from "@/utils/constants";
+import { getLandings } from "@/data/landings";
 import { Menu, X, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,6 +16,10 @@ type LayoutProps = { children: React.ReactNode };
 
 export default function Layout({ children }: LayoutProps) {
   const { pathname } = useLocation();
+  const { data: landings } = useQuery({
+    queryKey: ["landings"],
+    queryFn: getLandings,
+  });
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -133,7 +139,7 @@ export default function Layout({ children }: LayoutProps) {
       {/* Footer */}
       <footer className="bg-[#1A3B47] text-slate-300 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <Link 
                 to={createPageUrl('Home')}
@@ -158,6 +164,20 @@ export default function Layout({ children }: LayoutProps) {
                 <li><Link to="/kontakt" className="hover:text-[#F4B942] transition-colors">Kontakt</Link></li>
               </ul>
             </div>
+            {landings && landings.length > 0 && (
+              <div>
+                <h3 className="text-[#F4B942] font-semibold mb-4">Dla Ciebie</h3>
+                <ul className="space-y-2 text-sm">
+                  {landings.map((l) => (
+                    <li key={l.slug}>
+                      <Link to={`/${l.slug}`} className="hover:text-[#F4B942] transition-colors">
+                        {l.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
           <div className="border-t border-slate-700 mt-12 pt-8 text-center text-xs text-slate-400">
             &copy; {new Date().getFullYear()} Chemia z Wero. Wszelkie prawa zastrzeżone.
