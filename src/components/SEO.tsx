@@ -19,6 +19,7 @@ type SEOProps = {
   description?: string;
   path?: string;
   ogImage?: string;
+  robots?: string;
   /** Custom JSON-LD (e.g. Course schema). When set, replaces default Organization schema. */
   jsonLd?: Record<string, unknown>;
 };
@@ -28,6 +29,7 @@ export default function SEO({
   description = DEFAULT_DESCRIPTION,
   path = "",
   ogImage = DEFAULT_OG_IMAGE,
+  robots = "index, follow",
   jsonLd,
 }: SEOProps) {
   const canonical = path ? `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}` : SITE_URL;
@@ -37,6 +39,7 @@ export default function SEO({
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="robots" content={robots} />
       <link rel="canonical" href={canonical} />
 
       {/* Open Graph (Facebook, LinkedIn) */}

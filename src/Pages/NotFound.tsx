@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Button } from "@/components/ui/button";
 import { Home, ArrowRight } from "lucide-react";
+import SEO from "@/components/SEO";
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#FFFBF0] flex flex-col items-center justify-center px-4 py-16">
+      <SEO title="Strona nie istnieje – Chemia z Wero" robots="noindex, nofollow" />
       <div className="text-center max-w-md">
         <p className="text-6xl font-bold text-[#D97745]/30 mb-4">404</p>
         <h1 className="text-2xl font-bold text-[#1A3B47] mb-3">
