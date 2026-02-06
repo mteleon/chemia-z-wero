@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { getCourses } from "@/data/courses";
 import { useQuery } from "@tanstack/react-query";
 import CourseCard from "@/components/CourseCard";
+import SEO from "@/components/SEO";
 
 export default function Home() {
   const { data: rawCourses, isLoading } = useQuery({
@@ -60,6 +61,7 @@ export default function Home() {
 
   return (
     <div className="bg-[#FFFBF0]">
+      <SEO path="/" />
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-12 pb-12 lg:pt-32 lg:pb-20">
         <div className="absolute inset-0 -z-10">
