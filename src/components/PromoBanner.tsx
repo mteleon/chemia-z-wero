@@ -40,7 +40,7 @@ export default function PromoBanner() {
       className="block bg-[#D97745] text-white py-2.5 px-4 hover:bg-[#c66535] transition-colors"
     >
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-sm">
-        <span className="font-semibold">Wielka powtórka – chemia nieorganiczna</span>
+        <span className="font-semibold">Powtórka – chemia nieorganiczna</span>
         <span className="text-white/80">·</span>
         <span>
           {countdown
