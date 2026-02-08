@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { ArrowRight } from "lucide-react";
 
-const ZAPISY_DEADLINE = new Date(2026, 1, 28, 23, 59, 59);
+const ZAPISY_DEADLINE = new Date(2026, 1, 26, 23, 59, 59);
 
 function useZapisyCountdown() {
   const [text, setText] = useState("");
@@ -40,14 +40,14 @@ export default function PromoBanner() {
       className="block bg-[#D97745] text-white py-2.5 px-4 hover:bg-[#c66535] transition-colors"
     >
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-sm">
-        <span className="font-semibold">Powtórka matura 2026</span>
+        <span className="font-semibold">Wielka powtórka – chemia nieorganiczna</span>
         <span className="text-white/80">·</span>
         <span>
           {countdown
             ? countdown === "Zapisy zakończone"
               ? "Zapisy zakończone"
               : <>Do końca zapisów: <strong>{countdown}</strong></>
-            : "Zapisy do 28.02"}
+            : "Zapisy do 26.02"}
         </span>
         <span className="text-white/80">·</span>
         <span className="inline-flex items-center gap-1.5 font-semibold">
