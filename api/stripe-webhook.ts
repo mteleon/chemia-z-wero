@@ -126,16 +126,20 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
     from: safeFromEmail,
     to: customerEmail,
     subject: "Twoje notatki są gotowe do pobrania 🧪",
-    html: `
-      <p>Hej!</p>
-      <p>Dziękuję Ci za zakup - bardzo się cieszę, że moje notatki trafią w Twoje ręce! 🎉</p>
-      <p>Twoja płatność została potwierdzona. Pobierz pakiet klikając w link poniżej:</p>
-      <p>👉 <a href="${downloadUrl}">${downloadUrl}</a></p>
-      <p>Link wygaśnie za ${Math.floor(downloadTokenTtlSeconds / 3600)} godziny, więc nie zwlekaj z pobieraniem!</p>
-      <p>Mam nadzieję, że notatki okażą się super pomocne w przygotowaniach 💛 Jeśli coś nie działa albo masz jakieś pytania, napisz śmiało na <a href="mailto:${contactEmail}">${contactEmail}</a>.</p>
-      <p>A jeśli po przerobieniu notatek poczujesz, że chcesz poćwiczyć więcej i mieć kogoś do pytań - zapraszam na korepetycje! Razem przepracujemy wszystko, co sprawia Ci trudność 💪 Zajrzyj na <a href="https://chemiazwero.com">chemiazwero.com</a> lub odezwij się bezpośrednio pod <a href="mailto:${contactEmail}">${contactEmail}</a>.</p>
-      <p>Do zobaczenia i powodzenia! 🍀<br />Wero</p>
-    `,
+    html: [
+      `<p>Hej!</p>`,
+      `<p>Dziękuję Ci za zakup – bardzo się cieszę, że moje notatki trafią w Twoje ręce! 🎉</p>`,
+      `<p>Twoja płatność została potwierdzona. Pobierz pakiet klikając w przycisk poniżej:</p>`,
+      `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:24px 0;">`,
+      `<tr><td>`,
+      `<a href="${downloadUrl}" style="display:inline-block;padding:14px 32px;background-color:#D97745;color:#ffffff;font-weight:bold;font-size:16px;text-decoration:none;border-radius:8px;" target="_blank">📥 Pobierz notatki</a>`,
+      `</td></tr>`,
+      `</table>`,
+      `<p style="font-size:13px;color:#888;">Link wygaśnie za ${Math.floor(downloadTokenTtlSeconds / 3600)} godziny. Jeśli przycisk nie działa, <a href="${downloadUrl}">kliknij tutaj</a>.</p>`,
+      `<p>Mam nadzieję, że notatki okażą się super pomocne w przygotowaniach 💛 Jeśli coś nie działa albo masz jakieś pytania, napisz śmiało na <a href="mailto:${contactEmail}">${contactEmail}</a>.</p>`,
+      `<p>A jeśli po przerobieniu notatek poczujesz, że chcesz poćwiczyć więcej i mieć kogoś do pytań – zapraszam na korepetycje! Razem przepracujemy wszystko, co sprawia Ci trudność 💪 Zajrzyj na <a href="https://chemiazwero.com">chemiazwero.com</a> lub odezwij się bezpośrednio pod <a href="mailto:${contactEmail}">${contactEmail}</a>.</p>`,
+      `<p>Do zobaczenia i powodzenia! 🍀<br/>Wero</p>`,
+    ].join("\n"),
     replyTo: contactEmail,
   });
 
