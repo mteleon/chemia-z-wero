@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
@@ -39,6 +39,7 @@ function buildNotesBundleJsonLd(bundle: NotesBundle): Record<string, unknown> {
 
 export default function Notes() {
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { data: bundle, isLoading } = useQuery({
     queryKey: ["notes-bundle"],
@@ -54,11 +55,13 @@ export default function Notes() {
   useEffect(() => {
     if (checkoutStatus === "cancelled") {
       toast.info("Płatność anulowana. Możesz wrócić do checkoutu w dowolnym momencie.");
+      navigate("/notatki", { replace: true });
     }
     if (checkoutStatus === "success") {
-      toast.success("Płatność przyjęta. Szczegóły dostępu otrzymasz mailowo.");
+      toast.success("Płatność przyjęta. Sprawdź maila - wysłaliśmy bezpieczny link do pobrania.");
+      navigate("/notatki", { replace: true });
     }
-  }, [checkoutStatus]);
+  }, [checkoutStatus, navigate]);
 
   const handleCheckout = async () => {
     try {
