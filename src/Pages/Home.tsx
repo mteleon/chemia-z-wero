@@ -2,11 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users, Atom, Microscope } from 'lucide-react';
+import { ArrowRight, Users, Atom, Microscope, CheckCircle } from 'lucide-react';
 import { motion } from "framer-motion";
 import { getCourses } from "@/data/courses";
+import { getNotesBundle } from "@/data/notesBundle";
 import { useQuery } from "@tanstack/react-query";
 import CourseCard from "@/components/CourseCard";
+
 import SEO from "@/components/SEO";
 
 export default function Home() {
@@ -14,14 +16,21 @@ export default function Home() {
     queryKey: ["featuredCourses"],
     queryFn: getCourses,
   });
+  const { data: notesBundle, isLoading: isNotesLoading } = useQuery({
+    queryKey: ["home-notes-bundle"],
+    queryFn: getNotesBundle,
+  });
 
   // Filter for specific popular courses and sort
   const courses = React.useMemo(() => {
-    const targetTitles = ['Lekcje indywidualne', 'Lekcje grupowe', 'POWTÓRKA – CHEMIA NIEORGANICZNA (LIVE) 26.02 - 1.03.2026'];
+    const targetTitles = ['Lekcje indywidualne', 'Lekcje grupowe'];
     const unique = [];
     const seen = new Set();
 
     for (const course of rawCourses ?? []) {
+      if (course.hidden_from_catalog) {
+        continue;
+      }
       if (targetTitles.includes(course.title) && !seen.has(course.title)) {
         seen.add(course.title);
         unique.push(course);
@@ -78,13 +87,13 @@ export default function Home() {
             <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-[#1A3B47] tracking-tight mb-6 md:mb-8 leading-tight">
               Pokochaj chemię i <br className="hidden md:block" />
               <span className="text-[#D97745]">
-                zdaj maturę na 90%+
+                zdaj maturę na 80%+
               </span>
             </h1>
             <p className="text-xl text-[#1A3B47]/80 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Lekcje i kursy z chemii stworzone przez pasjonatkę. 
-              Indywidualnie, w grupie albo intensywna powtórka przed maturą – 
-              doprowadzę Cię do wymarzonego wyniku.
+              Lekcje i kursy z chemii stworzone przez pasjonatkę. Samodzielna
+              nauka, lekcje indywidualne lub zajęcia w grupie. Wybierz swoją
+              drogę do wymarzonego wyniku.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button size="lg" className="w-full sm:w-auto bg-[#D97745] hover:bg-[#c66535] text-white text-lg px-8 h-14 rounded-full" asChild>
@@ -136,17 +145,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
             <div>
-              <h2 className="text-3xl font-bold text-[#1A3B47] mb-4">Najpopularniejsze Kursy</h2>
-              <p className="text-lg text-[#1A3B47]/70">Wybierz ścieżkę dopasowaną do Twoich potrzeb.</p>
+              <h2 className="text-3xl font-bold text-[#1A3B47] mb-4">Wybierz coś dla siebie</h2>
+              <p className="text-lg text-[#1A3B47]/70">Materiały i kursy dopasowane do Twoich potrzeb.</p>
             </div>
-            <Button variant="ghost" className="text-[#D97745] hover:text-[#c66535] hover:bg-[#FFFBF0] gap-2" asChild>
-              <Link to={createPageUrl('Courses')}>
-                Zobacz wszystkie <ArrowRight className="w-4 h-4" />
-              </Link>
-            </Button>
           </div>
 
-          {isLoading ? (
+          {isLoading || isNotesLoading ? (
             <div className="grid md:grid-cols-3 gap-8">
               {[1, 2, 3].map((n) => (
                 <div key={n} className="h-[400px] bg-[#FFFBF0] rounded-2xl animate-pulse" />
@@ -154,6 +158,56 @@ export default function Home() {
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {notesBundle && (
+                <motion.div
+                  whileHover={{ y: -5 }}
+                  className="bg-white rounded-2xl shadow-sm border border-[#D97745]/10 overflow-hidden flex flex-col h-full hover:shadow-md transition-all duration-300"
+                >
+                  <div className="h-48 bg-[#FFFBF0] relative overflow-hidden">
+                    <img src="/notes-cover.png" alt={notesBundle.title} className="h-full w-full object-cover" />
+                    <div className="absolute top-4 right-4 flex flex-col gap-2 items-end">
+                      <span className="bg-white/90 text-[#D97745] backdrop-blur-sm font-semibold px-2.5 py-1 rounded-full text-xs">
+                        Pakiet PDF
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-6 flex-grow flex flex-col">
+                    <h3 className="text-xl font-bold text-[#1A3B47] mb-2 line-clamp-2">{notesBundle.title}</h3>
+                    <p className="text-[#1A3B47]/70 text-sm mb-4 line-clamp-2 flex-grow">
+                      {notesBundle.shortDescription}
+                    </p>
+
+                    <div className="space-y-1.5 mb-6">
+                      {notesBundle.features.slice(0, 2).map((feature) => (
+                        <div key={feature} className="flex items-start gap-2 text-sm text-[#1A3B47]/80">
+                          <CheckCircle className="h-4 w-4 text-[#D97745] mt-0.5 flex-shrink-0" />
+                          <span className="text-xs">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="flex items-center justify-between mt-auto pt-4 border-t border-[#D97745]/10">
+                      <div>
+                        {notesBundle.promoPrice ? (
+                          <>
+                            <span className="text-2xl font-bold text-[#1A3B47]">{notesBundle.promoPrice} zł</span>
+                            <span className="ml-2 text-sm text-[#1A3B47]/50 line-through">{notesBundle.price} zł</span>
+                            <div className="text-xs text-[#1A3B47]/50">Cena regularna</div>
+                          </>
+                        ) : (
+                          <span className="text-2xl font-bold text-[#1A3B47]">{notesBundle.price} zł</span>
+                        )}
+                      </div>
+                      <Button size="sm" className="bg-[#1A3B47] hover:bg-[#2c505e] text-white gap-2" asChild>
+                        <Link to={createPageUrl('Notes')}>
+                          Szczegóły <ArrowRight className="h-3 w-3" />
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
               {courses.map((course) => (
                 <CourseCard key={course.id} course={course} />
               ))}

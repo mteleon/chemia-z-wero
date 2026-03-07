@@ -10,12 +10,15 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "generate:favicon": "node scripts/generate-favicon.mjs",
-    "generate:sitemap": "node scripts/generate-sitemap.mjs"
+    "generate:sitemap": "node scripts/generate-sitemap.mjs",
+    "pdf:notes": "node scripts/generate-pdf-notes.mjs",
+    "pdf:preview-blur": "([ -x ./.venv-preview/bin/python ] || (python3 -m venv .venv-preview && ./.venv-preview/bin/python -m pip install pymupdf pillow)) && ./.venv-preview/bin/python scripts/generate-blurred-preview-pdfs.py"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.4",
+    "@supabase/supabase-js": "^2.98.0",
     "@tanstack/react-query": "^5.90.20",
     "@vercel/analytics": "^1.6.1",
     "buffer": "^6.0.3",
@@ -31,6 +34,7 @@
     "react-router-dom": "^7.6.1",
     "resend": "^6.9.1",
     "sonner": "^2.0.7",
+    "stripe": "^20.4.1",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
@@ -46,6 +50,7 @@
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
     "postcss": "^8.4.49",
+    "puppeteer": "^24.38.0",
     "tailwindcss": "^3.4.16",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.18.0",
