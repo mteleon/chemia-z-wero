@@ -1,11 +1,13 @@
-import React, { useMemo } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useMemo, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, CheckCircle } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import SEO from "@/components/SEO";
 import NotesPreviewCarousel from "@/components/NotesPreviewCarousel";
+import { createNotesCheckoutSession } from "@/api/stripe";
 import { getNotesBundle } from "@/data/notesBundle";
 import { createPageUrl } from "@/utils";
 import { SITE_URL } from "@/utils/constants";
@@ -36,15 +38,39 @@ function buildNotesBundleJsonLd(bundle: NotesBundle): Record<string, unknown> {
 }
 
 export default function Notes() {
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const [searchParams] = useSearchParams();
   const { data: bundle, isLoading } = useQuery({
     queryKey: ["notes-bundle"],
     queryFn: getNotesBundle,
   });
+  const checkoutStatus = searchParams.get("checkout");
 
   const jsonLd = useMemo(
     () => (bundle ? buildNotesBundleJsonLd(bundle) : {}),
     [bundle]
   );
+
+  useEffect(() => {
+    if (checkoutStatus === "cancelled") {
+      toast.info("Płatność anulowana. Możesz wrócić do checkoutu w dowolnym momencie.");
+    }
+    if (checkoutStatus === "success") {
+      toast.success("Płatność przyjęta. Szczegóły dostępu otrzymasz mailowo.");
+    }
+  }, [checkoutStatus]);
+
+  const handleCheckout = async () => {
+    try {
+      setIsCheckoutLoading(true);
+      const checkoutUrl = await createNotesCheckoutSession();
+      window.location.assign(checkoutUrl);
+    } catch (error) {
+      console.error(error);
+      toast.error("Nie udało się otworzyć płatności Stripe. Spróbuj ponownie.");
+      setIsCheckoutLoading(false);
+    }
+  };
 
   if (isLoading) {
     return (
@@ -152,44 +178,35 @@ export default function Notes() {
           <div className="md:col-span-1">
             <div className="bg-white rounded-2xl shadow-lg border border-[#D97745]/10 p-6 sticky top-24">
               <div className="aspect-video bg-[#FFFBF0] rounded-xl mb-6 overflow-hidden flex items-center justify-center border border-[#D97745]/10">
-                <div className="text-center px-4">
-                  <p className="text-[#1A3B47] font-semibold">Pakiet notatek PDF</p>
-                  <p className="text-[#1A3B47]/60 text-sm mt-1">{bundle.notesCount} tematów maturalnych</p>
-                </div>
+                <p className="text-sm font-medium text-[#1A3B47]/60">Miejsce na grafikę pakietu</p>
               </div>
 
               <div className="mb-6">
                 {bundle.promoPrice ? (
-                  <>
-                    <div className="text-3xl font-bold text-[#1A3B47] mb-1">{bundle.promoPrice} zł</div>
-                    <div className="text-sm text-[#1A3B47]/50 line-through">
-                      {bundle.price} zł — cena regularna
-                    </div>
-                    <div className="text-sm text-[#D97745] font-medium mt-1">
-                      {bundle.promoLabel ?? "Cena promocyjna"}
-                    </div>
-                  </>
+                  <div className="text-4xl font-bold text-[#1A3B47]">{bundle.promoPrice} zł</div>
                 ) : (
-                  <div className="text-3xl font-bold text-[#1A3B47] mb-1">{bundle.price} zł</div>
+                  <div className="text-4xl font-bold text-[#1A3B47]">{bundle.price} zł</div>
                 )}
-                <div className="text-sm text-[#1A3B47]/60">{bundle.priceLabel}</div>
               </div>
 
-              <div className="space-y-3 mb-6">
-                <Button className="w-full bg-[#D97745] hover:bg-[#c66535] text-white h-12 text-lg" asChild>
-                  <Link to={createPageUrl("Contact")}>Chcę kupić pakiet</Link>
+              <div>
+                <Button
+                  className="w-full bg-[#D97745] hover:bg-[#c66535] text-white h-12 text-lg"
+                  onClick={handleCheckout}
+                  disabled={isCheckoutLoading}
+                >
+                  {isCheckoutLoading ? "Przekierowanie..." : "Kup teraz"}
                 </Button>
               </div>
 
-              <div className="text-sm text-[#1A3B47]/70 space-y-2">
-                <p>
-                  <span className="font-semibold">Format:</span> {bundle.formatLabel}
+              <div className="mt-6 space-y-3 text-sm text-[#1A3B47]/75">
+                <p className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#D97745] mt-0.5 flex-shrink-0" />
+                  <span>W pakiecie: {bundle.notesCount} notatek PDF w jednym zakupie.</span>
                 </p>
-                <p>
-                  <span className="font-semibold">Dostęp:</span> {bundle.accessLabel}
-                </p>
-                <p>
-                  <span className="font-semibold">Aktualizacje:</span> {bundle.updatesLabel}
+                <p className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 text-[#D97745] mt-0.5 flex-shrink-0" />
+                  <span>Po zakupie materiały wysyłamy na maila podanego w zamówieniu.</span>
                 </p>
               </div>
             </div>

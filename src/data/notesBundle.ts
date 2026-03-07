@@ -39,7 +39,7 @@ export const notesBundle: NotesBundle = {
     "Pakiet zawiera cały materiał w uporządkowanej kolejności: teoria, schematy, najważniejsze reakcje i podsumowania pod maturę.",
   status: "coming_soon",
   price: 199,
-  promoPrice: 149,
+  promoPrice: 49,
   promoLabel: "Cena promocyjna na start",
   priceLabel: "Jednorazowy zakup pakietu",
   notesCount: 26,
