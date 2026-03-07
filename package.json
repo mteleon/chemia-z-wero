@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "generate:favicon": "node scripts/generate-favicon.mjs",
-    "generate:sitemap": "node scripts/generate-sitemap.mjs"
+    "generate:sitemap": "node scripts/generate-sitemap.mjs",
+    "pdf:notes": "node scripts/generate-pdf-notes.mjs",
+    "pdf:preview-blur": "([ -x ./.venv-preview/bin/python ] || (python3 -m venv .venv-preview && ./.venv-preview/bin/python -m pip install pymupdf pillow)) && ./.venv-preview/bin/python scripts/generate-blurred-preview-pdfs.py"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
@@ -46,6 +48,7 @@
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
     "postcss": "^8.4.49",
+    "puppeteer": "^24.38.0",
     "tailwindcss": "^3.4.16",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.18.0",

@@ -16,6 +16,7 @@ export function createPageUrl(path: string): string {
   const map: Record<string, string> = {
     Home: "/",
     Courses: "/kursy",
+    Notes: "/notatki",
     Posts: "/blog",
     About: "/o-mnie",
     Contact: "/kontakt",
