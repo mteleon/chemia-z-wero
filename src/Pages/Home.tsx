@@ -17,7 +17,7 @@ export default function Home() {
 
   // Filter for specific popular courses and sort
   const courses = React.useMemo(() => {
-    const targetTitles = ['Lekcje indywidualne', 'Lekcje grupowe', 'Powtórka matura 2026'];
+    const targetTitles = ['Lekcje indywidualne', 'Lekcje grupowe', 'POWTÓRKA – CHEMIA NIEORGANICZNA (LIVE) 26.02 - 1.03.2026'];
     const unique = [];
     const seen = new Set();
 

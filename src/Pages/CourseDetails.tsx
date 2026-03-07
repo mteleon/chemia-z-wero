@@ -115,7 +115,12 @@ export default function CourseDetails() {
               </div>
               <h1 className="text-4xl md:text-5xl font-bold tracking-tight">{course.title}</h1>
               <p className="text-xl text-white/80 leading-relaxed max-w-2xl">
-                {course.short_description}
+                {(course.short_description ?? "").split("\n").map((line, idx, arr) => (
+                  <React.Fragment key={idx}>
+                    {line}
+                    {idx < arr.length - 1 && <br />}
+                  </React.Fragment>
+                ))}
               </p>
               
             </div>
@@ -128,27 +133,120 @@ export default function CourseDetails() {
           
           {/* Main Content */}
           <div className="md:col-span-2 space-y-8">
+            {course.id === "powtorka-maturalna" && (
+              <div className="space-y-3">
+                <p className="text-lg font-semibold text-[#1A3B47]">
+                  POWTÓRKA Z CHEMII – ucz się mądrze, nie więcej.
+                </p>
+              </div>
+            )}
             <div className="bg-white rounded-2xl shadow-sm border border-[#D97745]/10 p-8">
               <h2 className="text-2xl font-bold text-[#1A3B47] mb-6">O tym kursie</h2>
               <div className="prose prose-slate max-w-none text-[#1A3B47]/80 space-y-8">
                 {course.description_sections && course.description_sections.length > 0 ? (
-                  course.description_sections.map((section, idx) => (
-                    <section key={idx}>
-                      <h3 className="text-lg font-semibold text-[#1A3B47] mb-3">
-                        {section.title}
-                      </h3>
-                      {section.content && (
-                        <p className="mb-3 leading-relaxed">{section.content}</p>
-                      )}
-                      {section.bullets && section.bullets.length > 0 && (
-                        <ul className="list-disc pl-6 space-y-2">
-                          {section.bullets.map((bullet, i) => (
-                            <li key={i} className="leading-relaxed">{bullet}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </section>
-                  ))
+                  course.id === "powtorka-maturalna" ? (
+                    <div className="space-y-10">
+                      {course.description_sections
+                        .filter(
+                          (section) =>
+                            !section.title.startsWith("FAQ") &&
+                            !section.title.startsWith("Co otrzymasz")
+                        )
+                        .map((section, idx) => {
+                        const isDay = section.title.startsWith("DZIEŃ");
+                        const isNoItems = section.title.includes("NIE MA");
+                        const isReceive = section.title.startsWith("Co otrzymasz");
+                        return (
+                          <section key={idx} className="space-y-4">
+                            <div className="flex items-start gap-3">
+                              {isDay && (
+                                <span className="w-6 h-6 bg-[#2F73FF] rounded-lg mt-0.5 flex-shrink-0" />
+                              )}
+                              <h3 className="text-lg font-semibold text-[#1A3B47] leading-snug">
+                                {section.title}
+                              </h3>
+                            </div>
+                            {section.content && (
+                              <p className={`leading-relaxed text-[#1A3B47]/80 ${isDay ? "ml-9" : ""}`}>
+                                {section.content.split("\n").map((line, lineIdx) => (
+                                  <React.Fragment key={lineIdx}>
+                                    {line}
+                                    {lineIdx < section.content!.split("\n").length - 1 && <br />}
+                                  </React.Fragment>
+                                ))}
+                              </p>
+                            )}
+                            {section.bullets && section.bullets.length > 0 && (
+                              <>
+                                {isReceive ? (
+                                  <div className="space-y-3 text-[#1A3B47]/80">
+                                    {section.bullets.map((item, i) => {
+                                      const isSub = item.trim().startsWith("– ");
+                                      const isNote = item.trim().startsWith("*");
+                                      if (isSub) {
+                                        return (
+                                          <div key={i} className="pl-8">
+                                            <span className="mr-2">–</span>
+                                            <span>{item.trim().slice(2)}</span>
+                                          </div>
+                                        );
+                                      }
+                                      if (isNote) {
+                                        return (
+                                          <p key={i} className="italic text-[#1A3B47]/70">
+                                            {item.trim().replace(/^\*\s?/, "")}
+                                          </p>
+                                        );
+                                      }
+                                      return (
+                                        <div key={i} className="flex items-start gap-2">
+                                          <span className="text-[#1A3B47] font-semibold">✓</span>
+                                          <span>{item}</span>
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                ) : isNoItems ? (
+                                  <ul className="space-y-2 text-[#1A3B47]/80">
+                                    {section.bullets.map((bullet, i) => (
+                                      <li key={i} className="flex items-start gap-2 leading-relaxed">
+                                        <span className="text-red-500">✗</span>
+                                        <span>{bullet}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                ) : (
+                                  <ul className={`list-disc space-y-2 text-[#1A3B47]/80 ${isDay ? "pl-10" : "pl-6"}`}>
+                                    {section.bullets.map((bullet, i) => (
+                                      <li key={i} className="leading-relaxed">{bullet}</li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </>
+                            )}
+                          </section>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    course.description_sections.map((section, idx) => (
+                      <section key={idx}>
+                        <h3 className="text-lg font-semibold text-[#1A3B47] mb-3">
+                          {section.title}
+                        </h3>
+                        {section.content && (
+                          <p className="mb-3 leading-relaxed">{section.content}</p>
+                        )}
+                        {section.bullets && section.bullets.length > 0 && (
+                          <ul className="list-disc pl-6 space-y-2">
+                            {section.bullets.map((bullet, i) => (
+                              <li key={i} className="leading-relaxed">{bullet}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </section>
+                    ))
+                  )
                 ) : course.full_description ? (
                   <p className="leading-relaxed">{course.full_description}</p>
                 ) : (
@@ -158,26 +256,97 @@ export default function CourseDetails() {
             </div>
 
             <div className="bg-white rounded-2xl shadow-sm border border-[#D97745]/10 p-8">
-              <h2 className="text-2xl font-bold text-[#1A3B47] mb-6">Czego się nauczysz?</h2>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {course.features && course.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-[#D97745] flex-shrink-0 mt-0.5" />
-                    <span className="text-[#1A3B47]/80">{feature}</span>
-                  </div>
-                ))}
-              </div>
+              <h2 className="text-2xl font-bold text-[#1A3B47] mb-6">
+                {course.id === "powtorka-maturalna" ? "Co otrzymasz?" : "Czego się nauczysz?"}
+              </h2>
+              {course.id === "powtorka-maturalna" ? (
+                <div className="space-y-3 text-[#1A3B47]/80">
+                  {(course.description_sections ?? [])
+                    .find((section) => section.title.startsWith("Co otrzymasz"))
+                    ?.bullets?.map((item, i) => {
+                      const isSub = item.trim().startsWith("– ");
+                      const isNote = item.trim().startsWith("*");
+                      if (isSub) {
+                        return (
+                          <div key={i} className="pl-8">
+                            <span className="mr-2">–</span>
+                            <span>{item.trim().slice(2)}</span>
+                          </div>
+                        );
+                      }
+                      if (isNote) {
+                        return (
+                          <p key={i} className="italic text-[#1A3B47]/70">
+                            {item.trim().replace(/^\*\s?/, "")}
+                          </p>
+                        );
+                      }
+                      return (
+                        <div key={i} className="flex items-start gap-3">
+                          <CheckCircle className="w-5 h-5 text-[#D97745] flex-shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </div>
+                      );
+                    })}
+                </div>
+              ) : (
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {course.features && course.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-[#D97745] flex-shrink-0 mt-0.5" />
+                      <span className="text-[#1A3B47]/80">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
+
+            {course.id === "powtorka-maturalna" && (
+              <div className="bg-white rounded-2xl shadow-sm border border-[#D97745]/10 p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="text-[#D21F1F] text-2xl leading-none">?</span>
+                  <h2 className="text-2xl font-bold text-[#1A3B47]">
+                    Najczęściej zadawane pytania (FAQ)
+                  </h2>
+                </div>
+                <div className="divide-y divide-[#1A3B47]/10">
+                  {(course.description_sections ?? [])
+                    .find((section) => section.title.startsWith("FAQ"))
+                    ?.bullets?.map((item, i) => {
+                      const [question, answer] = item.split("||").map((part) => part.trim());
+                      return (
+                        <div key={i} className="py-5">
+                          <div className="flex items-start gap-4">
+                            <span className="w-7 h-7 rounded-md bg-gradient-to-b from-[#EEF3FA] to-[#D9E4F2] border border-[#B6C6DA] text-[#1A3B47] text-sm font-semibold flex items-center justify-center flex-shrink-0">
+                              {i + 1}
+                            </span>
+                            <div>
+                              <p className="font-semibold text-[#1A3B47]">
+                                {question}
+                              </p>
+                              {answer && (
+                                <p className="mt-2 text-[#1A3B47]/80 leading-relaxed">
+                                  {answer}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Sidebar Pricing Card */}
           <div className="md:col-span-1">
             <div className="bg-white rounded-2xl shadow-lg border border-[#D97745]/10 p-6 sticky top-24">
-              <div className="aspect-video bg-[#FFFBF0] rounded-xl mb-6 overflow-hidden relative group">
+              <div className="bg-[#FFFBF0] rounded-xl mb-6 overflow-hidden relative group p-3">
                  {course.image_url ? (
-                   <img src={course.image_url} alt="" className="w-full h-full object-cover" />
+                   <img src={course.image_url} alt="" className="w-full h-auto object-contain rounded-lg" />
                  ) : (
-                   <div className="w-full h-full flex items-center justify-center">
+                   <div className="w-full h-40 flex items-center justify-center">
                      <BookOpen className="w-12 h-12 text-[#1A3B47]/20" />
                    </div>
                  )}
