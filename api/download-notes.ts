@@ -5,7 +5,7 @@ import { verifyAccessToken } from "./_utils/accessToken.js";
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const supabaseBucket =
-  process.env.SUPABASE_NOTES_BUCKET || process.env.SUPABASE_BUCKET || "notes-private";
+  process.env.SUPABASE_NOTES_BUCKET || "notes";
 const notesObjectPath = process.env.SUPABASE_NOTES_OBJECT_PATH;
 const notesDownloadFilename = process.env.SUPABASE_NOTES_DOWNLOAD_FILENAME;
 const downloadTokenSecret = process.env.DOWNLOAD_TOKEN_SECRET;
