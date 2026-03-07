@@ -205,7 +205,10 @@ async function main() {
       });
       const sectionSummary = await page.$$eval(".main-title", (nodes) => {
         const titles = nodes
-          .map((node) => node.textContent?.replace(/\s+/g, " ").trim() ?? "")
+          .map((node) => {
+            node.querySelectorAll("br").forEach((br) => br.replaceWith(" "));
+            return node.textContent?.replace(/\s+/g, " ").trim() ?? "";
+          })
           .filter(Boolean);
         return titles.join(" · ");
       });
