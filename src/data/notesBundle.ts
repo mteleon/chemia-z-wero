@@ -6,7 +6,8 @@ const topics = [
   "Kształty cząsteczek i stopnie utlenienia",
   "Tlenki, wodorki i kwasy",
   "Wodorotlenki",
-  "Teorie kwasów i zasad, sole",
+  "Teorie kwasów i zasad",
+  "Sole",
   "Reakcje redoks",
   "Chrom, mangan i inne ważne pierwiastki",
   "Elektrochemia",
@@ -34,18 +35,18 @@ export const notesBundle: NotesBundle = {
   slug: "notatki",
   title: "Pakiet notatek maturalnych z chemii",
   shortDescription:
-    "Kompletny zestaw 26 notatek PDF do matury rozszerzonej z chemii.",
+    "Kompletny zestaw 27 notatek PDF do matury rozszerzonej z chemii.",
   fullDescription:
     "Pakiet zawiera cały materiał w uporządkowanej kolejności: teoria, schematy, najważniejsze reakcje i podsumowania pod maturę.",
   status: "coming_soon",
   price: 49,
   priceLabel: "Jednorazowy zakup pakietu",
-  notesCount: 26,
+  notesCount: 27,
   formatLabel: "PDF",
   accessLabel: "Dostęp online po zakupie",
   updatesLabel: "Aktualizacje pakietu w cenie",
   features: [
-    "26 notatek w jednej spójnej strukturze",
+    "27 notatek w jednej spójnej strukturze",
     "Materiał pod maturę rozszerzoną",
     "Przejrzyste podsumowania i schematy",
     "Wersja do druku i nauki na telefonie/tablecie",
@@ -65,7 +66,7 @@ export const notesBundle: NotesBundle = {
     {
       id: "preview-09",
       title: "Elektrochemia",
-      pdfPath: "/notes-preview/09_elektrochemia_preview.pdf",
+      pdfPath: "/notes-preview/10_elektrochemia_preview.pdf",
     },
   ],
 };

@@ -165,7 +165,7 @@ export default function Notes() {
             </div>
 
             <div className="bg-white rounded-2xl shadow-sm border border-[#D97745]/10 p-8">
-              <h2 className="text-2xl font-bold text-[#1A3B47] mb-6">Zawartość pakietu (1–26)</h2>
+              <h2 className="text-2xl font-bold text-[#1A3B47] mb-6">Zawartość pakietu (1–27)</h2>
               <div className="grid sm:grid-cols-2 gap-x-8 gap-y-3">
                 {bundle.topics.map((topic) => (
                   <div key={topic.number} className="text-[#1A3B47]/85">
