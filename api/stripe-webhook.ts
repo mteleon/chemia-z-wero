@@ -125,14 +125,16 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
   await resend.emails.send({
     from: safeFromEmail,
     to: customerEmail,
-    subject: "Twoje notatki PDF są gotowe do pobrania",
+    subject: "Twoje notatki są gotowe do pobrania 🧪",
     html: `
-      <h2>Dziękujemy za zakup pakietu notatek!</h2>
-      <p>Twoja płatność została potwierdzona. Pobierz pakiet z bezpiecznego linku:</p>
-      <p><a href="${downloadUrl}">${downloadUrl}</a></p>
-      <p>Link wygaśnie za ${Math.floor(downloadTokenTtlSeconds / 3600)} godzin.</p>
-      <p>W razie pytań napisz na <a href="mailto:${contactEmail}">${contactEmail}</a>.</p>
-      <p>Chemia z Wero</p>
+      <p>Hej!</p>
+      <p>Dziękuję Ci za zakup - bardzo się cieszę, że moje notatki trafią w Twoje ręce! 🎉</p>
+      <p>Twoja płatność została potwierdzona. Pobierz pakiet klikając w link poniżej:</p>
+      <p>👉 <a href="${downloadUrl}">${downloadUrl}</a></p>
+      <p>Link wygaśnie za ${Math.floor(downloadTokenTtlSeconds / 3600)} godziny, więc nie zwlekaj z pobieraniem!</p>
+      <p>Mam nadzieję, że notatki okażą się super pomocne w przygotowaniach 💛 Jeśli coś nie działa albo masz jakieś pytania, napisz śmiało na <a href="mailto:${contactEmail}">${contactEmail}</a>.</p>
+      <p>A jeśli po przerobieniu notatek poczujesz, że chcesz poćwiczyć więcej i mieć kogoś do pytań - zapraszam na korepetycje! Razem przepracujemy wszystko, co sprawia Ci trudność 💪 Zajrzyj na <a href="https://chemiazwero.com">chemiazwero.com</a> lub odezwij się bezpośrednio pod <a href="mailto:${contactEmail}">${contactEmail}</a>.</p>
+      <p>Do zobaczenia i powodzenia! 🍀<br />Wero</p>
     `,
     replyTo: contactEmail,
   });

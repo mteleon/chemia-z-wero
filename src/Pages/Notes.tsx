@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import SEO from "@/components/SEO";
+
 import NotesPreviewCarousel from "@/components/NotesPreviewCarousel";
 import { createNotesCheckoutSession } from "@/api/stripe";
 import { getNotesBundle } from "@/data/notesBundle";
@@ -158,7 +159,7 @@ export default function Notes() {
             <div className="bg-white rounded-2xl shadow-sm border border-[#D97745]/10 p-8">
               <h2 className="text-2xl font-bold text-[#1A3B47] mb-2">Podgląd notatek</h2>
               <p className="text-[#1A3B47]/70 mb-6">
-                Sprawdź, jak wyglądają materiały w środku i jak są ułożone sekcje.
+                Nie kupuj kota w worku - zajrzyj do przykładowych notatek przed zakupem.
               </p>
               <NotesPreviewCarousel slides={bundle.previewSlides} />
             </div>
@@ -180,9 +181,11 @@ export default function Notes() {
 
           <div className="md:col-span-1">
             <div className="bg-white rounded-2xl shadow-lg border border-[#D97745]/10 p-6 sticky top-24">
-              <div className="aspect-video bg-[#FFFBF0] rounded-xl mb-6 overflow-hidden flex items-center justify-center border border-[#D97745]/10">
-                <p className="text-sm font-medium text-[#1A3B47]/60">Miejsce na grafikę pakietu</p>
+              <div className="aspect-video bg-[#FFFBF0] rounded-xl mb-4 overflow-hidden border border-[#D97745]/10">
+                <img src="/notes-cover.png" alt={bundle.title} className="h-full w-full object-cover" />
               </div>
+
+              <h3 className="text-lg font-bold text-[#1A3B47] mb-4 leading-snug">{bundle.title}</h3>
 
               <div className="mb-6">
                 {bundle.promoPrice ? (

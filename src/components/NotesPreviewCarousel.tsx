@@ -31,18 +31,9 @@ export default function NotesPreviewCarousel({ slides }: NotesPreviewCarouselPro
           <iframe
             key={currentSlide.id}
             title={`Podgląd notatki: ${currentSlide.title}`}
-            src={`${currentSlide.pdfPath}#page=1&toolbar=0&navpanes=0&view=FitH`}
-            className="h-full w-full scale-[1.02]"
+            src={`${currentSlide.pdfPath}#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+            className="h-full w-full"
           />
-          <div className="pointer-events-none absolute right-3 top-3 rounded-full bg-[#1A3B47]/85 px-3 py-1 text-[10px] font-semibold tracking-wide text-white uppercase">
-            Podgląd
-          </div>
-        </div>
-
-        <div className="mt-4">
-          <div>
-            <h3 className="text-lg font-semibold text-[#1A3B47]">{currentSlide.title}</h3>
-          </div>
         </div>
       </div>
 

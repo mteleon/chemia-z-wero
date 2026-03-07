@@ -342,7 +342,7 @@ export default function CourseDetails() {
           {/* Sidebar Pricing Card */}
           <div className="md:col-span-1">
             <div className="bg-white rounded-2xl shadow-lg border border-[#D97745]/10 p-6 sticky top-24">
-              <div className="bg-[#FFFBF0] rounded-xl mb-6 overflow-hidden relative group p-3">
+              <div className="bg-[#FFFBF0] rounded-xl mb-4 overflow-hidden relative group p-3">
                  {course.image_url ? (
                    <img src={course.image_url} alt="" className="w-full h-auto object-contain rounded-lg" />
                  ) : (
@@ -351,7 +351,9 @@ export default function CourseDetails() {
                    </div>
                  )}
               </div>
-              
+
+              <h3 className="text-lg font-bold text-[#1A3B47] mb-4 leading-snug">{course.title}</h3>
+
               <div className="mb-6">
                 {isPromoActive(course) ? (
                   <>

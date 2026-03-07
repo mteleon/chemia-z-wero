@@ -200,6 +200,7 @@ const COURSES: Course[] = [
     price_label: "pakiet",
     level: "rozszerzony",
     status: "available",
+    hidden_from_catalog: true,
     duration: "8 godzin",
     schedule: "26.02–1.03.2026, 17:00–19:00",
     order: 3,
