@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { Resend } from "resend";
-import { createAccessToken } from "./_utils/accessToken";
+import { createAccessToken } from "./_utils/accessToken.js";
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
