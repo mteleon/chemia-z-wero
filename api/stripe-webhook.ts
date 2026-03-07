@@ -6,7 +6,6 @@ import { createAccessToken } from "./_utils/accessToken.js";
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 const downloadTokenSecret = process.env.DOWNLOAD_TOKEN_SECRET;
-const siteUrl = process.env.SITE_URL || "https://chemiazwero.com";
 const downloadTokenTtlSeconds = Number(process.env.DOWNLOAD_TOKEN_TTL_SECONDS || "259200");
 const contactEmail = process.env.CONTACT_EMAIL || "chemiazwero@gmail.com";
 const resendApiKey = process.env.RESEND_API_KEY;
@@ -32,6 +31,34 @@ function isSessionProcessed(sessionId: string): boolean {
 
 function markSessionProcessed(sessionId: string) {
   processedSessions.set(sessionId, Date.now());
+}
+
+function withHttps(urlOrHost: string): string {
+  if (urlOrHost.startsWith("http://") || urlOrHost.startsWith("https://")) {
+    return urlOrHost;
+  }
+  return `https://${urlOrHost}`;
+}
+
+function resolveSiteUrl(): string {
+  const explicitSiteUrl = process.env.SITE_URL;
+  if (explicitSiteUrl) {
+    return withHttps(explicitSiteUrl);
+  }
+
+  if (process.env.VERCEL_BRANCH_URL) {
+    return withHttps(process.env.VERCEL_BRANCH_URL);
+  }
+
+  if (process.env.VERCEL_URL) {
+    return withHttps(process.env.VERCEL_URL);
+  }
+
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return withHttps(process.env.VERCEL_PROJECT_PRODUCTION_URL);
+  }
+
+  return "https://chemiazwero.com";
 }
 
 async function getRawBody(req: VercelRequest): Promise<string> {
@@ -87,6 +114,7 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
     downloadTokenSecret,
     downloadTokenTtlSeconds
   );
+  const siteUrl = resolveSiteUrl();
   const downloadUrl = `${siteUrl}/api/download-notes?token=${encodeURIComponent(accessToken)}`;
 
   const safeFromEmail =
