@@ -7,6 +7,7 @@ const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const supabaseBucket =
   process.env.SUPABASE_NOTES_BUCKET || process.env.SUPABASE_BUCKET || "notes-private";
 const notesObjectPath = process.env.SUPABASE_NOTES_OBJECT_PATH;
+const notesDownloadFilename = process.env.SUPABASE_NOTES_DOWNLOAD_FILENAME;
 const downloadTokenSecret = process.env.DOWNLOAD_TOKEN_SECRET;
 const signedUrlTtlSeconds = Number(process.env.SUPABASE_SIGNED_URL_TTL_SECONDS || "120");
 
@@ -26,6 +27,14 @@ function getToken(req: VercelRequest): string | null {
     return value[0] ?? null;
   }
   return typeof value === "string" ? value : null;
+}
+
+function resolveDownloadFilename(objectPath: string): string {
+  if (notesDownloadFilename) {
+    return notesDownloadFilename;
+  }
+  const segments = objectPath.split("/").filter(Boolean);
+  return segments[segments.length - 1] || "notatki-pakiet";
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -48,10 +57,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(403).json({ error: "Forbidden" });
     }
 
+    const downloadFilename = resolveDownloadFilename(notesObjectPath);
     const { data, error } = await supabase.storage
       .from(supabaseBucket)
       .createSignedUrl(notesObjectPath, signedUrlTtlSeconds, {
-        download: "notatki-pakiet.pdf",
+        download: downloadFilename,
       });
 
     if (error || !data?.signedUrl) {
