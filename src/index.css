@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -115,4 +117,93 @@ body {
   height: auto;
   border-radius: 12px;
   margin: 1.5rem 0;
+}
+
+/* KaTeX display math */
+.blog-article .katex-display {
+  margin: 1.5rem 0;
+  font-size: 1.3em;
+}
+.blog-article .katex-display > .katex {
+  text-align: center;
+}
+/* KaTeX inline math — slightly larger than surrounding text */
+.blog-article .katex {
+  font-size: 1.05em;
+}
+
+/* Exam task box — tinted card with accent border */
+.blog-article .zadanie-box {
+  background: #fef6ee;
+  border: 1.5px solid #f0c8a0;
+  border-left: 5px solid #d97745;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.75rem 0;
+}
+.blog-article .zadanie-box .zadanie-label {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #b85c2a;
+  margin-bottom: 0.6rem;
+}
+.blog-article .zadanie-box p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 0.5rem;
+}
+.blog-article .zadanie-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* Handwritten solution on grid paper */
+.blog-article .rozwiazanie {
+  font-family: 'Caveat', cursive;
+  font-size: 1.35rem;
+  line-height: 2.1;
+  color: #1c3148;
+  background-color: #fafaf7;
+  background-image:
+    radial-gradient(circle, #d4d0c8 0.8px, transparent 0.8px);
+  background-size: 20px 20px;
+  border: 1.5px solid #e0ddd6;
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  margin: 1.75rem 0;
+}
+.blog-article .rozwiazanie .rozw-label {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+.blog-article .rozwiazanie p {
+  font-family: 'Caveat', cursive;
+  font-size: 1.35rem;
+  line-height: 2.1;
+  margin-bottom: 0.35rem;
+}
+.blog-article .rozwiazanie p:last-child {
+  margin-bottom: 0;
+}
+.blog-article .rozwiazanie strong {
+  color: #c0392b;
+  font-weight: 700;
+}
+.blog-article .rozwiazanie .katex {
+  font-size: 1.15em;
+}
+.blog-article .rozwiazanie .wynik {
+  display: inline-block;
+  background: #fff59d;
+  border-radius: 6px;
+  padding: 2px 10px;
+  font-weight: 700;
+  color: #1c3148;
 }

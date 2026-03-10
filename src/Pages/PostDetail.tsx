@@ -1,6 +1,10 @@
 import React, { useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import rehypeRaw from "rehype-raw";
+import "katex/dist/katex.min.css";
 import { getPostBySlug } from "@/data/posts";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
@@ -112,7 +116,12 @@ export default function PostDetail() {
         </header>
 
         <div className="blog-article">
-          <ReactMarkdown>{post.content?.trim() ?? ""}</ReactMarkdown>
+          <ReactMarkdown
+            remarkPlugins={[remarkMath]}
+            rehypePlugins={[rehypeKatex, rehypeRaw]}
+          >
+            {post.content?.trim() ?? ""}
+          </ReactMarkdown>
         </div>
 
         <footer className="mt-10 pt-6 border-t border-[#1A3B47]/10">
