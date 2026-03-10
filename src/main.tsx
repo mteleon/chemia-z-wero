@@ -16,7 +16,9 @@ import "./index.css";
 
 const queryClient = new QueryClient();
 
-mountVercelToolbar();
+if (import.meta.env.DEV && window.location.hostname === "localhost") {
+  mountVercelToolbar();
+}
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

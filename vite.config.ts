@@ -25,8 +25,8 @@ function spaFallback() {
   };
 }
 
-export default defineConfig({
-  plugins: [react(), spaFallback(), vercelToolbar()],
+export default defineConfig(({ command }) => ({
+  plugins: [react(), spaFallback(), command === "serve" && vercelToolbar()].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -60,4 +60,4 @@ export default defineConfig({
     },
     chunkSizeWarningLimit: 600,
   },
-});
+}));
