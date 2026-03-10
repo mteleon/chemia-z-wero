@@ -9,9 +9,14 @@ Każdy plik `.md` to jeden wpis. **Nazwa pliku (bez .md)** to slug w URL, np. `j
 title: "Tytuł wpisu"
 excerpt: "Krótki opis do listy wpisów i meta description. Powinien zachęcić do kliknięcia i zawierać słowa kluczowe."
 publishedAt: "2026-03-10"
-order: 3
 ---
 ```
+
+## Kolejność wyświetlania wpisów
+
+- Wpisy na stronie `/blog` są sortowane po `publishedAt`:
+  - **od najnowszych do najstarszych**.
+- Pole `order` nie jest używane do kolejności wpisów.
 
 ## Zasady tworzenia treści
 
@@ -93,6 +98,30 @@ Wszystkie używają `rehype-raw` — zwykły HTML w Markdown działa.
 3. **Przykłady** — jeśli są zadania maturalne: `zadanie-box` + `rozwiazanie`.
 4. **Podsumowanie / pułapki** — lista numerowana lub krótki akapit.
 5. **Zakończenie** — 1–2 zdania + `cta-box`.
+
+### Wpisy strategiczne (metodyka nauki / technika egzaminacyjna)
+
+Dotyczy wpisów takich jak:
+- `jak-sie-uczyc-do-matury-z-chemii.md`
+- `slowa-kluczowe-w-zadaniach-maturalnych.md`
+
+Dla takich wpisów też stosujemy ten sam standard redakcyjny:
+- gęsty, merytoryczny tekst (bez „placeholderowych” 2–3 akapitów),
+- konkretne checklisty i zasady do wdrożenia,
+- 1–2 ramki `.zadanie-box` na najważniejsze reguły praktyczne,
+- zakończenie z CTA (`.cta-box`) do `/kursy` i `/notatki`.
+
+Wpis strategiczny nie musi mieć „zadań obliczeniowych”, ale powinien mieć elementy możliwe do natychmiastowego zastosowania przez ucznia (checklista, schemat pracy, reguła odpowiedzi).
+
+### Kategorie wpisów (propozycja redakcyjna, bez implementacji)
+
+Na poziomie redakcyjnym warto oznaczać wpisy jedną z kategorii:
+- `powtorka-merytoryczna` — tematy chemiczne (np. stechiometria, polarność),
+- `nauka-i-organizacja` — planowanie nauki i metodyka pracy,
+- `technika-egzaminacyjna` — słowa kluczowe, pisanie odpowiedzi pod klucz CKE.
+
+To jest wyłącznie konwencja redakcyjna na etapie tworzenia treści.
+**Nie implementujemy** tych kategorii w modelu danych, parserze frontmatter ani UI listy bloga.
 
 ### Obrazki
 

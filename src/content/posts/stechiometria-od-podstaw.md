@@ -2,7 +2,6 @@
 title: "Stechiometria od podstaw"
 excerpt: "Mol, masa molowa, gazy, wzory empiryczne, wydajność, reagent limitujący — kompletne repetytorium z prawdziwymi zadaniami z matur 2023–2025 rozwiązanymi krok po kroku."
 publishedAt: "2026-03-10"
-order: 3
 ---
 
 Stechiometria to po prostu matematyka chemii. Brzmi groźnie, ale w praktyce sprowadza się do kilku wzorów i jednej zasady: **zawsze przeliczaj na mole**. Jeśli opanujesz tę zasadę i będziesz konsekwentnie pilnować jednostek, większość zadań obliczeniowych na maturze rozszerzonej stanie się schematyczna. W tym artykule przejdziemy przez wszystkie kluczowe zagadnienia stechiometryczne — od mola i masy molowej, przez gazy i wzory empiryczne, po wydajność i reakcje współbieżne — a na końcu rozwiążemy razem trzy prawdziwe zadania z arkuszy CKE z lat 2023–2025.

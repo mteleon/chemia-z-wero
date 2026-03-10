@@ -2,7 +2,6 @@
 title: "Polarność cząsteczek"
 excerpt: "Jak szybko ocenić, czy cząsteczka jest polarna: wiązania, geometria i moment dipolowy — bez zgadywania."
 publishedAt: "2026-02-06"
-order: 0
 ---
 
 Polarność cząsteczek to jedno z zagadnień, na których tracą punkty maturzyści — nie dlatego, że jest trudne, lecz dlatego, że w podręcznikach bywa przedstawiane w sposób, który sprzyja zgadywaniu. Wiele osób uważa, że skoro w cząsteczce jest tlen, to na pewno jest polarna. Tymczasem o wszystkim decyduje **geometria** — układ wiązań i wolnych par elektronowych. W tym artykule przejdziemy krok po kroku przez sposób oceny polarności: od wiązań, przez kształt cząsteczki, po moment dipolowy $\mu$.
