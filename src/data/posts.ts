@@ -52,12 +52,10 @@ export async function getPosts(): Promise<Post[]> {
     })
   );
   const posts = entries.filter((p): p is Post => p !== null);
-  return posts.sort((a, b) => {
-    const oa = a.order ?? 999;
-    const ob = b.order ?? 999;
-    if (oa !== ob) return oa - ob;
-    return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
-  });
+  return posts.sort(
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  );
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {

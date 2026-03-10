@@ -214,7 +214,8 @@ const COURSES: Course[] = [
 ];
 
 export async function getCourses(): Promise<Course[]> {
-  return [...COURSES];
+  // Hide non-catalog courses globally from all listings and landing pages.
+  return [...COURSES].filter((course) => !course.hidden_from_catalog);
 }
 
 export async function getCourseById(id: string): Promise<Course | null> {

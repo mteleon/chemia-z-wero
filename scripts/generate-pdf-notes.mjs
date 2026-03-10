@@ -254,7 +254,12 @@ async function main() {
     }
   }
 
-  const createdZipPath = await createZipArchive(outputDir, generatedPdfPaths);
+  const allPdfs = (await readdir(outputDir))
+    .filter((f) => f.endsWith(".pdf"))
+    .sort()
+    .map((f) => path.join(outputDir, f));
+
+  const createdZipPath = await createZipArchive(outputDir, allPdfs);
   console.log(`ZIP: ${path.relative(rootDir, createdZipPath)}`);
 }
 

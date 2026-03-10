@@ -7,6 +7,7 @@ if (typeof globalThis.Buffer === "undefined") {
   globalThis.Buffer = Buffer;
 }
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { mountVercelToolbar } from "@vercel/toolbar/vite";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "sonner";
@@ -14,6 +15,8 @@ import App from "./App";
 import "./index.css";
 
 const queryClient = new QueryClient();
+
+mountVercelToolbar();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

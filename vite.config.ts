@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { vercelToolbar } from "@vercel/toolbar/plugins/vite";
 import path from "path";
 
 /** SPA fallback for preview server: brak pliku dla ścieżki = serwuj index.html */
@@ -25,7 +26,7 @@ function spaFallback() {
 }
 
 export default defineConfig({
-  plugins: [react(), spaFallback()],
+  plugins: [react(), spaFallback(), vercelToolbar()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
