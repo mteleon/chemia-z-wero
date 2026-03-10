@@ -207,3 +207,53 @@ body {
   font-weight: 700;
   color: #1c3148;
 }
+
+/* CTA box — prominent call-to-action at end of post */
+.blog-article .cta-box {
+  background: linear-gradient(135deg, #fef6ee 0%, #fff3e6 100%);
+  border: 2px solid #d97745;
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  margin: 2rem 0;
+}
+.blog-article .cta-box .cta-title {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a3b47;
+  margin-bottom: 1rem;
+}
+.blog-article .cta-box .cta-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-top: 1rem;
+}
+.blog-article .cta-box .cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: #d97745;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.blog-article .cta-box .cta-link:hover {
+  background: #c66535;
+}
+.blog-article .cta-box .cta-link.secondary {
+  background: #1a3b47;
+}
+.blog-article .cta-box .cta-link.secondary:hover {
+  background: #0f2530;
+}
+.blog-article .cta-box p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 0;
+}

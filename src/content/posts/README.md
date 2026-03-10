@@ -2,17 +2,104 @@
 
 Każdy plik `.md` to jeden wpis. **Nazwa pliku (bez .md)** to slug w URL, np. `jak-sie-uczyc-do-matury-z-chemii.md` → `/blog/jak-sie-uczyc-do-matury-z-chemii`.
 
-## Frontmatter (YAML na górze pliku)
+## Frontmatter
 
 ```yaml
 ---
 title: "Tytuł wpisu"
-excerpt: "Krótki opis do listy i meta description."
-publishedAt: "2025-01-15"
-order: 1
+excerpt: "Krótki opis do listy wpisów i meta description. Powinien zachęcić do kliknięcia i zawierać słowa kluczowe."
+publishedAt: "2026-03-10"
+order: 3
 ---
 ```
 
-## Treść
+## Zasady tworzenia treści
 
-Pod podwójną linią `---` pisz w **Markdown**: `## Nagłówki`, **pogrubienie**, listy, linki itd.
+Na podstawie wpisów wzorcowych: `stechiometria-od-podstaw.md`, `polarnosc-czasteczek.md`.
+
+### Wstęp
+
+- Jeden akapit wprowadzający, który:
+  - wyjaśnia, dlaczego temat jest ważny na maturze,
+  - zapowiada, co czytelnik znajdzie w artykule,
+  - ewentualnie podaje jedną kluczową zasadę (np. „zawsze przeliczaj na mole").
+- Gęste, merytoryczne akapity (2–4 zdania), bez nadmiaru whitespace.
+
+### Styl i ton
+
+- Naturalny, informacyjny ton — mówimy bezpośrednio do ucznia, bez dramatyzowania.
+- Unikać zwrotów w stylu: „brutalna prawda", „CKE się uśmiecha i zabiera punkt", „moment prawdy".
+- Odniesienia do CKE i matury: spokojne, rzeczowe (np. „częsty błąd na maturze", „CKE regularnie to testuje").
+- **Pogrubienie** dla terminów kluczowych i zasad.
+
+### LaTeX (wzory)
+
+- Wzory inline: `$n = m/M$`, `$\mu = 0$`
+- Wzory display (centrum): `$$n = \frac{m}{M}$$`
+- Wzory chemiczne: `$\text{H}_2\text{O}$`, `$\text{CO}_2$`, `$\text{CaCO}_3$`
+- Przecinek dziesiętny w LaTeX: `$22{,}4$` (krótska spacja `{,}`)
+- Jednostki: `$\text{g/mol}$`, `$\text{dm}^3/\text{mol}$`
+
+### Bloki specjalne (raw HTML)
+
+Wszystkie używają `rehype-raw` — zwykły HTML w Markdown działa.
+
+#### Ramka na treść zadania / regułę (`.zadanie-box`)
+
+```html
+<div class="zadanie-box">
+<div class="zadanie-label">Matura 2025 — Zadanie 4</div>
+<p>Treść polecenia lub reguły do zapamiętania.</p>
+</div>
+```
+
+- `zadanie-label`: krótka etykieta (np. „Matura 2025 — Zadanie 4", „Reguła do zapamiętania").
+- Ciepłe tło, lewa obwódka akcentowa.
+
+#### Rozwiązanie odręczne (`.rozwiazanie`)
+
+```html
+<div class="rozwiazanie">
+<div class="rozw-label">Rozwiązanie</div>
+<p>Krok 1: ...</p>
+<p>Krok 2: $x = ...$</p>
+<span class="wynik">Odpowiedź: 70,4%</span>
+</div>
+```
+
+- Font Caveat, tło w kratkę (jak kartka).
+- `wynik`: podświetlenie końcowego wyniku (żółte tło).
+
+#### CTA na końcu (`.cta-box`)
+
+```html
+<div class="cta-box">
+<p class="cta-title">Chcesz [temat dopasowany do wpisu]?</p>
+<p>Krótki opis: kursy i/lub notatki.</p>
+<div class="cta-links">
+<a href="/kursy" class="cta-link">Kursy z chemii →</a>
+<a href="/notatki" class="cta-link secondary">Notatki PDF →</a>
+</div>
+</div>
+```
+
+- Każdy wpis merytoryczny kończy się CTA z linkami do `/kursy` i `/notatki`.
+- Tekst CTA dostosowany do tematu wpisu.
+
+### Struktura typowego wpisu
+
+1. **Wstęp** — jeden akapit.
+2. **Sekcje merytoryczne** — `##` i `###`, logiczny układ (od podstaw do trudniejszych zagadnień).
+3. **Przykłady** — jeśli są zadania maturalne: `zadanie-box` + `rozwiazanie`.
+4. **Podsumowanie / pułapki** — lista numerowana lub krótki akapit.
+5. **Zakończenie** — 1–2 zdania + `cta-box`.
+
+### Obrazki
+
+- Ścieżka: `/posts/<slug>/<nazwa>.png`
+- Np. `/posts/polarnosc/hcl.png`
+- Pliki w `public/posts/<slug>/`.
+
+### Pułapki maturalne
+
+Jeśli temat na to pozwala, dodać sekcję „Najczęstsze pułapki" z krótką listą punktów. Każdy punkt: **termin** + wyjaśnienie (np. „STP ≠ warunki pokojowe. STP to 0°C i 1013 hPa.").

@@ -213,4 +213,13 @@ To zadanie łączy kilka pojęć naraz: stężenie molowe, gęstość, hydrat i 
 
 ## Na koniec
 
-Stechiometria na maturze rozszerzonej to w gruncie rzeczy kilka wzorów ($n = \frac{m}{M}$, $V = n \cdot 22{,}4$, $pV = nRT$, $W = \frac{m_p}{m_t} \cdot 100\%$) i umiejętność ich konsekwentnego stosowania. Najważniejsze to nie skakać na skróty — wypisz dane, przelicz na mole, sprawdź jednostki, a potem dopiero podstawiaj. Jeśli potrzebujesz przećwiczyć te schematy na większej liczbie zadań, zapraszam na zajęcia indywidualne i grupowe.
+Stechiometria na maturze rozszerzonej to w gruncie rzeczy kilka wzorów ($n = \frac{m}{M}$, $V = n \cdot 22{,}4$, $pV = nRT$, $W = \frac{m_p}{m_t} \cdot 100\%$) i umiejętność ich konsekwentnego stosowania. Najważniejsze to nie skakać na skróty — wypisz dane, przelicz na mole, sprawdź jednostki, a potem dopiero podstawiaj.
+
+<div class="cta-box">
+<p class="cta-title">Chcesz solidnie przećwiczyć stechiometrię?</p>
+<p>Zapisz się na kurs — zajęcia indywidualne i grupowe z zadaniami maturalnymi krok po kroku. Albo pobierz notatki do nauki własnej: 27 tematów (w tym stechiometria 1–3) w PDF.</p>
+<div class="cta-links">
+<a href="/kursy" class="cta-link">Kursy z chemii →</a>
+<a href="/notatki" class="cta-link secondary">Notatki PDF →</a>
+</div>
+</div>
