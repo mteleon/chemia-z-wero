@@ -10,7 +10,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { createPageUrl } from "@/utils";
 import { CALENDLY_URL, SITE_URL } from "@/utils/constants";
@@ -81,7 +80,7 @@ export default function CourseDetails() {
   const seoDescription = course.short_description ?? `Kurs z chemii: ${course.title}. Korepetycje online, matura rozszerzona.`;
 
   return (
-    <div className="bg-[#FFFBF0] min-h-screen pb-24">
+    <div className="min-h-screen overflow-x-hidden bg-[#FFFBF0] pb-36 md:pb-24">
       <SEO path={coursePath} title={seoTitle} description={seoDescription} jsonLd={courseJsonLd} />
       {/* Header / Hero */}
       <div className="bg-[#1A3B47] text-white relative overflow-hidden">
@@ -128,11 +127,11 @@ export default function CourseDetails() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20">
-        <div className="grid md:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 md:-mt-12 relative z-20">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           
           {/* Main Content */}
-          <div className="md:col-span-2 space-y-8">
+          <div className="min-w-0 md:col-span-2 space-y-8">
             {course.id === "powtorka-maturalna" && (
               <div className="space-y-3">
                 <p className="text-lg font-semibold text-[#1A3B47]">
@@ -340,8 +339,8 @@ export default function CourseDetails() {
           </div>
 
           {/* Sidebar Pricing Card */}
-          <div className="md:col-span-1">
-            <div className="bg-white rounded-2xl shadow-lg border border-[#D97745]/10 p-6 sticky top-24">
+          <div className="min-w-0 md:col-span-1">
+            <div className="bg-white rounded-2xl shadow-lg border border-[#D97745]/10 p-6 md:sticky md:top-24">
               <div className="bg-[#FFFBF0] rounded-xl mb-4 overflow-hidden relative group p-3">
                  {course.image_url ? (
                    <img src={course.image_url} alt="" className="w-full h-auto object-contain rounded-lg" />
@@ -368,25 +367,12 @@ export default function CourseDetails() {
               </div>
 
               <div className="space-y-3 mb-8">
-                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                  <DialogTrigger asChild>
-                    <Button className="w-full bg-[#D97745] hover:bg-[#c66535] text-white h-12 text-lg">
-                      Zapisz się
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-md">
-                    <DialogHeader>
-                      <DialogTitle>Zapisz się na kurs</DialogTitle>
-                      <DialogDescription>
-                        Wypełnij formularz, a wkrótce otrzymasz dane do płatności.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <EnrollmentForm
-                      course={course}
-                      onClose={() => setIsDialogOpen(false)}
-                    />
-                  </DialogContent>
-                </Dialog>
+                <Button
+                  className="w-full bg-[#D97745] hover:bg-[#c66535] text-white h-12 text-lg"
+                  onClick={() => setIsDialogOpen(true)}
+                >
+                  Zapisz się
+                </Button>
                 <Button variant="outline" className="w-full border-[#1A3B47]/20 text-[#1A3B47] h-12" asChild>
                   <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
                     Umów lekcję próbną
@@ -398,6 +384,36 @@ export default function CourseDetails() {
 
         </div>
       </div>
+
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#D97745]/20 bg-white px-3 pt-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] shadow-[0_-12px_28px_rgba(26,59,71,0.18)] backdrop-blur md:hidden">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-t-2xl border border-[#D97745]/10 bg-white px-3 py-2">
+          <div className="text-[#1A3B47]">
+            <p className="text-xs uppercase tracking-wide text-[#1A3B47]/60">Kurs online</p>
+            <p className="text-lg font-bold">{isPromoActive(course) ? course.promo_price : course.price} zł</p>
+          </div>
+          <Button
+            className="h-11 min-w-[9.5rem] bg-[#D97745] px-6 text-base text-white hover:bg-[#c66535]"
+            onClick={() => setIsDialogOpen(true)}
+          >
+            Zapisz się
+          </Button>
+        </div>
+      </div>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Zapisz się na kurs</DialogTitle>
+            <DialogDescription>
+              Wypełnij formularz, a wkrótce otrzymasz dane do płatności.
+            </DialogDescription>
+          </DialogHeader>
+          <EnrollmentForm
+            course={course}
+            onClose={() => setIsDialogOpen(false)}
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

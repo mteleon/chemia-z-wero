@@ -7,7 +7,6 @@ import { CALENDLY_URL } from "@/utils/constants";
 import { getLandings } from "@/data/landings";
 import { Menu, X, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
 import AnimatedLogoIcon from "@/components/AnimatedLogoIcon";
 import PromoBanner from "@/components/PromoBanner";
 import SEO from "@/components/SEO";
@@ -28,6 +27,10 @@ export default function Layout({ children }: LayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isLogoHovered, setIsLogoHovered] = React.useState(false);
 
+  React.useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
   const isActive = (path: string) => pathname === path;
 
   const navLinks = [
@@ -45,7 +48,7 @@ export default function Layout({ children }: LayoutProps) {
       <SEO path={pathname} />
       <Analytics />
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-[#FFFBF0]/90 backdrop-blur-md border-b border-[#D97745]/20">
+      <nav className="sticky top-0 z-50 border-b border-[#D97745]/20 bg-[#FFFBF0]/95 backdrop-blur-sm md:backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20 items-center">
             {/* Logo */}
@@ -93,40 +96,36 @@ export default function Layout({ children }: LayoutProps) {
         </div>
 
         {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-[#FFFBF0] border-b border-[#D97745]/20 overflow-hidden"
-            >
-              <div className="px-4 pt-2 pb-6 space-y-2">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.name}
-                    to={link.path}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`block px-3 py-2 rounded-md text-base font-medium ${
-                      isActive(link.path)
-                        ? 'bg-[#F4B942]/20 text-[#D97745]'
-                        : 'text-[#1A3B47] hover:bg-[#F4B942]/10 hover:text-[#D97745]'
-                    }`}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-                <div className="pt-4">
-                  <Button asChild className="w-full bg-[#D97745] hover:bg-[#c66535] text-white gap-2">
-                    <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-                      <Calendar className="w-4 h-4" /> Umów lekcję próbną
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div
+          className={`md:hidden overflow-hidden border-b border-[#D97745]/20 bg-[#FFFBF0] transition-[opacity,transform,max-height] duration-200 ease-out will-change-transform ${
+            isMenuOpen ? "max-h-[420px] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-1 pointer-events-none"
+          }`}
+          aria-hidden={!isMenuOpen}
+        >
+          <div className="px-4 pt-2 pb-6 space-y-2">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                onClick={() => setIsMenuOpen(false)}
+                className={`block px-3 py-2 rounded-md text-base font-medium ${
+                  isActive(link.path)
+                    ? 'bg-[#F4B942]/20 text-[#D97745]'
+                    : 'text-[#1A3B47] hover:bg-[#F4B942]/10 hover:text-[#D97745]'
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <div className="pt-4">
+              <Button asChild className="w-full bg-[#D97745] hover:bg-[#c66535] text-white gap-2">
+                <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+                  <Calendar className="w-4 h-4" /> Umów lekcję próbną
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
       </nav>
 
       {/* Promo Banner */}

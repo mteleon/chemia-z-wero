@@ -100,7 +100,7 @@ export default function Notes() {
   const seoDescription = `${bundle.shortDescription} Zobacz podgląd notatek w karuzeli.`;
 
   return (
-    <div className="bg-[#FFFBF0] min-h-screen pb-24">
+    <div className="min-h-screen overflow-x-hidden bg-[#FFFBF0] pb-36 md:pb-24">
       <SEO
         path="/notatki"
         title="Notatki maturalne z chemii – Pakiet PDF | Chemia z Wero"
@@ -140,10 +140,10 @@ export default function Notes() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20">
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="md:col-span-2 space-y-8">
-            <div className="bg-white rounded-2xl shadow-sm border border-[#D97745]/10 p-8">
+      <div className="relative z-20 mx-auto -mt-8 md:-mt-12 max-w-7xl overflow-x-hidden px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="min-w-0 md:col-span-2 space-y-8">
+            <div className="max-w-full break-words rounded-2xl border border-[#D97745]/10 bg-white p-8 shadow-sm">
               <h2 className="text-2xl font-bold text-[#1A3B47] mb-6">O pakiecie</h2>
               <p className="text-[#1A3B47]/80 leading-relaxed mb-6">{bundle.fullDescription}</p>
               <div className="grid sm:grid-cols-2 gap-4">
@@ -156,7 +156,7 @@ export default function Notes() {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-[#D97745]/10 p-8">
+            <div className="max-w-full break-words rounded-2xl border border-[#D97745]/10 bg-white p-4 sm:p-6 lg:p-8 shadow-sm">
               <h2 className="text-2xl font-bold text-[#1A3B47] mb-2">Podgląd notatek</h2>
               <p className="text-[#1A3B47]/70 mb-6">
                 Nie kupuj kota w worku - zajrzyj do przykładowych notatek przed zakupem.
@@ -164,7 +164,7 @@ export default function Notes() {
               <NotesPreviewCarousel slides={bundle.previewSlides} />
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-[#D97745]/10 p-8">
+            <div className="max-w-full break-words rounded-2xl border border-[#D97745]/10 bg-white p-8 shadow-sm">
               <h2 className="text-2xl font-bold text-[#1A3B47] mb-6">Zawartość pakietu (1–27)</h2>
               <div className="grid sm:grid-cols-2 gap-x-8 gap-y-3">
                 {bundle.topics.map((topic) => (
@@ -179,8 +179,8 @@ export default function Notes() {
             </div>
           </div>
 
-          <div className="md:col-span-1">
-            <div className="bg-white rounded-2xl shadow-lg border border-[#D97745]/10 p-6 sticky top-24">
+          <div className="min-w-0 md:col-span-1">
+            <div className="bg-white rounded-2xl shadow-lg border border-[#D97745]/10 p-6 md:sticky md:top-24">
               <div className="aspect-video bg-[#FFFBF0] rounded-xl mb-4 overflow-hidden border border-[#D97745]/10">
                 <img src="/notes-cover.png" alt={bundle.title} className="h-full w-full object-cover" />
               </div>
@@ -217,6 +217,22 @@ export default function Notes() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#D97745]/20 bg-white px-3 pt-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] shadow-[0_-12px_28px_rgba(26,59,71,0.18)] backdrop-blur md:hidden">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-t-2xl border border-[#D97745]/10 bg-white px-3 py-2">
+          <div className="text-[#1A3B47]">
+            <p className="text-xs uppercase tracking-wide text-[#1A3B47]/60">Pakiet notatek</p>
+            <p className="text-lg font-bold">{bundle.promoPrice ?? bundle.price} zł</p>
+          </div>
+          <Button
+            className="h-11 min-w-[9.5rem] bg-[#D97745] px-6 text-base text-white hover:bg-[#c66535]"
+            onClick={handleCheckout}
+            disabled={isCheckoutLoading}
+          >
+            {isCheckoutLoading ? "Przekierowanie..." : "Kup teraz"}
+          </Button>
         </div>
       </div>
     </div>
