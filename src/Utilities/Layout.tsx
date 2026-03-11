@@ -48,7 +48,7 @@ export default function Layout({ children }: LayoutProps) {
       <SEO path={pathname} />
       <Analytics />
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 border-b border-[#D97745]/20 bg-[#FFFBF0]/95 backdrop-blur-sm md:backdrop-blur-md">
+      <nav className="sticky top-0 z-50 relative border-b border-[#D97745]/20 bg-[#FFFBF0] md:bg-[#FFFBF0]/95 md:backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-20 items-center">
             {/* Logo */}
@@ -97,8 +97,10 @@ export default function Layout({ children }: LayoutProps) {
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden overflow-hidden border-b border-[#D97745]/20 bg-[#FFFBF0] transition-[opacity,transform,max-height] duration-200 ease-out will-change-transform ${
-            isMenuOpen ? "max-h-[420px] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-1 pointer-events-none"
+          className={`absolute left-0 right-0 top-full z-50 border-b border-[#D97745]/20 bg-[#FFFBF0] shadow-md transition-[opacity,transform] duration-200 ease-out will-change-transform md:hidden ${
+            isMenuOpen
+              ? "translate-y-0 opacity-100 pointer-events-auto"
+              : "-translate-y-2 opacity-0 pointer-events-none"
           }`}
           aria-hidden={!isMenuOpen}
         >
