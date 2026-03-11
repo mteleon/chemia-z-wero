@@ -11,7 +11,7 @@ import CourseCard from "@/components/CourseCard";
 
 import SEO from "@/components/SEO";
 
-export default function Home() {
+function HomePage() {
   const { data: rawCourses, isLoading } = useQuery({
     queryKey: ["featuredCourses"],
     queryFn: getCourses,
@@ -242,6 +242,8 @@ export default function Home() {
     </div>
   );
 }
+
+export default React.memo(HomePage);
 
 // Helper icons for the benefits section
 const ClockIcon = (props: React.SVGProps<SVGSVGElement>) => (

@@ -25,13 +25,13 @@ export default function NotesPreviewCarousel({ slides }: NotesPreviewCarouselPro
   };
 
   return (
-    <div className="space-y-5">
-      <div className="rounded-2xl border border-[#D97745]/10 bg-[#FFFBF0] p-4">
-        <div className="relative overflow-hidden rounded-xl border border-[#D97745]/15 bg-white aspect-[16/10]">
+    <div className="space-y-3 sm:space-y-5">
+      <div className="rounded-2xl border border-[#D97745]/10 bg-[#FFFBF0] p-2 sm:p-4">
+        <div className="relative aspect-[3/4] overflow-hidden rounded-xl border border-[#D97745]/15 bg-white sm:aspect-[4/3] lg:aspect-[16/10]">
           <iframe
             key={currentSlide.id}
             title={`Podgląd notatki: ${currentSlide.title}`}
-            src={`${currentSlide.pdfPath}#page=1&toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+            src={`${currentSlide.pdfPath}#page=1&toolbar=0&navpanes=0&scrollbar=0&zoom=page-width`}
             className="h-full w-full"
           />
         </div>
