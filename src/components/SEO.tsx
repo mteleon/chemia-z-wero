@@ -19,6 +19,7 @@ type SEOProps = {
   description?: string;
   path?: string;
   ogImage?: string;
+  ogType?: "website" | "article";
   robots?: string;
   /** Custom JSON-LD (e.g. Course schema). When set, replaces default Organization schema. */
   jsonLd?: Record<string, unknown>;
@@ -29,6 +30,7 @@ export default function SEO({
   description = DEFAULT_DESCRIPTION,
   path = "",
   ogImage = DEFAULT_OG_IMAGE,
+  ogType = "website",
   robots = "index, follow",
   jsonLd,
 }: SEOProps) {
@@ -43,7 +45,7 @@ export default function SEO({
       <link rel="canonical" href={canonical} />
 
       {/* Open Graph (Facebook, LinkedIn) */}
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={ogType} />
       <meta property="og:url" content={canonical} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

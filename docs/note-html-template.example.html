@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notatka — szablon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /*
+        Skopiuj ten plik do notes/html/ (np. jako moja-notatka.html).
+        Klasa .main-title jest wymagana dla opisu w stopce PDF (npm run pdf:notes).
+      */
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        font-size: 15px;
+      }
+      body {
+        margin: 0;
+        padding: 0 12mm;
+        font-family: "Nunito", system-ui, sans-serif;
+        color: #1a3b47;
+        background: #fffbf0;
+        line-height: 1.55;
+      }
+      @page {
+        size: A4;
+        margin: 14mm 12mm 18mm 12mm;
+      }
+      .doc-title {
+        font-size: 1.35rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin: 0 0 0.75rem;
+        color: #1a3b47;
+      }
+      .doc-meta {
+        font-size: 0.8rem;
+        color: #64748b;
+        margin-bottom: 1.5rem;
+      }
+      /* Stopka PDF czyta tekst z elementów .main-title */
+      .main-title {
+        font-family: "Nunito", system-ui, sans-serif;
+        font-size: 1.1rem;
+        font-weight: 800;
+        margin: 1.75rem 0 0.65rem;
+        color: #1a3b47;
+        border-bottom: 2px solid #e8e4dc;
+        padding-bottom: 0.35rem;
+      }
+      .main-title:first-of-type {
+        margin-top: 0.5rem;
+      }
+      p {
+        margin: 0 0 0.65rem;
+      }
+      ul,
+      ol {
+        margin: 0 0 0.75rem;
+        padding-left: 1.35rem;
+      }
+      li {
+        margin-bottom: 0.35rem;
+      }
+      strong {
+        font-weight: 700;
+        color: #152f38;
+      }
+      .formula {
+        font-family: ui-monospace, "Cambria Math", serif;
+        padding: 0 0.15em;
+      }
+      .callout {
+        background: #f0ebe3;
+        border-left: 4px solid #e07b39;
+        padding: 0.65rem 0.85rem;
+        margin: 0.85rem 0;
+        border-radius: 0 6px 6px 0;
+        font-size: 0.95rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+        margin: 0.75rem 0;
+      }
+      th,
+      td {
+        border: 1px solid #e5e0d8;
+        padding: 0.4rem 0.55rem;
+        text-align: left;
+      }
+      th {
+        background: #e8e4dc;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="doc-title">Tytuł notatki (np. Stechiometria)</h1>
+    <p class="doc-meta">Chemia — szablon lokalny · edytuj i usuń tę linię</p>
+
+    <h2 class="main-title">Wstęp</h2>
+    <p>
+      Krótki akapit wprowadzający. Możesz używać <strong>pogrubień</strong>, list i
+      wzorów, np. <span class="formula">H<sub>2</sub>SO<sub>4</sub></span>.
+    </p>
+
+    <h2 class="main-title">Kluczowe pojęcia</h2>
+    <ul>
+      <li>Pierwszy punkt listy</li>
+      <li>Drugi punkt</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Na pamięć:</strong> krótka wskazówka lub definicja w ramce.
+    </div>
+
+    <h2 class="main-title">Przykładowa tabela</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Kolumna A</th>
+          <th>Kolumna B</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Wartość</td>
+          <td>Wartość</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

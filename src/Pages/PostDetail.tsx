@@ -26,15 +26,29 @@ function buildArticleJsonLd(post: Post): Record<string, unknown> {
   const url = `${SITE_URL}/blog/${post.slug}`;
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
     headline: post.title,
     description: post.excerpt,
     datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
     url,
+    inLanguage: "pl-PL",
+    keywords: [
+      "bilans jonowo-elektronowy",
+      "zapis jonowo-elektronowy",
+      "reakcje redoks",
+      "redoks",
+      "matura chemia",
+      "CKE",
+      "środowisko zasadowe",
+    ].join(", "),
     author: {
-      "@type": "Organization",
-      name: "Chemia z Wero",
-      url: SITE_URL,
+      "@type": "Person",
+      name: "Wero",
     },
     publisher: {
       "@type": "Organization",
@@ -87,6 +101,7 @@ export default function PostDetail() {
         path={`/blog/${post.slug}`}
         title={seoTitle}
         description={post.excerpt}
+        ogType="article"
         jsonLd={articleJsonLd ?? undefined}
       />
       <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-16">
