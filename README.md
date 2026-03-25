@@ -13,6 +13,13 @@ Build: `npm run build` · Podgląd: `npm run preview`.
 
 Zobacz **COPY_CHECKLIST.md** dla struktury projektu.
 
+### Notatki HTML → PDF (lokalnie)
+
+- Pliki HTML trzymaj w `notes/html/` (folder `notes/` jest w `.gitignore` — nie trafia na GitHub).
+- Szablon do skopiowania: [`docs/note-html-template.example.html`](docs/note-html-template.example.html).
+- Generowanie: `npm run pdf:notes` → PDF w `notes/pdf/`.
+- Przy eksporcie dodawane są reguły druku, żeby typowe ramki (`.card`, `.imp-box`, `.rxn-block`, siatki itd.) nie były dzielone między stronami. Dla bardzo wysokich bloków możesz dodać `class="print-allow-break"`.
+
 ## Stripe post-payment (test mode)
 
 Aktualny flow:

@@ -95,6 +95,48 @@ function buildFooterTemplate(sectionSummary) {
   `;
 }
 
+/** CSS wstrzykiwane przy generowaniu PDF — ramki / karty nie powinny być dzielone między stronami. */
+function getPdfPrintFrameBreakCss() {
+  return `
+    @media print {
+      /* Wyjątek: pozwól dzielić (np. bardzo wysoka siatka) — dodaj class="print-allow-break" lub "pdf-allow-break" */
+      .pdf-allow-break,
+      .print-allow-break {
+        break-inside: auto !important;
+        page-break-inside: auto !important;
+      }
+
+      .card,
+      .imp-box,
+      .rxn-block,
+      .haworth-box,
+      .haworth-wrap,
+      .compare-grid,
+      .three-grid,
+      .probe-row,
+      .callout,
+      .print-no-break,
+      figure,
+      blockquote,
+      .cmp-table {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+        -webkit-column-break-inside: avoid !important;
+      }
+
+      .cmp-table tr {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+
+      .section-title {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  `;
+}
+
 async function isHtmlFile(filePath) {
   try {
     const fileInfo = await stat(filePath);
@@ -201,6 +243,7 @@ async function main() {
           .logo-footer {
             display: none !important;
           }
+          ${getPdfPrintFrameBreakCss()}
         `,
       });
       const sectionSummary = await page.$$eval(".main-title", (nodes) => {
