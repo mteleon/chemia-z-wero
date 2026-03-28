@@ -1,10 +1,13 @@
 import Stripe from "stripe";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { Resend } from "resend";
+import { createHash } from "crypto";
 import { createAccessToken } from "./_utils/accessToken.js";
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripeWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+const metaPixelId = process.env.META_PIXEL_ID;
+const metaAccessToken = process.env.META_ACCESS_TOKEN;
 const downloadTokenSecret = process.env.DOWNLOAD_TOKEN_SECRET;
 const downloadTokenTtlSeconds = Number(process.env.DOWNLOAD_TOKEN_TTL_SECONDS || "259200");
 const contactEmail = process.env.CONTACT_EMAIL || "chemiazwero@gmail.com";
@@ -87,6 +90,46 @@ async function getRawBody(req: VercelRequest): Promise<string> {
   return JSON.stringify(req.body ?? {});
 }
 
+async function sendMetaCAPIEvent(session: Stripe.Checkout.Session, email: string) {
+  if (!metaPixelId || !metaAccessToken) {
+    return;
+  }
+  try {
+    const hashedEmail = createHash("sha256").update(email.toLowerCase().trim()).digest("hex");
+    const payload = {
+      data: [
+        {
+          event_name: "Purchase",
+          event_time: Math.floor(Date.now() / 1000),
+          event_id: session.id,
+          action_source: "website",
+          user_data: {
+            em: [hashedEmail],
+          },
+          custom_data: {
+            value: (session.amount_total ?? 0) / 100,
+            currency: (session.currency ?? "pln").toUpperCase(),
+          },
+        },
+      ],
+    };
+    const response = await fetch(
+      `https://graph.facebook.com/v18.0/${metaPixelId}/events?access_token=${metaAccessToken}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      }
+    );
+    if (!response.ok) {
+      const text = await response.text();
+      console.error("Meta CAPI error:", response.status, text);
+    }
+  } catch (err) {
+    console.error("Meta CAPI request failed:", err);
+  }
+}
+
 async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) {
   const sessionId = session.id;
   if (isSessionProcessed(sessionId)) {
@@ -142,6 +185,8 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
     ].join("\n"),
     replyTo: contactEmail,
   });
+
+  await sendMetaCAPIEvent(session, customerEmail);
 
   markSessionProcessed(sessionId);
 }

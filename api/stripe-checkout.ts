@@ -42,7 +42,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items: [{ price: notesPriceId, quantity: 1 }],
-      success_url: `${baseUrl}/notatki?checkout=success`,
+      success_url: `${baseUrl}/notatki?checkout=success&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/notatki?checkout=cancelled`,
       customer_creation: "always",
       allow_promotion_codes: true,

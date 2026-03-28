@@ -1,4 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
+
+declare global {
+  function fbq(command: string, event: string, params?: Record<string, unknown>, options?: Record<string, unknown>): void;
+}
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, CheckCircle, Quote } from "lucide-react";
@@ -60,13 +64,25 @@ export default function Notes() {
     }
     if (checkoutStatus === "success") {
       toast.success("Płatność przyjęta. Sprawdź maila - wysłaliśmy bezpieczny link do pobrania.");
+      const sessionId = searchParams.get("session_id");
+      if (typeof fbq !== "undefined") {
+        const price = bundle?.promoPrice ?? bundle?.price;
+        if (sessionId) {
+          fbq("track", "Purchase", { value: price, currency: "PLN" }, { eventID: sessionId });
+        } else {
+          fbq("track", "Purchase", { value: price, currency: "PLN" });
+        }
+      }
       navigate("/notatki", { replace: true });
     }
-  }, [checkoutStatus, navigate]);
+  }, [checkoutStatus, navigate, searchParams, bundle]);
 
   const handleCheckout = async () => {
     try {
       setIsCheckoutLoading(true);
+      if (typeof fbq !== "undefined") {
+        fbq("track", "InitiateCheckout");
+      }
       const checkoutUrl = await createNotesCheckoutSession();
       window.location.assign(checkoutUrl);
     } catch (error) {
