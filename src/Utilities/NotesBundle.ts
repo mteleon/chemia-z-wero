@@ -1,5 +1,12 @@
 export type NotesBundleStatus = "available" | "coming_soon";
 
+export interface Testimonial {
+  name: string;
+  /** Krótki kontekst, np. "matura 2024, 94%" */
+  detail: string;
+  text: string;
+}
+
 export interface NotesTopic {
   number: number;
   title: string;
@@ -29,4 +36,5 @@ export interface NotesBundle {
   features: string[];
   topics: NotesTopic[];
   previewSlides: NotesPreviewSlide[];
+  testimonials?: Testimonial[];
 }
