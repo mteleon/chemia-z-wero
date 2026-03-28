@@ -1,4 +1,4 @@
-import type { NotesBundle } from "@/Utilities/NotesBundle";
+import type { NotesBundle, Testimonial } from "@/Utilities/NotesBundle";
 
 const topics = [
   "Budowa atomu",
@@ -30,6 +30,24 @@ const topics = [
   "Reguła przekory i termochemia",
 ];
 
+const testimonials: Testimonial[] = [
+  {
+    name: "Kasia",
+    detail: "matura 2024, 84%",
+    text: "Miałam miesiąc do matury i nie wiedziałam jak zabrać się za powtórkę. Zaczęłam przerabiać podręczniki od pierwszej klasy, ale szło mega wolno. W notatkach Wero znalazłam wszystkie najważniejsze informacje i zdążyłam powtórzyć cały materiał.",
+  },
+  {
+    name: "Michał",
+    detail: "matura 2024, 82%",
+    text: "Notatki są bardzo przejrzyste. Każdy temat na kilku stronach, bez lania wody. Szczególnie pomogły mi schematy reakcji w organice, które są dużo czytelniejsze niż w podręczniku. ;)",
+  },
+  {
+    name: "Zosia",
+    detail: "matura 2023, 91%",
+    text: "Pół roku korepetycji u Wero dało mi więcej niż 4 lata nauki z moją tragiczną nauczycielką. Z notatkami nie rozstawałam się przed maturą aż do wejścia na salę. Dzięki Wero <3",
+  },
+];
+
 export const notesBundle: NotesBundle = {
   id: "pakiet-notatek-chemia-matura",
   slug: "notatki",
@@ -37,7 +55,7 @@ export const notesBundle: NotesBundle = {
   shortDescription:
     "Kompletny zestaw 27 notatek PDF do matury rozszerzonej z chemii.",
   fullDescription:
-    "Pakiet zawiera cały materiał w uporządkowanej kolejności: teoria, schematy, najważniejsze reakcje i podsumowania pod maturę.",
+    "Chemia na maturze rozszerzonej to ogrom materiału, ale da się go ogarnąć! Ten pakiet to 27 starannie opracowanych notatek, które zbierają wszystko, co ważne: teorię, reakcje, schematy i podsumowania. Bez szukania po podręcznikach, zeszytach i zbiorach zadań. Dostajesz gotowy materiał z całego zakresu (od budowy atomu po termochemię), z którego możesz uczyć się na bieżąco lub powtarzać przed maturą.",
   status: "coming_soon",
   price: 49,
   priceLabel: "Jednorazowy zakup pakietu",
@@ -52,6 +70,7 @@ export const notesBundle: NotesBundle = {
     "Wersja do druku i nauki na telefonie/tablecie",
   ],
   topics: topics.map((title, index) => ({ number: index + 1, title })),
+  testimonials,
   previewSlides: [
     {
       id: "preview-01",

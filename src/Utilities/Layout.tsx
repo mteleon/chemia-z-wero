@@ -131,7 +131,7 @@ export default function Layout({ children }: LayoutProps) {
       </nav>
 
       {/* Promo Banner */}
-      <PromoBanner />
+      {pathname !== '/notatki' && <PromoBanner />}
 
       {/* Main Content */}
       <main className="flex-grow">

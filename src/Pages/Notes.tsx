@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, CheckCircle } from "lucide-react";
+import { ArrowLeft, CheckCircle, Quote } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -156,6 +156,24 @@ export default function Notes() {
               </div>
             </div>
 
+            {bundle.testimonials && bundle.testimonials.length > 0 && (
+              <div className="max-w-full break-words rounded-2xl border border-[#D97745]/10 bg-white p-8 shadow-sm">
+                <h2 className="text-2xl font-bold text-[#1A3B47] mb-6">Co mówią uczniowie</h2>
+                <div className="grid sm:grid-cols-3 gap-6">
+                  {bundle.testimonials.map((t) => (
+                    <div key={t.name} className="flex flex-col gap-3 bg-[#FFFBF0] rounded-xl p-5 border border-[#D97745]/10">
+                      <Quote className="w-5 h-5 text-[#D97745] flex-shrink-0" />
+                      <p className="text-[#1A3B47]/80 text-sm leading-relaxed flex-1">"{t.text}"</p>
+                      <div>
+                        <p className="font-semibold text-[#1A3B47] text-sm">{t.name}</p>
+                        <p className="text-xs text-[#1A3B47]/50">{t.detail}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="max-w-full break-words rounded-2xl border border-[#D97745]/10 bg-white p-4 sm:p-6 lg:p-8 shadow-sm">
               <h2 className="text-2xl font-bold text-[#1A3B47] mb-2">Podgląd notatek</h2>
               <p className="text-[#1A3B47]/70 mb-6">
@@ -201,7 +219,7 @@ export default function Notes() {
                   onClick={handleCheckout}
                   disabled={isCheckoutLoading}
                 >
-                  {isCheckoutLoading ? "Przekierowanie..." : "Kup teraz"}
+                  {isCheckoutLoading ? "Przekierowanie..." : "Kup teraz i pobierz od razu"}
                 </Button>
               </div>
 
@@ -231,7 +249,7 @@ export default function Notes() {
             onClick={handleCheckout}
             disabled={isCheckoutLoading}
           >
-            {isCheckoutLoading ? "Przekierowanie..." : "Kup teraz"}
+            {isCheckoutLoading ? "Przekierowanie..." : "Kup teraz i pobierz od razu"}
           </Button>
         </div>
       </div>
