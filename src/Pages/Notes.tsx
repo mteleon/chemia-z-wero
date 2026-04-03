@@ -219,7 +219,7 @@ export default function Notes() {
                   onClick={handleCheckout}
                   disabled={isCheckoutLoading}
                 >
-                  {isCheckoutLoading ? "Przekierowanie..." : "Kup teraz i pobierz od razu"}
+                  {isCheckoutLoading ? "Przekierowanie..." : "Kup teraz"}
                 </Button>
               </div>
 
@@ -249,7 +249,7 @@ export default function Notes() {
             onClick={handleCheckout}
             disabled={isCheckoutLoading}
           >
-            {isCheckoutLoading ? "Przekierowanie..." : "Kup teraz i pobierz od razu"}
+            {isCheckoutLoading ? "Przekierowanie..." : "Kup teraz"}
           </Button>
         </div>
       </div>
