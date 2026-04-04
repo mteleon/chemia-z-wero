@@ -55,9 +55,10 @@ export const notesBundle: NotesBundle = {
   shortDescription:
     "Kompletny zestaw 27 notatek PDF do matury rozszerzonej z chemii.",
   fullDescription:
-    "Chemia na maturze rozszerzonej to ogrom materiału, ale da się go ogarnąć! Ten pakiet to 27 starannie opracowanych notatek, które zbierają wszystko, co ważne: teorię, reakcje, schematy i podsumowania. Bez szukania po podręcznikach, zeszytach i zbiorach zadań. Dostajesz gotowy materiał z całego zakresu (od budowy atomu po termochemię), z którego możesz uczyć się na bieżąco lub powtarzać przed maturą.",
+    "Chemia na maturze rozszerzonej to ogrom materiału, ale da się go ogarnąć! Ten pakiet to 27 starannie opracowanych notatek z całego zakresu do matury, które zbierają wszystko, co ważne: teorię, reakcje, schematy i podsumowania. Bez szukania po podręcznikach, zeszytach i zbiorach zadań.",
   status: "coming_soon",
-  price: 49,
+  price: 69,
+  promoPrice: 49,
   priceLabel: "Jednorazowy zakup pakietu",
   notesCount: 27,
   formatLabel: "PDF",
