@@ -14,6 +14,54 @@ import { createPageUrl } from "@/utils";
 import { SITE_URL } from "@/utils/constants";
 import type { NotesBundle } from "@/Utilities/NotesBundle";
 
+const faqItems = [
+  {
+    q: "Czy notatki wystarczą do matury rozszerzonej?",
+    a: "Tak. Pakiet obejmuje cały zakres matury rozszerzonej z chemii, od budowy atomu po termochemię. Notatki są skondensowane i skupiają się na tym, co najczęściej pojawia się na egzaminie.",
+  },
+  {
+    q: "Jak długo mam dostęp do materiałów?",
+    a: "Na zawsze. Po zakupie dostajesz pliki PDF, które możesz zachować i używać bez żadnych ograniczeń czasowych.",
+  },
+  {
+    q: "W jakiej formie dostaję notatki?",
+    a: "Jako pliki PDF. Link do pobrania wysyłamy na maila podanego w zamówieniu, zazwyczaj w ciągu kilku minut od zakupu.",
+  },
+  {
+    q: "Czy mogę je wydrukować?",
+    a: "Tak, notatki są przygotowane zarówno do nauki na ekranie, jak i do druku.",
+  },
+  {
+    q: "Co jeśli materiały mi nie odpowiadają?",
+    a: "Napisz do nas na maila, postaramy się pomóc. Zależy nam na Twojej satysfakcji z zakupu.",
+  },
+];
+
+function FAQ() {
+  const [open, setOpen] = useState<number | null>(null);
+  return (
+    <div className="max-w-full break-words rounded-2xl border border-[#D97745]/10 bg-white p-8 shadow-sm">
+      <h2 className="text-2xl font-bold text-[#1A3B47] mb-6">Często zadawane pytania</h2>
+      <div className="divide-y divide-[#1A3B47]/10">
+        {faqItems.map((item, i) => (
+          <div key={i}>
+            <button
+              className="flex w-full items-center justify-between gap-4 py-4 text-left text-[#1A3B47] font-medium"
+              onClick={() => setOpen(open === i ? null : i)}
+            >
+              <span>{item.q}</span>
+              <span className="text-[#D97745] text-xl flex-shrink-0">{open === i ? "−" : "+"}</span>
+            </button>
+            {open === i && (
+              <p className="pb-4 text-[#1A3B47]/70 leading-relaxed">{item.a}</p>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function buildNotesBundleJsonLd(bundle: NotesBundle): Record<string, unknown> {
   return {
     "@context": "https://schema.org",
@@ -110,37 +158,19 @@ export default function Notes() {
 
       <div className="bg-[#1A3B47] text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 relative z-10">
-          <Link
-            to={createPageUrl("Home")}
-            className="inline-flex items-center text-white/60 hover:text-white mb-8 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" /> Wróć na stronę główną
-          </Link>
-
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-20 relative z-10">
           <div className="grid md:grid-cols-3 gap-12">
             <div className="md:col-span-2 space-y-6">
-              <div className="flex gap-2 flex-wrap">
-                <Badge className="bg-[#D97745] hover:bg-[#c66535] text-white border-none">
-                  Pakiet PDF
-                </Badge>
-                <Badge variant="outline" className="text-white/80 border-white/20">
-                  {bundle.notesCount} notatek
-                </Badge>
-                <Badge variant="outline" className="text-white/80 border-white/20">
-                  {bundle.formatLabel}
-                </Badge>
-              </div>
               <h1 className="text-4xl md:text-5xl font-bold tracking-tight">{bundle.title}</h1>
               <p className="text-xl text-white/80 leading-relaxed max-w-3xl">
-                {bundle.shortDescription}
+                Dołącz do ponad <span className="text-[#D97745] font-semibold">1 000</span> zadowolonych maturzystów.
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="relative z-20 mx-auto -mt-8 md:-mt-12 max-w-7xl overflow-x-hidden px-4 sm:px-6 lg:px-8">
+      <div className="relative z-20 mx-auto -mt-4 md:-mt-12 max-w-7xl overflow-x-hidden px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div className="min-w-0 md:col-span-2 space-y-8">
             <div className="max-w-full break-words rounded-2xl border border-[#D97745]/10 bg-white p-8 shadow-sm">
@@ -195,6 +225,8 @@ export default function Notes() {
                 ))}
               </div>
             </div>
+
+            <FAQ />
           </div>
 
           <div className="min-w-0 md:col-span-1">
@@ -207,7 +239,10 @@ export default function Notes() {
 
               <div className="mb-6">
                 {bundle.promoPrice ? (
-                  <div className="text-4xl font-bold text-[#1A3B47]">{bundle.promoPrice} zł</div>
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-4xl font-bold text-[#1A3B47]">{bundle.promoPrice} zł</span>
+                    <span className="text-xl text-[#1A3B47]/40 line-through">{bundle.price} zł</span>
+                  </div>
                 ) : (
                   <div className="text-4xl font-bold text-[#1A3B47]">{bundle.price} zł</div>
                 )}
@@ -241,8 +276,14 @@ export default function Notes() {
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#D97745]/20 bg-white px-3 pt-3 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] shadow-[0_-12px_28px_rgba(26,59,71,0.18)] backdrop-blur md:hidden">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-t-2xl border border-[#D97745]/10 bg-white px-3 py-2">
           <div className="text-[#1A3B47]">
-            <p className="text-xs uppercase tracking-wide text-[#1A3B47]/60">Pakiet notatek</p>
-            <p className="text-lg font-bold">{bundle.promoPrice ?? bundle.price} zł</p>
+            <div className="flex items-baseline gap-2">
+              <p className="text-lg font-bold">{bundle.promoPrice ?? bundle.price} zł</p>
+              {bundle.promoPrice && (
+                <p className="text-sm text-[#1A3B47]/40 line-through">{bundle.price} zł</p>
+              )}
+            </div>
+            <p className="text-xs text-[#1A3B47]/55 leading-tight">Format: PDF</p>
+            <p className="text-xs text-[#1A3B47]/55 leading-tight">Wysyłka na maila</p>
           </div>
           <Button
             className="h-11 min-w-[9.5rem] bg-[#D97745] px-6 text-base text-white hover:bg-[#c66535]"
