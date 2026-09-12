@@ -93,6 +93,10 @@ W praktyce dla rocznego planu sprawdza się taki rytm powtórek:
   </tbody>
 </table>
 
+<div class="table-spacer"></div>
+
+## Techniki na skuteczną naukę
+
 Techniki, które sprawdzają się najlepiej właśnie przy chemii:
 
 - **Fiszki na nazewnictwo i wyjątki**  
@@ -107,8 +111,6 @@ Techniki, które sprawdzają się najlepiej właśnie przy chemii:
 - **Minimum 3–5 zadań maturalnych po każdym dziale**  
   Sama teoria nie wystarczy — chemii trzeba również nauczyć się stosować.
 
-Częsty błąd to powtarzanie wszystkiego codziennie, w przekonaniu że więcej powtórek zawsze znaczy lepiej. To strata czasu: jeśli materiał odtwarza się natychmiast i bezbłędnie, kolejna powtórka tego samego dnia niewiele dodaje do trwałości zapamiętania, a zabiera czas, który można przeznaczyć na dział jeszcze nieopanowany.
-
 ## Krok 4: odpowiadanie pod klucz CKE
 
 Rozszerzona matura z chemii to w dużej mierze zadania otwarte, w których liczy się nie tylko rozumienie zjawiska, ale nazwanie go językiem zgodnym z kluczem odpowiedzi. Merytorycznie poprawna, ale zbyt ogólna odpowiedź często dostaje zero punktów, nie dlatego że jest błędna, tylko dlatego że nie trafia w kryterium oceniania.
@@ -119,10 +121,6 @@ Rozszerzona matura z chemii to w dużej mierze zadania otwarte, w których liczy
 </div>
 
 Po każdym rozwiązanym arkuszu warto wypisać 5 sformułowań z klucza odpowiedzi, których nie użyło się samodzielnie, i świadomie je zapamiętać. To osobna umiejętność, obok samej znajomości chemii.
-
-## Dlaczego precyzja słownictwa ma znaczenie właśnie w chemii
-
-W przedmiotach humanistycznych własnymi słowami można oddać sens odpowiedzi na wiele sposobów. W chemii precyzja terminu często decyduje o tym, czy odpowiedź jest w ogóle prawdziwa, nie tylko czy jest ładnie sformułowana. "Reakcja jest szybsza, bo jest cieplej" pomija, o który konkretnie mechanizm chodzi (wzrost energii kinetycznej cząsteczek, większa liczba zderzeń skutecznych), a to właśnie ten mechanizm jest przedmiotem oceny w kluczu CKE. Warto więc traktować naukę słownictwa chemicznego jako osobny, równoległy tor pracy, nie efekt uboczny rozwiązywania zadań.
 
 ## Krok 5: skupienie
 
@@ -148,7 +146,9 @@ Harmonogram i techniki z poprzednich kroków najłatwiej wdrożyć, mając konkr
 
 ## Na koniec
 
-Rok to mało czasu na materiał, który klasy profilowane rozkładają na dwa, trzy lata, ale wystarczająco dużo, jeśli każda godzina nauki jest efektywna, nie tylko spędzona przy biurku. Zrozumienie zamiast wkuwania, aktywne testowanie się zamiast czytania, powtórki rozłożone w czasie zamiast nauki liniowej i realne skupienie zamiast nauki z telefonem obok, to fundament, na którym da się zbudować rok solidnej pracy.
+Rok wystarczy, żeby nadrobić materiał, zbudować solidne podstawy i przygotować się do matury na naprawdę dobrym poziomie. Kluczem nie jest liczba godzin spędzonych przy biurku, ale sposób, w jaki się uczysz.
+
+Z odpowiednim planem, regularnością i konsekwencją – da się. W rok. ;)
 
 <div class="cta-box">
 <p class="cta-title">Chcesz przejść przez ten plan z kimś, kto widział setki arkuszy CKE?</p>
