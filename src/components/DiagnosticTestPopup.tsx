@@ -2,20 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { X, FlaskConical, ArrowRight } from "lucide-react";
 
-const DISMISSED_KEY = "diagnosticTestPopupDismissedAt";
+const DISMISSED_KEY = "diagnosticTestPopupDismissed";
 const SHOW_DELAY_MS = 1500;
 const SCROLL_FALLBACK_DELAY_MS = 6000;
 const SCROLL_THRESHOLD_PX = 300;
-const HIDE_FOR_DAYS = 7;
 
-function wasRecentlyDismissed(): boolean {
+function wasDismissedThisVisit(): boolean {
   try {
-    const raw = localStorage.getItem(DISMISSED_KEY);
-    if (!raw) return false;
-    const dismissedAt = Number(raw);
-    if (Number.isNaN(dismissedAt)) return false;
-    const elapsedDays = (Date.now() - dismissedAt) / (1000 * 60 * 60 * 24);
-    return elapsedDays < HIDE_FOR_DAYS;
+    // sessionStorage: znika po zamknięciu karty, więc popup wraca przy każdej nowej wizycie.
+    return sessionStorage.getItem(DISMISSED_KEY) === "1";
   } catch {
     return false;
   }
@@ -26,7 +21,7 @@ export default function DiagnosticTestPopup() {
   const [isShown, setIsShown] = React.useState(false);
 
   React.useEffect(() => {
-    if (wasRecentlyDismissed()) return;
+    if (wasDismissedThisVisit()) return;
 
     const reveal = () => {
       setIsMounted(true);
@@ -65,9 +60,9 @@ export default function DiagnosticTestPopup() {
     setIsShown(false);
     setTimeout(() => setIsMounted(false), 300);
     try {
-      localStorage.setItem(DISMISSED_KEY, String(Date.now()));
+      sessionStorage.setItem(DISMISSED_KEY, "1");
     } catch {
-      // localStorage niedostępny (np. tryb prywatny) – po prostu ukrywamy popup
+      // sessionStorage niedostępny (np. tryb prywatny) – po prostu ukrywamy popup
     }
   };
 
