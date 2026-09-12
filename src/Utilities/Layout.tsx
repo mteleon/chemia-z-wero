@@ -9,6 +9,7 @@ import { Menu, X, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AnimatedLogoIcon from "@/components/AnimatedLogoIcon";
 import PromoBanner from "@/components/PromoBanner";
+import DiagnosticTestPopup from "@/components/DiagnosticTestPopup";
 import SEO from "@/components/SEO";
 
 type LayoutProps = { children: React.ReactNode };
@@ -137,6 +138,9 @@ export default function Layout({ children }: LayoutProps) {
       <main className="flex-grow">
         {children}
       </main>
+
+      {/* Popup: test diagnostyczny (tylko strona główna) */}
+      {pathname === "/" && <DiagnosticTestPopup />}
 
       {/* Footer */}
       <footer className="bg-[#1A3B47] text-slate-300 py-12">
