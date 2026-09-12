@@ -161,6 +161,7 @@ export default function Layout({ children }: LayoutProps) {
               <ul className="space-y-2 text-sm">
                 <li><Link to="/" className="hover:text-[#F4B942] transition-colors">Strona Główna</Link></li>
                 <li><Link to="/kursy" className="hover:text-[#F4B942] transition-colors">Wszystkie Kursy</Link></li>
+                <li><Link to="/test-diagnostyczny-chemia" className="hover:text-[#F4B942] transition-colors">Test diagnostyczny</Link></li>
                 <li><Link to="/notatki" className="hover:text-[#F4B942] transition-colors">Notatki</Link></li>
                 <li><Link to="/blog" className="hover:text-[#F4B942] transition-colors">Blog</Link></li>
                 <li><Link to="/o-mnie" className="hover:text-[#F4B942] transition-colors">O mnie</Link></li>

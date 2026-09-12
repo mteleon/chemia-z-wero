@@ -97,17 +97,28 @@ function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button size="lg" className="w-full sm:w-auto bg-[#D97745] hover:bg-[#c66535] text-white text-lg px-8 h-14 rounded-full" asChild>
-                <Link to={createPageUrl('Courses')}>
-                  Rozpocznij Naukę <ArrowRight className="ml-2 h-5 w-5" />
+                <Link to="/test-diagnostyczny-chemia">
+                  Sprawdź swój poziom <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button size="lg" variant="outline" className="w-full sm:w-auto text-[#1A3B47] border-[#1A3B47]/20 hover:bg-[#F4B942]/10 text-lg px-8 h-14 rounded-full gap-2" asChild>
-                <Link to={`${createPageUrl('About')}#o-mnie`}>
-                  Zobacz jak uczę
+                <Link to={createPageUrl('Courses')}>
+                  Zobacz kursy
                 </Link>
               </Button>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      <section className="bg-white py-10 sm:py-14">
+        <div className="mx-auto grid max-w-7xl items-center gap-6 rounded-3xl border border-[#D97745]/15 bg-[#FEF6EE] px-6 py-7 sm:px-10 sm:py-9 md:grid-cols-[1fr_auto]">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-wider text-[#D97745]">Zanim wybierzesz kurs</p>
+            <h2 className="mt-2 text-2xl font-bold text-[#1A3B47]">Zrób 30 zadań i poznaj swój punkt startu.</h2>
+            <p className="mt-2 max-w-2xl text-[#1A3B47]/70">Darmowy test pokaże Ci, czy najpierw potrzebujesz wrócić do podstaw, czy możesz od razu wejść w trudniejsze zadania maturalne.</p>
+          </div>
+          <Button asChild className="w-full shrink-0 rounded-full bg-[#1A3B47] px-6 text-white hover:bg-[#12303a] md:w-auto"><Link to="/test-diagnostyczny-chemia">Zrób test <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
         </div>
       </section>
 

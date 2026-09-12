@@ -1,12 +1,12 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { getCourses } from "@/data/courses";
 import { useQuery } from "@tanstack/react-query";
-import { BookOpen, Calendar, CircleHelp, Clock3, FlaskConical, LockKeyhole } from "lucide-react";
+import { ArrowRight, BookOpen, Calendar, FlaskConical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CourseCard from "@/components/CourseCard";
 import SEO from "@/components/SEO";
 import { CALENDLY_URL } from "@/utils/constants";
-import DiagnosticQuiz from "@/components/DiagnosticQuiz";
 
 const COURSES_TITLE = "Kursy z chemii – Chemia z Wero";
 const COURSES_DESCRIPTION =
@@ -41,21 +41,14 @@ export default function Courses() {
           </p>
         </header>
 
-        <section id="test-diagnostyczny" className="mb-16 overflow-hidden rounded-3xl bg-[#1A3B47] text-white shadow-lg">
-          <div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:p-12">
-            <div>
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#F4B942]/40 bg-[#F4B942]/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-[#F4B942]"><FlaskConical className="h-4 w-4" />Darmowy materiał · wrzesień</div>
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Test diagnostyczny<br />z chemii nieorganicznej</h2>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-white/75">Zanim zaczniesz intensywną naukę, sprawdź, gdzie naprawdę jesteś. 30 maturalnych zadań z nieorganicznej i stechiometrii, które odsłonią luki — bez losowania prostych definicji.</p>
-              <div className="mt-7 grid grid-cols-2 gap-3 text-sm text-white/80">
-                <div className="flex items-center gap-2"><CircleHelp className="h-4 w-4 text-[#F4B942]" />30 zadań</div>
-                <div className="flex items-center gap-2"><Clock3 className="h-4 w-4 text-[#F4B942]" />35–45 minut</div>
-                <div className="flex items-center gap-2"><LockKeyhole className="h-4 w-4 text-[#F4B942]" />Bez logowania</div>
-                <div className="flex items-center gap-2"><FlaskConical className="h-4 w-4 text-[#F4B942]" />Poziom rozszerzony</div>
-              </div>
-              <p className="mt-8 border-l-2 border-[#D97745] pl-4 text-sm leading-relaxed text-white/65">Po teście dostaniesz diagnozę pięciu obszarów i podpowiedź, co powtórzyć najpierw. Test z chemii organicznej pojawi się wkrótce.</p>
+        <section className="mb-16 overflow-hidden rounded-3xl bg-[#1A3B47] text-white shadow-lg">
+          <div className="flex flex-col items-start justify-between gap-6 p-7 sm:p-10 md:flex-row md:items-center">
+            <div className="max-w-2xl">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#F4B942]/40 bg-[#F4B942]/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-[#F4B942]"><FlaskConical className="h-4 w-4" />Darmowy test</div>
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Nie wiesz, od czego zacząć naukę?</h2>
+              <p className="mt-3 leading-relaxed text-white/75">Sprawdź swój poziom z chemii nieorganicznej i stechiometrii. W 35 minut dowiesz się, które działy potrzebują Twojej uwagi.</p>
             </div>
-            <DiagnosticQuiz />
+            <Button asChild className="shrink-0 rounded-full bg-[#D97745] px-6 text-white hover:bg-[#c66535]"><Link to="/test-diagnostyczny-chemia">Sprawdź swój poziom <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
           </div>
         </section>
 
