@@ -1,11 +1,12 @@
 import React from 'react';
 import { getCourses } from "@/data/courses";
 import { useQuery } from "@tanstack/react-query";
-import { BookOpen, Calendar } from "lucide-react";
+import { BookOpen, Calendar, CircleHelp, Clock3, FlaskConical, LockKeyhole } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CourseCard from "@/components/CourseCard";
 import SEO from "@/components/SEO";
 import { CALENDLY_URL } from "@/utils/constants";
+import DiagnosticQuiz from "@/components/DiagnosticQuiz";
 
 const COURSES_TITLE = "Kursy z chemii – Chemia z Wero";
 const COURSES_DESCRIPTION =
@@ -39,6 +40,24 @@ export default function Courses() {
             Wszystko czego potrzebujesz, aby opanować chemię. Od podstaw po zadania maturalne.
           </p>
         </header>
+
+        <section id="test-diagnostyczny" className="mb-16 overflow-hidden rounded-3xl bg-[#1A3B47] text-white shadow-lg">
+          <div className="grid gap-8 p-6 sm:p-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:p-12">
+            <div>
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#F4B942]/40 bg-[#F4B942]/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-[#F4B942]"><FlaskConical className="h-4 w-4" />Darmowy materiał · wrzesień</div>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Test diagnostyczny<br />z chemii nieorganicznej</h2>
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-white/75">Zanim zaczniesz intensywną naukę, sprawdź, gdzie naprawdę jesteś. 30 maturalnych zadań, które odsłonią luki — bez losowania prostych definicji.</p>
+              <div className="mt-7 grid grid-cols-2 gap-3 text-sm text-white/80">
+                <div className="flex items-center gap-2"><CircleHelp className="h-4 w-4 text-[#F4B942]" />30 zadań</div>
+                <div className="flex items-center gap-2"><Clock3 className="h-4 w-4 text-[#F4B942]" />35–45 minut</div>
+                <div className="flex items-center gap-2"><LockKeyhole className="h-4 w-4 text-[#F4B942]" />Bez logowania</div>
+                <div className="flex items-center gap-2"><FlaskConical className="h-4 w-4 text-[#F4B942]" />Poziom rozszerzony</div>
+              </div>
+              <p className="mt-8 border-l-2 border-[#D97745] pl-4 text-sm leading-relaxed text-white/65">Po teście dostaniesz diagnozę czterech obszarów i podpowiedź, co powtórzyć najpierw. Test z chemii organicznej pojawi się wkrótce.</p>
+            </div>
+            <DiagnosticQuiz />
+          </div>
+        </section>
 
         {/* Darmowa lekcja próbna */}
         <div className="mb-12 p-6 rounded-2xl bg-white border border-[#D97745]/20 text-center">
