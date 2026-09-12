@@ -1,4 +1,4 @@
-export type QuizTopic = "Atom i wiązania" | "Kwasy, zasady i sole" | "Redoks i pierwiastki" | "Elektrochemia";
+export type QuizTopic = "Atom i wiązania" | "Kwasy, zasady i sole" | "Stechiometria i roztwory" | "Redoks i pierwiastki" | "Elektrochemia";
 
 export type QuizQuestion = {
   topic: QuizTopic;
@@ -52,20 +52,6 @@ export const inorganicDiagnosticQuestions: QuizQuestion[] = [
     explanation: "Każde wiązanie podwójne zawiera jedno wiązanie σ i jedno π. Dwa wiązania S=O dają łącznie 2 σ oraz 2 π.",
   },
   {
-    topic: "Atom i wiązania",
-    question: "Która substancja ma sieć krystaliczną atomową, a nie jonową ani cząsteczkową?",
-    options: ["SiO₂", "NaCl", "I₂", "suchy lód"],
-    correctAnswer: 0,
-    explanation: "W krysztale SiO₂ atomy są połączone rozległą siecią wiązań kowalencyjnych. To tłumaczy jego dużą twardość i wysoką temperaturę topnienia.",
-  },
-  {
-    topic: "Atom i wiązania",
-    question: "Która zmiana na pewno zwiększa energię pierwszej jonizacji atomu?",
-    options: ["Przejście w dół tej samej grupy", "Przejście w prawo w drugim okresie, z Be do Ne", "Przyłączenie elektronu do atomu", "Wzrost liczby powłok elektronowych"],
-    correctAnswer: 1,
-    explanation: "W drugim okresie, pomijając drobne wyjątki wynikające z podpowłok, efektywny ładunek jądra rośnie ku prawej, więc elektron trudniej oderwać.",
-  },
-  {
     topic: "Kwasy, zasady i sole",
     question: "Do roztworu zawierającego 0,10 mol CH₃COOH i 0,10 mol CH₃COONa dodano małą ilość HCl. Które zdanie jest poprawne?",
     options: ["pH gwałtownie spadnie do 1", "Jony H⁺ przereagują głównie z CH₃COO⁻, tworząc CH₃COOH", "Stężenie CH₃COO⁻ wzrośnie", "Roztwór przestanie być buforem niezależnie od ilości HCl"],
@@ -106,13 +92,6 @@ export const inorganicDiagnosticQuestions: QuizQuestion[] = [
     options: ["Zmniejszy się, bo wzrośnie stężenie OH⁻", "Wzrośnie, bo NH₄⁺ wiąże OH⁻", "Nie zmieni się, bo NH₄Cl jest solą", "Spadnie do zera"],
     correctAnswer: 1,
     explanation: "NH₄⁺ reaguje z OH⁻: NH₄⁺ + OH⁻ ⇌ NH₃ + H₂O. Usuwanie OH⁻ przesuwa równowagę rozpuszczania Mg(OH)₂ w prawo.",
-  },
-  {
-    topic: "Kwasy, zasady i sole",
-    question: "Która para reagentów pozwoli otrzymać Fe(OH)₃ jako osad?",
-    options: ["FeCl₃(aq) i NaOH(aq)", "Fe(s) i H₂O(l)", "Fe₂O₃(s) i HCl(aq)", "FeCl₂(aq) i NaCl(aq)"],
-    correctAnswer: 0,
-    explanation: "Trwały osad Fe(OH)₃ strąca się z jonów Fe³⁺ i OH⁻: Fe³⁺ + 3OH⁻ → Fe(OH)₃↓.",
   },
   {
     topic: "Kwasy, zasady i sole",
@@ -158,13 +137,6 @@ export const inorganicDiagnosticQuestions: QuizQuestion[] = [
   },
   {
     topic: "Redoks i pierwiastki",
-    question: "Który zestaw reagentów odróżni roztwór Na₂CO₃ od roztworu Na₂SO₄ w jednej prostej próbie?",
-    options: ["HCl(aq)", "NaCl(aq)", "KNO₃(aq)", "H₂O destylowana"],
-    correctAnswer: 0,
-    explanation: "Po dodaniu HCl do węglanu wydziela się CO₂, a z siarczanem(VI) sodu nie obserwuje się gazu.",
-  },
-  {
-    topic: "Redoks i pierwiastki",
     question: "W reakcji Cl₂ + 2OH⁻ → Cl⁻ + ClO⁻ + H₂O chlor ulega:",
     options: ["wyłącznie utlenieniu", "wyłącznie redukcji", "dysproporcjonowaniu", "komproporcjonowaniu"],
     correctAnswer: 2,
@@ -200,13 +172,6 @@ export const inorganicDiagnosticQuestions: QuizQuestion[] = [
   },
   {
     topic: "Elektrochemia",
-    question: "Która metoda najlepiej chroni żelazo przed korozją, nawet gdy powłoka zostanie miejscowo zarysowana?",
-    options: ["Pokrycie cyną", "Pokrycie miedzią", "Cynkowanie", "Pokrycie lakierem bezbarwnym"],
-    correctAnswer: 2,
-    explanation: "Cynk jest mniej szlachetny od żelaza i działa jako anoda protektorowa, więc utlenia się zamiast Fe nawet po uszkodzeniu powłoki.",
-  },
-  {
-    topic: "Elektrochemia",
     question: "Do elektrolizy stopionego NaCl użyto elektrod obojętnych. Jaki produkt powstaje na katodzie?",
     options: ["Na", "H₂", "Cl₂", "NaOH"],
     correctAnswer: 0,
@@ -219,6 +184,41 @@ export const inorganicDiagnosticQuestions: QuizQuestion[] = [
     correctAnswer: 1,
     explanation: "Katodą jest Ag⁺/Ag, anodą Cu²⁺/Cu. E°ogniwa = E°katody − E°anody = 0,80 − 0,34 = 0,46 V.",
   },
+  {
+    topic: "Stechiometria i roztwory",
+    question: "Próbka wapienia o masie 10,0 g zawiera 80,0% masowych CaCO₃. Jaką objętość CO₂ (w warunkach normalnych) otrzymasz po reakcji z nadmiarem HCl? Przyjmij Vₘ = 22,4 dm³·mol⁻¹ i M(CaCO₃) = 100 g·mol⁻¹.",
+    options: ["0,896 dm³", "1,12 dm³", "1,79 dm³", "2,24 dm³"],
+    correctAnswer: 2,
+    explanation: "Masa CaCO₃ to 0,800 · 10,0 g = 8,00 g, czyli 0,0800 mol. Ze stechiometrii CaCO₃ → CO₂ otrzymujemy 0,0800 mol CO₂, a więc 1,79 dm³.",
+  },
+  {
+    topic: "Stechiometria i roztwory",
+    question: "Ile cm³ wody należy dodać do 250 cm³ roztworu NaOH o stężeniu 0,400 mol·dm⁻³, aby otrzymać roztwór o stężeniu 0,100 mol·dm⁻³?",
+    options: ["250 cm³", "500 cm³", "750 cm³", "1000 cm³"],
+    correctAnswer: 2,
+    explanation: "Liczba moli NaOH pozostaje stała: 0,250 dm³ · 0,400 mol·dm⁻³ = 0,100 mol. Objętość końcowa musi wynosić 1,00 dm³, więc trzeba dodać 0,750 dm³ = 750 cm³ wody.",
+  },
+  {
+    topic: "Stechiometria i roztwory",
+    question: "Zmieszano 100 cm³ roztworu H₂SO₄ o stężeniu 0,150 mol·dm⁻³ z 200 cm³ roztworu NaOH o stężeniu 0,100 mol·dm⁻³. Przyjmując całkowitą dysocjację H₂SO₄, odczyn otrzymanego roztworu będzie:",
+    options: ["kwasowy", "obojętny", "zasadowy", "niemożliwy do określenia"],
+    correctAnswer: 0,
+    explanation: "H₂SO₄ dostarcza 2 · 0,100 · 0,150 = 0,0300 mol H⁺, a NaOH 0,200 · 0,100 = 0,0200 mol OH⁻. W nadmiarze pozostaje kwas.",
+  },
+  {
+    topic: "Stechiometria i roztwory",
+    question: "Podczas ogrzewania 12,30 g hydratu MgSO₄·xH₂O otrzymano 6,00 g bezwodnego MgSO₄. Przyjmij M(MgSO₄) = 120 g·mol⁻¹. Wartość x wynosi:",
+    options: ["3", "5", "7", "10"],
+    correctAnswer: 2,
+    explanation: "n(MgSO₄) = 6,00/120 = 0,0500 mol. Ubyło 6,30 g H₂O, czyli 0,350 mol. Stosunek n(H₂O) : n(MgSO₄) = 7 : 1, zatem hydrat to MgSO₄·7H₂O.",
+  },
+  {
+    topic: "Stechiometria i roztwory",
+    question: "Do całkowitego zobojętnienia 25,0 cm³ roztworu HCl zużyto 18,40 cm³ roztworu NaOH o stężeniu 0,1250 mol·dm⁻³. Stężenie molowe HCl wynosi:",
+    options: ["0,0460 mol·dm⁻³", "0,0920 mol·dm⁻³", "0,115 mol·dm⁻³", "0,230 mol·dm⁻³"],
+    correctAnswer: 1,
+    explanation: "HCl i NaOH reagują w stosunku 1 : 1. n(NaOH) = 0,01840 dm³ · 0,1250 mol·dm⁻³ = 0,002300 mol, więc c(HCl) = 0,002300/0,0250 = 0,0920 mol·dm⁻³.",
+  },
 ];
 
-export const diagnosticTopics: QuizTopic[] = ["Atom i wiązania", "Kwasy, zasady i sole", "Redoks i pierwiastki", "Elektrochemia"];
+export const diagnosticTopics: QuizTopic[] = ["Atom i wiązania", "Kwasy, zasady i sole", "Stechiometria i roztwory", "Redoks i pierwiastki", "Elektrochemia"];

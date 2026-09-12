@@ -7,6 +7,7 @@ import { diagnosticTopics, inorganicDiagnosticQuestions, type QuizTopic } from "
 const topicLinks: Record<QuizTopic, string> = {
   "Atom i wiązania": "Budowa atomu i tworzenie cząsteczek",
   "Kwasy, zasady i sole": "Kwasy, zasady, hydroliza i sole",
+  "Stechiometria i roztwory": "Stechiometria, hydraty i stężenia roztworów",
   "Redoks i pierwiastki": "Reakcje redoks, chrom i mangan",
   Elektrochemia: "Ogniwa, elektroliza i korozja",
 };
