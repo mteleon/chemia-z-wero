@@ -41,17 +41,6 @@ export default function Courses() {
           </p>
         </header>
 
-        <section className="mb-16 overflow-hidden rounded-3xl bg-[#1A3B47] text-white shadow-lg">
-          <div className="flex flex-col items-start justify-between gap-6 p-7 sm:p-10 md:flex-row md:items-center">
-            <div className="max-w-2xl">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#F4B942]/40 bg-[#F4B942]/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-[#F4B942]"><FlaskConical className="h-4 w-4" />Darmowy test</div>
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Nie wiesz, od czego zacząć naukę?</h2>
-              <p className="mt-3 leading-relaxed text-white/75">Sprawdź swój poziom z chemii nieorganicznej i stechiometrii. W 35 minut dowiesz się, które działy potrzebują Twojej uwagi.</p>
-            </div>
-            <Button asChild className="shrink-0 rounded-full bg-[#D97745] px-6 text-white hover:bg-[#c66535]"><Link to="/test-diagnostyczny-chemia">Sprawdź swój poziom <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
-          </div>
-        </section>
-
         <div className="mb-12 rounded-2xl border border-[#D97745]/20 bg-white px-5 py-5 text-center sm:px-8">
           <p className="text-base font-semibold text-[#1A3B47]">Nie wiesz, od czego zacząć?</p>
           <p className="mt-1 text-sm text-[#1A3B47]/65">Sprawdź swój poziom samodzielnie albo porozmawiajmy na darmowej lekcji próbnej.</p>
@@ -87,6 +76,17 @@ export default function Courses() {
             )}
           </div>
         )}
+
+        <section className="mt-16 overflow-hidden rounded-3xl bg-[#1A3B47] text-white shadow-lg">
+          <div className="flex flex-col items-start justify-between gap-6 p-7 sm:p-10 md:flex-row md:items-center">
+            <div className="max-w-2xl">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#F4B942]/40 bg-[#F4B942]/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-[#F4B942]"><FlaskConical className="h-4 w-4" />Darmowy test</div>
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Nie wiesz, od czego zacząć naukę?</h2>
+              <p className="mt-3 leading-relaxed text-white/75">Sprawdź swój poziom z chemii nieorganicznej i stechiometrii. W 35 minut dowiesz się, które działy potrzebują Twojej uwagi.</p>
+            </div>
+            <Button asChild className="shrink-0 rounded-full bg-[#D97745] px-6 text-white hover:bg-[#c66535]"><Link to="/test-diagnostyczny-chemia">Sprawdź swój poziom <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
+          </div>
+        </section>
       </div>
     </div>
   );
