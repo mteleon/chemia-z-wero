@@ -24,7 +24,7 @@ Zamiast zaczynać od pierwszego rozdziału podręcznika, rozwiąż kilka zadań 
 
 Materiał chemii rozszerzonej warto przechodzić w czterech blokach.
 
-<img src="/posts/jak-zdac-mature-rozszerzona-z-chemii-w-rok-bez-biol-chem/roadmap.png" alt="Mapa roku: matura rozszerzona z chemii od zera" />
+<img src="/posts/jak-zdac-mature-rozszerzona-z-chemii-w-rok-bez-biol-chem/roadmap.svg" alt="Mapa roku: matura rozszerzona z chemii od zera" />
 
 **Miesiące 1-3 – fundamenty:** budowa atomu, wiązania, stechiometria i nazewnictwo nieorganiczne.
 
@@ -40,7 +40,7 @@ Bloki nakładają się na siebie. Powtórki z fundamentów muszą wracać przez 
 
 Po pierwszej nauce wracaj do materiału następnego dnia, po 3 dniach, po tygodniu, po 2–3 tygodniach i później raz w miesiącu. Nie czytaj tylko notatek – odtwarzaj reakcje, definicje i schematy z pamięci.
 
-<img src="/posts/jak-zdac-mature-rozszerzona-z-chemii-w-rok-bez-biol-chem/curve.png" alt="Dlaczego jedna nauka reakcji nie wystarczy" />
+<img src="/posts/jak-zdac-mature-rozszerzona-z-chemii-w-rok-bez-biol-chem/curve.svg" alt="Dlaczego jedna nauka reakcji nie wystarczy" />
 
 <div class="zadanie-box">
 <div class="zadanie-label">Reguła do zapamiętania</div>
