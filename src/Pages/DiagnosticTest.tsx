@@ -11,8 +11,9 @@ export default function DiagnosticTest() {
         <Link to="/kursy" className="inline-flex items-center text-sm font-medium text-[#1A3B47]/65 transition-colors hover:text-[#D97745]"><ArrowLeft className="mr-2 h-4 w-4" /> Wróć do kursów</Link>
         <header className="mx-auto mt-8 max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#D97745]/20 bg-white px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#D97745] shadow-sm"><FlaskConical className="h-4 w-4" /> Darmowy test diagnostyczny</div>
-          <h1 className="mt-5 text-4xl font-bold tracking-tight text-[#1A3B47] sm:text-5xl">Sprawdź swój poziom<br />zanim zaczniesz powtórkę</h1>
-          <p className="mt-5 text-lg leading-relaxed text-[#1A3B47]/75">Nie zgaduj, od czego zacząć. W 30 zadaniach sprawdzisz chemię nieorganiczną i stechiometrię, a na końcu dostaniesz jasną diagnozę działów do powtórki.</p>
+          <h1 className="mt-5 text-4xl font-bold tracking-tight text-[#1A3B47] sm:text-5xl">Sprawdź, gdzie jesteś<br />z chemią nieorganiczną</h1>
+          <p className="mt-5 text-lg leading-relaxed text-[#1A3B47]/75">30 pytań, które pomogą Ci ocenić swój poziom wiedzy i sprawdzić, które działy masz już opanowane, a które wymagają powtórki.</p>
+          <p className="mt-3 text-lg leading-relaxed text-[#1A3B47]/75">Na końcu otrzymasz jasną diagnozę i wskazówki, od czego najlepiej zacząć naukę.</p>
           <div className="mt-7 flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm font-medium text-[#1A3B47]/70">
             <span className="inline-flex items-center gap-2"><Clock3 className="h-4 w-4 text-[#D97745]" />35–45 minut</span>
             <span className="inline-flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-[#D97745]" />Poziom rozszerzony</span>
