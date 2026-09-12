@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { getCourses } from "@/data/courses";
 import { useQuery } from "@tanstack/react-query";
-import { BookOpen, Calendar } from "lucide-react";
+import { ArrowRight, BookOpen, Calendar, FlaskConical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CourseCard from "@/components/CourseCard";
 import SEO from "@/components/SEO";
@@ -40,16 +41,15 @@ export default function Courses() {
           </p>
         </header>
 
-        {/* Darmowa lekcja próbna */}
-        <div className="mb-12 p-6 rounded-2xl bg-white border border-[#D97745]/20 text-center">
-          <p className="text-lg font-medium text-[#1A3B47] mb-4">
-            Nie wiesz co wybrać? Umów się na darmową lekcję próbną.
-          </p>
-          <Button asChild className="bg-[#D97745] hover:bg-[#c66535] text-white rounded-full px-6 gap-2">
-            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-              <Calendar className="w-4 h-4" /> Umów lekcję próbną
-            </a>
-          </Button>
+        <div className="mb-12 rounded-2xl border border-[#D97745]/20 bg-white px-5 py-5 text-center sm:px-8">
+          <p className="text-base font-semibold text-[#1A3B47]">Nie wiesz, od czego zacząć?</p>
+          <p className="mt-1 text-sm text-[#1A3B47]/65">Sprawdź swój poziom samodzielnie albo porozmawiajmy na darmowej lekcji próbnej.</p>
+          <div className="mt-4 flex flex-col justify-center gap-3 sm:flex-row">
+            <Button asChild variant="outline" className="rounded-full border-[#1A3B47]/20 text-[#1A3B47] hover:bg-[#FFFBF0]"><Link to="/test-diagnostyczny-chemia">Zrób test diagnostyczny</Link></Button>
+            <Button asChild className="rounded-full bg-[#D97745] px-6 text-white hover:bg-[#c66535]">
+              <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer"><Calendar className="mr-2 w-4 h-4" /> Umów lekcję próbną</a>
+            </Button>
+          </div>
         </div>
 
         {/* Course Grid */}
@@ -76,6 +76,17 @@ export default function Courses() {
             )}
           </div>
         )}
+
+        <section className="mt-16 overflow-hidden rounded-3xl bg-[#1A3B47] text-white shadow-lg">
+          <div className="flex flex-col items-start justify-between gap-6 p-7 sm:p-10 md:flex-row md:items-center">
+            <div className="max-w-2xl">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#F4B942]/40 bg-[#F4B942]/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-[#F4B942]"><FlaskConical className="h-4 w-4" />Darmowy test</div>
+              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Nie wiesz, od czego zacząć naukę?</h2>
+              <p className="mt-3 leading-relaxed text-white/75">Sprawdź swój poziom z chemii nieorganicznej i stechiometrii. W 35 minut dowiesz się, które działy potrzebują Twojej uwagi.</p>
+            </div>
+            <Button asChild className="shrink-0 rounded-full bg-[#D97745] px-6 text-white hover:bg-[#c66535]"><Link to="/test-diagnostyczny-chemia">Sprawdź swój poziom <ArrowRight className="ml-2 h-4 w-4" /></Link></Button>
+          </div>
+        </section>
       </div>
     </div>
   );

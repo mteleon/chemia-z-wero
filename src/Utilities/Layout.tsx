@@ -9,6 +9,7 @@ import { Menu, X, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AnimatedLogoIcon from "@/components/AnimatedLogoIcon";
 import PromoBanner from "@/components/PromoBanner";
+import DiagnosticTestPopup from "@/components/DiagnosticTestPopup";
 import SEO from "@/components/SEO";
 
 type LayoutProps = { children: React.ReactNode };
@@ -138,6 +139,9 @@ export default function Layout({ children }: LayoutProps) {
         {children}
       </main>
 
+      {/* Popup: test diagnostyczny (tylko strona główna) */}
+      {pathname === "/" && <DiagnosticTestPopup />}
+
       {/* Footer */}
       <footer className="bg-[#1A3B47] text-slate-300 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -161,6 +165,7 @@ export default function Layout({ children }: LayoutProps) {
               <ul className="space-y-2 text-sm">
                 <li><Link to="/" className="hover:text-[#F4B942] transition-colors">Strona Główna</Link></li>
                 <li><Link to="/kursy" className="hover:text-[#F4B942] transition-colors">Wszystkie Kursy</Link></li>
+                <li><Link to="/test-diagnostyczny-chemia" className="hover:text-[#F4B942] transition-colors">Test diagnostyczny</Link></li>
                 <li><Link to="/notatki" className="hover:text-[#F4B942] transition-colors">Notatki</Link></li>
                 <li><Link to="/blog" className="hover:text-[#F4B942] transition-colors">Blog</Link></li>
                 <li><Link to="/o-mnie" className="hover:text-[#F4B942] transition-colors">O mnie</Link></li>

@@ -69,6 +69,7 @@ const posts = getPostSlugs();
 const staticPages = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
   { path: "/kursy", changefreq: "weekly", priority: "0.9" },
+  { path: "/test-diagnostyczny-chemia", changefreq: "monthly", priority: "0.9" },
   { path: "/o-mnie", changefreq: "monthly", priority: "0.8" },
   { path: "/kontakt", changefreq: "monthly", priority: "0.8" },
   { path: "/blog", changefreq: "weekly", priority: "0.8" },

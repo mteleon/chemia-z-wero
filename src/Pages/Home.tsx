@@ -111,8 +111,6 @@ function HomePage() {
         </div>
       </section>
 
-
-
       {/* Benefits Section */}
       <section className="pt-8 pb-12 md:pt-16 md:py-24 bg-[#FFFBF0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
