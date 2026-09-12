@@ -52,16 +52,15 @@ export default function Courses() {
           </div>
         </section>
 
-        {/* Darmowa lekcja próbna */}
-        <div className="mb-12 p-6 rounded-2xl bg-white border border-[#D97745]/20 text-center">
-          <p className="text-lg font-medium text-[#1A3B47] mb-4">
-            Nie wiesz co wybrać? Umów się na darmową lekcję próbną.
-          </p>
-          <Button asChild className="bg-[#D97745] hover:bg-[#c66535] text-white rounded-full px-6 gap-2">
-            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-              <Calendar className="w-4 h-4" /> Umów lekcję próbną
-            </a>
-          </Button>
+        <div className="mb-12 rounded-2xl border border-[#D97745]/20 bg-white px-5 py-5 text-center sm:px-8">
+          <p className="text-base font-semibold text-[#1A3B47]">Nie wiesz, od czego zacząć?</p>
+          <p className="mt-1 text-sm text-[#1A3B47]/65">Sprawdź swój poziom samodzielnie albo porozmawiajmy na darmowej lekcji próbnej.</p>
+          <div className="mt-4 flex flex-col justify-center gap-3 sm:flex-row">
+            <Button asChild variant="outline" className="rounded-full border-[#1A3B47]/20 text-[#1A3B47] hover:bg-[#FFFBF0]"><Link to="/test-diagnostyczny-chemia">Zrób test diagnostyczny</Link></Button>
+            <Button asChild className="rounded-full bg-[#D97745] px-6 text-white hover:bg-[#c66535]">
+              <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer"><Calendar className="mr-2 w-4 h-4" /> Umów lekcję próbną</a>
+            </Button>
+          </div>
         </div>
 
         {/* Course Grid */}
