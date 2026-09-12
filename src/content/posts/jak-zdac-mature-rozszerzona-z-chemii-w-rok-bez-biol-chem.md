@@ -18,11 +18,18 @@ Podobny mechanizm działa przy koncentracji. Godzina nauki poprzerywana dwoma sp
 
 Start od pierwszego rozdziału podręcznika, tak jakby chemia zaczynała się od zera, to częsty błąd osób bez klasy biol-chem. Podstawy z zakresu podstawowego (mol, budowa atomu, proste równania) zwykle są już opanowane i nie warto poświęcać na nie kilku tygodni.
 
-Warto rozwiązać kilka pierwszych zadań z dowolnego starszego arkusza CKE na poziomie rozszerzonym i szczerze ocenić, gdzie jest się na starcie:
+Warto rozwiązać kilka pierwszych zadań z dowolnego starszego arkusza CKE na poziomie rozszerzonym i szczerze ocenić, gdzie jest się na starcie.
 
-- **znam i rozumiem** – wraca tylko przy powtórkach zbiorczych,
-- **kojarzę, ale nie umiem zastosować** – priorytet numer jeden, tu jest najwięcej punktów do zdobycia stosunkowo szybko,
-- **nie znam w ogóle** – planowane normalnie w harmonogramie.
+Każdy temat przyporządkuj do jednej z trzech kategorii:
+
+- **Znam i rozumiem**  
+  Wraca tylko przy powtórkach zbiorczych.
+
+- **Kojarzę, ale nie umiem zastosować**  
+  Priorytet numer jeden. To tutaj jest najwięcej punktów do zdobycia stosunkowo szybko.
+
+- **Nie znam w ogóle**  
+  Planuję normalnie w harmonogramie.
 
 ## Krok 2: mapa roku
 
@@ -55,20 +62,50 @@ Bez tego elementu harmonogram z kroku 2 nie utrzyma się w pamięci na dłużej 
 
 W praktyce dla rocznego planu sprawdza się taki rytm powtórek:
 
-| Kiedy po pierwszej nauce | Co się robi |
-|---|---|
-| Następny dzień | Krótka powtórka z pamięci, bez notatek, 10 minut |
-| Po 3 dniach | 2–3 zadania z tego działu |
-| Po tygodniu | Równanie albo mechanizm zapisany na czystej kartce, z pamięci |
-| Po 2–3 tygodniach | Temat wraca w sesji mieszanej z innymi działami |
-| Co miesiąc od tego momentu | Jedno zadanie maturalne z tego zakresu przy powtórkach zbiorczych |
+<table class="spaced-repetition-table">
+  <thead>
+    <tr>
+      <th>Kiedy po pierwszej nauce</th>
+      <th>Co się robi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Następny dzień</td>
+      <td>Krótka powtórka z pamięci, bez notatek, 10 minut</td>
+    </tr>
+    <tr>
+      <td>Po 3 dniach</td>
+      <td>2–3 zadania z tego działu</td>
+    </tr>
+    <tr>
+      <td>Po tygodniu</td>
+      <td>Równanie albo mechanizm zapisany na czystej kartce, z pamięci</td>
+    </tr>
+    <tr>
+      <td>Po 2–3 tygodniach</td>
+      <td>Temat wraca w sesji mieszanej z innymi działami</td>
+    </tr>
+    <tr>
+      <td>Co miesiąc od tego momentu</td>
+      <td>Jedno zadanie maturalne z tego zakresu przy powtórkach zbiorczych</td>
+    </tr>
+  </tbody>
+</table>
 
 Techniki, które sprawdzają się najlepiej właśnie przy chemii:
 
-- fiszki na nazewnictwo i wyjątki (szeregi homologiczne, nazwy systematyczne, amfoteryczność, moc kwasów),
-- metoda pustej kartki dla mechanizmów i równań: notatki zamknięte, cała reakcja zapisana ze współczynnikami z pamięci,
-- technika Feynmana dla trudniejszych koncepcji: jeśli nie da się wytłumaczyć prostymi słowami, dlaczego reakcja jest egzotermiczna, temat jest jeszcze rozpoznawany, nie rozumiany,
-- minimum 3-5 rozwiązanych zadań maturalnych po każdym dziale, nie sama teoria.
+- **Fiszki na nazewnictwo i wyjątki**  
+  Szeregi homologiczne, nazwy systematyczne, amfoteryczność, moc kwasów.
+
+- **Metoda pustej kartki dla mechanizmów i równań**  
+  Zamknij notatki i zapisz całą reakcję wraz ze współczynnikami z pamięci.
+
+- **Technika Feynmana dla trudniejszych koncepcji**  
+  Jeśli nie da się wytłumaczyć prostymi słowami, dlaczego reakcja jest egzotermiczna, temat jest jeszcze rozpoznawany, a nie rozumiany.
+
+- **Minimum 3–5 zadań maturalnych po każdym dziale**  
+  Sama teoria nie wystarczy — chemii trzeba również nauczyć się stosować.
 
 Częsty błąd to powtarzanie wszystkiego codziennie, w przekonaniu że więcej powtórek zawsze znaczy lepiej. To strata czasu: jeśli materiał odtwarza się natychmiast i bezbłędnie, kolejna powtórka tego samego dnia niewiele dodaje do trwałości zapamiętania, a zabiera czas, który można przeznaczyć na dział jeszcze nieopanowany.
 
@@ -78,7 +115,7 @@ Rozszerzona matura z chemii to w dużej mierze zadania otwarte, w których liczy
 
 <div class="zadanie-box">
 <div class="zadanie-label">Reguła do zapamiętania</div>
-<p>Dobra odpowiedź maturalna zawiera konkretny termin chemiczny i wskazuje związek przyczynowo-skutkowy. "Cząsteczka jest polarna, ponieważ ma niesymetryczny rozkład ładunku i niezerowy moment dipolowy ($\mu \neq 0$)" to odpowiedź punktowana. "Jest polarna, bo ma tlen" zwykle nie wystarcza.</p>
+<p>Dobra odpowiedź maturalna zawiera konkretny termin chemiczny i wskazuje związek przyczynowo-skutkowy. "Cząsteczka jest polarna, ponieważ ma niesymetryczny rozkład ładunku i niezerowy moment dipolowy (μ ≠ 0)" to odpowiedź punktowana. "Jest polarna, bo ma tlen" zwykle nie wystarcza.</p>
 </div>
 
 Po każdym rozwiązanym arkuszu warto wypisać 5 sformułowań z klucza odpowiedzi, których nie użyło się samodzielnie, i świadomie je zapamiętać. To osobna umiejętność, obok samej znajomości chemii.
